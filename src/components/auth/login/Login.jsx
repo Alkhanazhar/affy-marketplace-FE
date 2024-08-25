@@ -32,23 +32,24 @@ const Login = () => {
     setIsLoading(true);
     try {
       const { data } = await axios.post("/api/web/user/login", dataForm);
+      console.log(data);
       if (data.error === false) {
         localStorage.setItem("token", data?.meta?.token);
         toast({
+          variant: "default",
           title: "Successfully logged in",
           description: data.message,
         });
-        toast.success(data.message);
         navigate("/");
       } else {
-        toast.error(data.message);
+        toast(data.message);
       }
     } catch (error) {
       console.log(error.message);
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        description: "Wrong Credentials.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
     } finally {

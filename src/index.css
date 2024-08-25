@@ -131,11 +131,11 @@ input[type="date"] {
   color: rgb(140, 140, 140);
 }
 
-.create-jobs select {
+select {
   @apply text-[#64748b] font-[400] text-sm;
   
 }
-.create-jobs select::placeholder{
+select::placeholder{
     @apply text-[#64748b] font-[400] text-sm;
 }
 

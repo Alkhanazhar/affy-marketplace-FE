@@ -110,18 +110,20 @@ const MyForm = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log(res, "res");
       toast({
+        variant: "default",
         title: "Success",
         description: "Sign up successfully",
       }); // Show success toast
       console.log(res.data);
       dispatch(toggleIsLogIn(true));
     } catch (error) {
+      console.log(error);
       toast({
         variant: "destructive",
-
         title: "Registration failed. Please try again.",
-        description: "Something went wrong. Please try again",
+        description: error.response.data.message,
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       console.error("Error during registration:", error);
@@ -231,12 +233,12 @@ const MyForm = () => {
                     {isPasswordShow ? (
                       <Eye
                         onClick={handleIsPasswordShow}
-                        className="mt-1 text-gray-400 font-[300] w-5 h-5"
+                        className="mt-1 font-[300]  text-gray-400 w-5 h-5"
                       />
                     ) : (
                       <EyeOff
                         onClick={handleIsPasswordShow}
-                        className="mt-1 text-gray-400 font-[300] w-5 h-5"
+                        className="mt-1 font-[300] text-gray-400 w-5 h-5"
                       />
                     )}
                   </div>
@@ -269,12 +271,12 @@ const MyForm = () => {
                     {isConfirmPasswordShow ? (
                       <Eye
                         onClick={handleIsConfirmPasswordShow}
-                        className="mt-2 text-gray-400 font-[300] w-5 h-5"
+                        className="mt-2 font-[300] text-gray-400 w-5 h-5"
                       />
                     ) : (
                       <EyeOff
                         onClick={handleIsConfirmPasswordShow}
-                        className="mt-2 text-gray-400 font-[300] w-5 h-5"
+                        className="mt-2 font-[300] text-gray-400 w-5 h-5"
                       />
                     )}
                   </div>
@@ -301,7 +303,7 @@ const MyForm = () => {
               render={({ field }) => (
                 <select
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  text-gray-400 font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.country && "border-red-500"
                   }`}
                 >
@@ -332,7 +334,7 @@ const MyForm = () => {
                 <select
                   disabled={!country}
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  text-gray-400 font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.state && "border-red-500"
                   }`}
                 >
@@ -362,7 +364,7 @@ const MyForm = () => {
                 <select
                   disabled={!state}
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  text-gray-400 font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.city && "border-red-500"
                   }`}
                 >
@@ -393,7 +395,7 @@ const MyForm = () => {
           render={({ field }) => (
             <select
               {...field}
-              className={`outline-none w-full mt-2 focus:border-gray-600 p-2 border-[1px]  text-gray-400 font-[400]  rounded-lg ${
+              className={`outline-none w-full mt-2 focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
                 errors.gender && "border-red-500"
               }`}
             >
@@ -420,7 +422,7 @@ const MyForm = () => {
           render={({ field }) => (
             <select
               {...field}
-              className={`outline-none  w-full mt-2 focus:border-gray-600 p-2 border-[1px] text-gray-400 font-[400]  rounded-lg ${
+              className={`outline-none  w-full mt-2 focus:border-gray-600 p-2 border-[1px] font-[400]  rounded-lg ${
                 errors.occupation && "border-red-500"
               }`}
             >

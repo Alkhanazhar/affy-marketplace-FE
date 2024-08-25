@@ -27,3 +27,6 @@
   z-index: -1; /* Make sure the grid is behind the content */
   pointer-events: none; /* Ensure the grid doesn't interfere with other elements */
 }
+li {
+  list-style: none;
+}

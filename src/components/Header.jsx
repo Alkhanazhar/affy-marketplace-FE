@@ -10,10 +10,9 @@ import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useToast } from "./ui/use-toast";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -45,10 +44,15 @@ const Header = () => {
     });
     setIsOpen(!isOpen);
   };
-
+  const { toast } = useToast();
   const handleLogout = () => {
     try {
       localStorage.removeItem("token");
+      toast({
+        title: "Successfully logged in",
+        description: "Logged out successfully",
+      });
+
       navigate("/auth");
     } catch (error) {
       console.error("Error logging out:", error);
@@ -79,32 +83,28 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="flex">
-            {navItems.map(({ title, href }) => (
-              <NavigationMenuItem key={title}>
-                <NavLink
-                  to={href}
-                  className={({ isActive }) =>
+          {navItems.map(({ title, href }) => (
+            <NavigationMenuItem key={title}>
+              <NavLink
+                to={href}
+                className={({ isActive }) =>
+                  `${navigationMenuTriggerStyle()} ${
                     isActive
-                      ? "text-base font-medium text-primary transition-all duration-200 "
+                      ? "text-base font-medium text-primary transition-all duration-200"
                       : ""
-                  }
-                  aria-label={title}
-                  legacyBehavior
-                >
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {title}
-                  </NavigationMenuLink>
-                </NavLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
+                  }`
+                }
+                aria-label={title}
+              >
+                {title}
+              </NavLink>
+            </NavigationMenuItem>
+          ))}
         </NavigationMenu>
 
         <div className="flex md:hidden text-primary">
           <AlignCenter onClick={toggleNav} />
         </div>
-
         <div className="md:flex gap-4 items-center hidden">
           {!token ? (
             <>
