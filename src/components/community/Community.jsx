@@ -1,5 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -44,7 +52,7 @@ const Community = () => {
           </p>
         </div>
         <div className="flex gap-3 items-center bg-white px-6 py-2 rounded-lg shadow-md shadow-[#00000047] lg:w-4/12 w-10/12 border-t ">
-          <Search />
+          <Search className="text-gray-500" />
           <Input
             type="text"
             className="w-full outline-none border-none"

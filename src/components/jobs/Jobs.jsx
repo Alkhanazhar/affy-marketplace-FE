@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
 import Header from "../Header";
 import JobCard from "./JobCard"; // Import the JobPost component
 import { Input } from "../ui/input";
+import { LocateIcon, User } from "lucide-react";
 
 const Jobs = () => {
-  // Sample job data
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchLocation, setSearchLocation] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
   const jobs = [
     {
       title: "Frontend Developer",
@@ -63,25 +68,40 @@ const Jobs = () => {
     },
   ];
 
+  useEffect(() => {
+    const filtered = jobs.filter(
+      (job) =>
+        job.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+        job.location.toLowerCase().includes(searchLocation.toLowerCase())
+    );
+    setFilteredJobs(filtered);
+  }, [searchLocation, searchTitle]);
+
   return (
     <>
       <Header />
-      <div className="pt-16  ">
-        <div className="py-4  flex items-center justify-center md:max-w-7xl mx-auto w-[90%] ">
-          <div className="flex gap-2 bg-zinc-100/90 rounded-full border shadow shadow-black/20 ">
-            <div className="rounded-l-full md:px-4 flex items-center px-2 bg-zinc-100/90 relative">
-              {/* <Search cl  assName="text-gray-500 w-5 h-5 absolute left-1 md:left-2 " /> */}
+      <div className="pt-16">
+        <div className="py-4 flex items-center justify-center md:max-w-7xl mx-auto w-[90%]">
+          <div className="flex gap-3 items-center bg-white px-6 py-2 rounded-lg shadow-md shadow-[#00000047] lg:w-5/12 w-10/12 border-t">
+            <div className="rounded-l-full md:px-4 flex items-center px-2 bg-transparent relative">
+              <User className="text-gray-500" />
               <Input
                 type="text"
-                className="border-none outline-none focus:outline-none focus:border-none bg-zinc-100/90"
+                className="border-none outline-none focus:outline-none focus:border-none bg-transparent w-full"
                 placeholder="Find your Perfect job"
+                value={searchTitle}
+                onChange={(e) => setSearchTitle(e.target.value)}
               />
             </div>
-            <div className="rounded-r-full md:px-4 px-2  flex items-center bg-zinc-100/90 relative">
+
+            <div className="rounded-r-full hidden  md:px-4 px-2 sm:flex items-center bg-transparent relative">
+              <LocateIcon className="text-gray-500" />
               <Input
                 type="text"
                 placeholder="Location"
-                className="border-none outline-none focus:outline-none focus:border-none bg-zinc-100/90"
+                className="border-none outline-none focus:outline-none focus:border-none bg-transparent"
+                value={searchLocation}
+                onChange={(e) => setSearchLocation(e.target.value)}
               />
             </div>
           </div>
@@ -89,10 +109,16 @@ const Jobs = () => {
         <hr />
         <div className="grid grid-cols-9 md:max-w-7xl w-[90%] mx-auto gap-2 py-2">
           <div className="col-span-2 border rounded-lg hidden md:flex bg-white"></div>
-          <div className="md:col-span-5 col-span-9 space-y-2 w-full md:w-auto ">
-            {jobs?.map((job, index) => (
-              <JobCard job={job} key={index} />
-            ))}
+          <div className="md:col-span-5 col-span-9 space-y-2 w-full md:w-auto">
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((job, index) => (
+                <JobCard job={job} key={index} />
+              ))
+            ) : (
+              <p className="text-2xl font-bold text-center mt-20">
+                No jobs found matching your criteria.
+              </p>
+            )}
           </div>
           <div className="col-span-2 hidden md:flex"></div>
         </div>

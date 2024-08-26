@@ -57,19 +57,19 @@ const Hero = () => {
             <form
               onSubmit={(e) => e.preventDefault()}
               method="POST"
-              className="relative mt-4 rounded-full hero__form shadow shadow-black/20"
+              className="relative mt-4 rounded-full hero__form shadow shadow-black/20 "
             >
-              <div className="relative">
+              <div className="relative ">
                 <input
                   type="email"
                   placeholder="wedding photographer Bhopal."
-                  className="block w-full py-3 pr-6 text-black/40 placeholder-gray-500 bg-secondary rounded-full pl-8 sm:py-5 focus:border-transparent border-none outline-none"
+                  className="block w-full py-3 pr-6 text-black/40 placeholder-gray-500 bg-secondary rounded-full pl-8 sm:py-5 focus:border-transparent border-none outline-none text-[3vw] sm:text-[1.4vw] md:text-[.8vw]"
                 />
               </div>
               <div className="sm:absolute flex sm:right-1.5 sm:inset-y-1.5 mt-3 sm:mt-0 ">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-[500] tracking-widest text-black/60 uppercase transition-all duration-200 bg-primary/80 rounded-full sm:w-auto sm:py-3 hover:opacity-90"
+                  className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-[500] tracking-widest text-black/60 uppercase transition-all duration-200 bg-primary/80 rounded-full sm:w-auto sm:py-3 hover:opacity-90 text-[3vw] sm:text-[1.4vw] md:text-[.8vw]"
                 >
                   Find A Photographer
                 </button>
