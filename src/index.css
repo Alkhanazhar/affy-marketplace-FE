@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -88,6 +90,10 @@
 body {
   font-family: "Neue Montreal", "Outfit", sans-serif;
 }
+
+.cursive--font {
+  font-family: "Recursive", sans-serif;
+}
 .shadow-container {
   @apply shadow-lg shadow-[#00000025];
 }
@@ -133,9 +139,7 @@ input[type="date"] {
 
 select {
   @apply text-[#64748b] font-[400] text-sm;
-  
 }
-select::placeholder{
-    @apply text-[#64748b] font-[400] text-sm;
+select::placeholder {
+  @apply text-[#64748b] font-[400] text-sm;
 }
-

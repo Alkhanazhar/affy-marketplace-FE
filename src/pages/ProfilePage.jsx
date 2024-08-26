@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { skills } from "../../constants/constatns";
-import { MapPin, Pencil, Trash, Upload } from "lucide-react";
+import { MapPin, Pen, Pencil, Trash, Upload } from "lucide-react";
 import { useState } from "react";
 
 const ProfilePage = () => {
@@ -15,9 +13,30 @@ const ProfilePage = () => {
           <ProfileImageWrapper />
           <UserInfoWrapper />
         </div>
-        <div className="flex md:hidden flex-col gap-4">
+        <div className="flex md:hidden flex-col gap-4 ">
           <MobileProfileHeader />
           <UserActions />
+        </div>
+        <div className="mt-8 border rounded-3xl flex-col gap-4 ">
+          <div className="flex justify-between items-center md:p-6 p-4">
+            <div>
+              <h1 className="md:text-2xl text-xl">Your title</h1>
+              <div className="flex">
+                {<h2>your something something title</h2>}
+              </div>
+            </div>
+            <ActionIcon Icon={Pen}></ActionIcon>
+          </div>
+          <hr />
+          <div className="flex justify-between items-center md:p-6 p-4">
+            <div>
+              <h1 className="md:text-2xl text-xl">Profile overview</h1>
+              <div className="flex">
+                {<h2>your something something profile</h2>}
+              </div>
+            </div>
+            <ActionIcon Icon={Pen}></ActionIcon>
+          </div>
         </div>
         <SkillsSection skills={skills} />
         <ProfileSection title="Certification">
@@ -41,7 +60,7 @@ const ProfileImageWrapper = () => (
 );
 
 const UserInfoWrapper = () => (
-  <div className="flex justify-between md:flex-[1.6] flex-1">
+  <div className="flex h-20 justify-between md:flex-[1.6] flex-1 pr-8">
     <UserInfo />
     <UserActions />
   </div>
@@ -130,7 +149,7 @@ const ExperienceItem = ({ company }) => (
         January - December
       </p>
     </div>
-    <div className="flex gap-1">
+    <div className="flex md:gap-4 gap-1 ">
       <ActionIcon Icon={Pencil} />
       <ActionIcon Icon={Trash} />
     </div>
@@ -138,16 +157,14 @@ const ExperienceItem = ({ company }) => (
 );
 
 const ActionIcon = ({ Icon }) => (
-  <div className="border-primary p-2 bg-white rounded-full w-fit border-2 cursor-pointer">
+  <div className="border-primary p-[6px] bg-white rounded-full w-fit border-2 cursor-pointer">
     <Icon className="text-primary w-4 h-4" />
   </div>
 );
 
 const SkillsSection = ({ skills }) => {
   const [showMore, setShowMore] = useState(false);
-
   const displayedSkills = showMore ? skills : skills?.slice(0, 10);
-
   return (
     <div className="md:p-5 p-4 flex flex-col justify-between mt-8">
       <div className="flex justify-between w-full items-center">

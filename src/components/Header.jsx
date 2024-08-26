@@ -9,13 +9,11 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "./ui/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -137,24 +135,19 @@ const Header = () => {
           ) : (
             <div className="flex items-center gap-4">
               <GradientButton text="Log out" onClick={handleLogout} />
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar>
+              <Popover>
+                <PopoverTrigger>
+                  <Avatar className="-z-10">
                     <AvatarImage src="https://www.upwork.com/profile-portraits/c1rR2GIyXNyaR_mmAFSWCei61b6sFHYbqQDJcRGijFpwyjY3RDDa2IsGe5B9vaLfKP" />
                     <AvatarFallback>AK</AvatarFallback>
                   </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>User Profile</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleProfile}>
-                    Profile
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <div className="cursor-pointer" onClick={handleProfile}>
+                    profile
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
           )}
         </div>

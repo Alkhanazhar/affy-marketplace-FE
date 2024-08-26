@@ -11,7 +11,6 @@ const Hero = () => {
   );
 
   const floatRef = useRef(null);
-
   useEffect(() => {
     gsap.to(floatRef.current, {
       y: "+=20",
@@ -31,7 +30,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="overflow-hidden  lg:min-h-[800px]">
+    <section className="overflow-hidden lg:min-h-[800px]">
       {gradients.map((classes, index) => (
         <div
           key={index}
@@ -48,16 +47,15 @@ const Hero = () => {
               </span>{" "}
               with Clients
             </h1>
-            <p className="text-lg text-gray-400 font-[400] text-center md:text-start md:text-[18px] text-[16px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5">
+            <p className=" text-gray-400 font-[300] cursive--font text-center md:text-start md:text-[16px] text-[14px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5 my-8">
               Find and hire skilled photographers for any assignment—browse
               portfolios, review profiles, and collaborate with professionals to
               bring your vision to life.
             </p>
-
             <form
               onSubmit={(e) => e.preventDefault()}
               method="POST"
-              className="relative mt-4 rounded-full hero__form shadow shadow-black/20 "
+              className="relative mt-4 rounded-full hero__form shadow cursive--font shadow-black/20 "
             >
               <div className="relative ">
                 <input
@@ -106,11 +104,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <section className="pb-8 max-w-6xl lg:mx-auto mx-8 w-[90%] trusted overflow-hidden md:text-[16px] text-[12px] mt-3 md:mt-0">
-        <p className="text-lg  text-black/50 font-[400]">
-          Trusted by 50k+ users
-        </p>
-      </section>
     </section>
   );
 };
