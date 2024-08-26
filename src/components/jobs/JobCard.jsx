@@ -31,8 +31,8 @@ const JobCard = ({ job }) => {
           <CardDescription>{job.description}</CardDescription>
         </CardContent>
         <CardFooter>
-          <DialogTrigger>
-            <Button size="sm" className="mt-4">
+          <DialogTrigger asChild>
+            <Button size="sm" className="mt-4" >
               Apply Now
             </Button>
           </DialogTrigger>

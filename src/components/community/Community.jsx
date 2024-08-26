@@ -56,7 +56,7 @@ const Community = () => {
           <Input
             type="text"
             className="w-full outline-none border-none"
-            placeholder="Search for anything"
+            placeholder="Search for communities..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

@@ -63,7 +63,7 @@ const Hero = () => {
                 <input
                   type="email"
                   placeholder="wedding photographer Bhopal."
-                  className="block w-full py-3 pr-6 text-black/40 placeholder-gray-500 bg-secondary rounded-full pl-8 sm:py-5 focus:border-transparent border-none outline-none text-[3vw] sm:text-[1.4vw] md:text-[.8vw]"
+                  className="block w-full py-3 pr-6 text-black/60 placeholder-gray-500 bg-secondary rounded-full pl-8 sm:py-5 focus:border-transparent border-none outline-none text-[3vw] sm:text-[1.8vw] md:text-[1vw]"
                 />
               </div>
               <div className="sm:absolute flex sm:right-1.5 sm:inset-y-1.5 mt-3 sm:mt-0 ">
@@ -85,7 +85,7 @@ const Hero = () => {
               className="object-cover z-50 aspect-square lg:w-[32rem] lg:h-[32rem] md:w-[25rem] md:h-[25rem] drop-shadow-xl"
               loading="lazy"
             />
-            <div className="p-1 flex gap-2 absolute left-0 z-[1000] top-4 bg-black/10 items-center rounded-full">
+            <div className="p-1 flex gap-2 absolute left-0 z-[100] top-4 bg-black/10 items-center rounded-full">
               <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>AK</AvatarFallback>
@@ -96,7 +96,6 @@ const Hero = () => {
                   {"I found the best photographer here!"}
                 </p>
                 <div className="flex gap-1 ">
-                  <Star className="fill-red-400 text-red-400 w-3 h-3" />
                   <Star className="fill-red-400 text-red-400 w-3 h-3" />
                   <Star className="fill-red-400 text-red-400 w-3 h-3" />
                   <Star className="fill-red-400 text-red-400 w-3 h-3" />

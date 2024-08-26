@@ -1,8 +1,7 @@
 import HomeClientSection from "@/components/home/HomeClientSection";
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-// import ForClients from "../components/home/ForClients";
-import FreelanceService from "../components/home/FreelanceService";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import FreelanceService from "@/components/home/FreelanceService";
 import FeedBack from "@/components/home/FeedBack";
 import Footer from "@/components/shared/Footer";
 import Cta from "@/components/home/Cta";
@@ -17,7 +16,8 @@ import {
 import useGsapAnimation from "@/hooks/useGsapAnimation";
 
 const Home = () => {
-  useGsapAnimation(".cta, .cta__2");
+  useGsapAnimation(".cta-client, .cta-freelancer");
+
   const clientItems = [
     {
       icon: <Camera />,
@@ -37,6 +37,7 @@ const Home = () => {
     },
   ];
 
+  // Data for Freelancers section
   const freelancerItems = [
     {
       icon: <BriefcaseBusiness />,
@@ -62,7 +63,7 @@ const Home = () => {
     <>
       <Header />
       <Hero />
-      <div className="cta">
+      <div className="cta-client">
         <Cta
           reverse={false}
           imgSrc="https://images.unsplash.com/photo-1531496681078-27dc2277e898?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -72,7 +73,7 @@ const Home = () => {
           btnName="Find Photographers"
         />
       </div>
-      <div className="cta__2">
+      <div className="cta-freelancer">
         <Cta
           reverse={true}
           imgSrc="https://images.unsplash.com/photo-1522198684868-88edd8463fc9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -82,7 +83,6 @@ const Home = () => {
           btnName="Join Us"
         />
       </div>
-
       <HomeClientSection />
       <FeedBack />
       <FreelanceService />

@@ -10,9 +10,7 @@ import {
   CardTitle,
 } from "../ui/card";
 
-/* eslint-disable react/prop-types */
 const Post = ({ textMessage, communityName }) => {
-  // const navigate = useNavigate();
 
   const params = useParams();
   console.log(params);
