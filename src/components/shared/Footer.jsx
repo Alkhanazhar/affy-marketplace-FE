@@ -65,7 +65,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="pt-10  border-b border-t bg-white ">
+    <footer className="pt-10  border-b border-t  cursive--font bg-white ">
       <div className="max-w-7xl mx-auto  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4">
         {items.map((item) => {
           return (
@@ -84,7 +84,7 @@ const Footer = () => {
           );
         })}
       </div>
-      <footer className="py-4  text-gray-700 max-w-7xl text-center text-sm w-[90%] footer mx-auto border-t">
+      <footer className="py-4  cursive--font  text-gray-700 max-w-7xl text-center text-sm w-[90%] footer mx-auto border-t">
         © 2015 - 2024 {brand} Global Inc. <br />
         Privacy Policy
       </footer>

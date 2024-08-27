@@ -85,21 +85,21 @@ const Header = () => {
 
   return (
     <header
-      className={`py-2 duration-150 top-0 fixed left-0 w-full z-[100] ${
+      className={`py-2 duration-150 top-0 fixed  cursive--font   left-0 w-full z-[100] ${
         bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : "bg-white"
       }`}
     >
       <section className="md:max-w-6xl w-[90%] mx-auto flex justify-between items-center">
         <Link
           to="/"
-          className="logo inline-block md:text-[28px] text-[20px] text-gray-700 font-bold z-10"
+          className="logo inline-block  md:text-[28px] text-[20px] text-gray-700 font-bold z-10"
         >
           {brand}
           <span className="text-primary">&nbsp;.</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <NavigationMenu className="hidden md:flex">
+        <NavigationMenu className="hidden md:flex gap-2">
           {navItems.map(({ title, href }) => {
             if (title === "Create-jobs" && !token) {
               return null;

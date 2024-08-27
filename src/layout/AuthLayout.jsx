@@ -70,6 +70,9 @@ const AuthLayout = () => {
       <div className=" relative pb-10">
         <Outlet />
       </div>
+      <footer className="flex justify-center ">
+        <h1 className="uppercase cursive--font">made with 💖 by affy cloud</h1>
+      </footer>
     </div>
   );
 };
