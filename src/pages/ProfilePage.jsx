@@ -13,7 +13,7 @@ const ProfilePage = () => {
           <ProfileImageWrapper />
           <UserInfoWrapper />
         </div>
-        <div className="flex md:hidden flex-col gap-4 ">
+        <div className="flex md:hidden flex-col gap-4">
           <MobileProfileHeader />
           <UserActions />
         </div>
@@ -91,6 +91,12 @@ const ProfilePage = () => {
         <ProfileSection title="Experience">
           <AddExperience />
         </ProfileSection>
+        <ProfileSection title="Portfolio">
+          <Portfolios />
+        </ProfileSection>
+        <ProfileSection title="Projects">
+          <Projects />
+        </ProfileSection>
       </div>
     </div>
   );
@@ -124,8 +130,9 @@ const ProfileImage = () => (
       alt="Profile"
       className="w-24 h-24 rounded-full"
     />
-    <div className="border-primary border p-2 bg-white rounded-full w-fit absolute bottom-0 right-0 cursor-pointer">
-      <Pencil className="text-primary w-3 h-3" />
+    <div className="border-primary border bg-white rounded-full w-fit absolute bottom-0 right-0 cursor-pointer">
+      {/* <Pencil className="text-primary w-3 h-3" /> */}
+      <ActionIcon size={4} Icon={Pencil} />
     </div>
   </div>
 );
@@ -201,9 +208,9 @@ const ExperienceItem = ({ company }) => (
 
 const ActionIcon = ({ Icon, size = 4, padding = 2 }) => (
   <div
-    className={`border-primary p-${padding} bg-white rounded-full w-fit border cursor-pointer`}
+    className={`border-primary p-${padding}  bg-white rounded-full w-fit border-2 cursor-pointer`}
   >
-    <Icon className={`text-primary  w-${size} h-${size}`} />
+    <Icon className={`text-primary fill-primary w-${size} h-${size}`} />
   </div>
 );
 
@@ -257,6 +264,41 @@ const AddExperience = () => (
       </p>
       <Button variant="outline" className="mt-4">
         Add Experience
+      </Button>
+    </div>
+  </div>
+);
+const Portfolios = () => (
+  <div className="flex flex-col items-center">
+    <img
+      src="https://us.123rf.com/450wm/pleasantmode/pleasantmode2306/pleasantmode230600846/210407597-stylish-typography-text-lettering-phrase-vector-design.jpg?ver=6"
+      className="md:h-32 h-24 mix-blend-darken w-auto"
+      alt="Experience"
+    />
+    <div className="mt-8 text-center max-w-[30rem]">
+      <p className="text-base font-[400] leading-6">
+        Add your portfolio that help you stand out.
+      </p>
+      <Button variant="outline" className="mt-4">
+        Add Portfolio
+      </Button>
+    </div>
+  </div>
+);
+
+const Projects = () => (
+  <div className="flex flex-col items-center">
+    <img
+      src="project.png"
+      className="md:h-32 h-24 mix-blend-darken w-auto"
+      alt="Experience"
+    />
+    <div className="mt-8 text-center max-w-[30rem]">
+      <p className="text-base font-[400] leading-6">
+        Add your projects that help you stand out.
+      </p>
+      <Button variant="outline" className="mt-4">
+        Add Projects
       </Button>
     </div>
   </div>

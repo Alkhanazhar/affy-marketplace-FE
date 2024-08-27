@@ -14,7 +14,7 @@ import {
   Phone,
   User,
 } from "lucide-react";
-import useGsapAnimation from "@/hooks/useGsapAnimation"
+import useGsapAnimation from "@/hooks/useGsapAnimation";
 import {
   Carousel,
   CarouselContent,
@@ -70,7 +70,7 @@ const Home = () => {
     <>
       <Header />
       <Hero />
-      <div className="max-w-7xl md:mx-auto md:-mt-32 my-4 carousel-autoplay mx-4">
+      <div className="max-w-7xl md:mx-auto md:-mt-32 my-8 md:my-0 carousel-autoplay mx-4">
         <p className="text-lg  text-black/50 font-[400]">
           Trusted by top companies and 50k+ peoples.
         </p>

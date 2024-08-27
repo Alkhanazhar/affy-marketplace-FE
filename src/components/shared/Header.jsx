@@ -150,15 +150,20 @@ const Header = () => {
                     <Button variant="outline" size="sm" onClick={handleProfile}>
                       profile
                     </Button>
-                    <Button onClick={handleLogout} variant="outline" size="sm">
-                      Log out
-                    </Button>
+
                     <Button
                       onClick={handleCreateJobs}
                       variant="outline"
                       size="sm"
                     >
                       Create-jobs
+                    </Button>
+                    <Button
+                      onClick={handleLogout}
+                      variant="destructive"
+                      size="xs"
+                    >
+                      Log out
                     </Button>
                   </div>
                 </PopoverContent>
