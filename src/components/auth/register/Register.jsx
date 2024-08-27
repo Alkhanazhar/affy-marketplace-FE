@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Separator from "../../shared/Separator";
 import SelectRegisterType from "./components/SelctRegisterType";
 import MyForm from "./components/MyForm";
@@ -8,19 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleIsLogIn } from "../../../app/features/auth/authSlice";
 
 const Register = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isRegisterReady = useSelector((store) => store.auth.isRegisterReady);
   const selectType = useSelector((state) => state.auth.selectRegisterType);
   const onHandleIsLogin = () => {
     dispatch(toggleIsLogIn(true));
   };
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/");
-    }
-  }, [navigate]);
 
   return (
     <div className="min-h-[80vh] pt-16 flex flex-col justify-center items-center max-w-7xl">

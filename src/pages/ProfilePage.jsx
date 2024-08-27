@@ -1,13 +1,11 @@
-import Header from "@/components/shared/Header";
 import { Button } from "@/components/ui/button";
 import { skills } from "../../constants/constatns";
-import { MapPin, Pen, Pencil, Trash, Upload } from "lucide-react";
+import { MapPin, UserPen, Trash, Upload } from "lucide-react";
 import { useState } from "react";
 
 const ProfilePage = () => {
   return (
     <div className="py-32 px-4 md:px-0">
-      <Header />
       <div className="max-w-7xl mx-auto rounded-2xl w-full h-full border overflow-hidden md:p-6 p-4 md:pb-12 pb-4 bg-white shadow-md">
         <div className="hidden md:flex md:flex-row flex-col gap-4">
           <ProfileImageWrapper />
@@ -28,11 +26,11 @@ const ProfilePage = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
                 <span>Schools Mp Bhopal</span>
-                <ActionIcon Icon={Pencil} padding={1} size={3} />
+                <ActionIcon Icon={UserPen} padding={1} size={3} />
               </div>
               <div className="flex justify-between  text-xs md:text-base items-center text-neutral-600">
                 <span>College Btech Mp Bhopal</span>
-                <ActionIcon Icon={Pencil} padding={1} size={3} />
+                <ActionIcon Icon={UserPen} padding={1} size={3} />
               </div>
             </div>
           </div>
@@ -48,13 +46,13 @@ const ProfilePage = () => {
                 <span>
                   English: <span className="text-xs">Proficiency</span>
                 </span>
-                <ActionIcon Icon={Pencil} padding={1} size={3} />
+                <ActionIcon Icon={UserPen} padding={1} size={3} />
               </div>
               <div className="flex justify-between items-center  text-xs md:text-base text-neutral-600">
                 <span>
                   Hindi: <span className="text-xs">Proficiency</span>
                 </span>
-                <ActionIcon Icon={Pencil} padding={1} size={3} />
+                <ActionIcon Icon={UserPen} padding={1} size={3} />
               </div>
             </div>
           </div>
@@ -68,7 +66,7 @@ const ProfilePage = () => {
                 {<h2>your something something title</h2>}
               </div>
             </div>
-            <ActionIcon Icon={Pen}></ActionIcon>
+            <ActionIcon Icon={UserPen}></ActionIcon>
           </div>
           <hr />
           <div className="flex justify-between items-center md:p-6 p-4">
@@ -78,7 +76,7 @@ const ProfilePage = () => {
                 {<h2>your something something profile</h2>}
               </div>
             </div>
-            <ActionIcon Icon={Pen}></ActionIcon>
+            <ActionIcon Icon={UserPen}></ActionIcon>
           </div>
         </div>
         <SkillsSection skills={skills} />
@@ -131,8 +129,8 @@ const ProfileImage = () => (
       className="w-24 h-24 rounded-full"
     />
     <div className="border-primary border bg-white rounded-full w-fit absolute bottom-0 right-0 cursor-pointer">
-      {/* <Pencil className="text-primary w-3 h-3" /> */}
-      <ActionIcon size={4} Icon={Pencil} />
+      {/* <UserPen className="text-primary w-3 h-3" /> */}
+      <ActionIcon size={4} Icon={UserPen} />
     </div>
   </div>
 );
@@ -200,7 +198,7 @@ const ExperienceItem = ({ company }) => (
       </p>
     </div>
     <div className="flex md:gap-4 gap-1 ">
-      <ActionIcon Icon={Pencil} />
+      <ActionIcon Icon={UserPen} />
       <ActionIcon Icon={Trash} />
     </div>
   </div>
@@ -208,9 +206,9 @@ const ExperienceItem = ({ company }) => (
 
 const ActionIcon = ({ Icon, size = 4, padding = 2 }) => (
   <div
-    className={`border-primary p-${padding}  bg-white rounded-full w-fit border-2 cursor-pointer`}
+    className={`border-primary p-${padding}  bg-white rounded-full w-fit border-[1.6px] cursor-pointer`}
   >
-    <Icon className={`text-primary fill-primary w-${size} h-${size}`} />
+    <Icon className={`text-primary w-${size} h-${size}`} />
   </div>
 );
 

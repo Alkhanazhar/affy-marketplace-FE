@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Header from "../shared/Header";
 import JobCard from "./JobCard";
 import { Input } from "../ui/input";
 import { User, LocateIcon, ChevronsUpDown } from "lucide-react";
@@ -282,7 +281,6 @@ const Jobs = () => {
 
   return (
     <>
-      <Header />
       <div className="pt-16">
         <SearchBar
           searchTitle={searchTitle}

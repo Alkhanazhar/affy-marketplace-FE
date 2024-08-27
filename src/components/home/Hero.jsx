@@ -41,7 +41,7 @@ const Hero = () => {
       <div className="relative px-6 lg:px-8">
         <div className="max-w-6xl pt-12 sm:pt-28 md:pt-32 lg:pt-40 mx-auto flex flex-col-reverse md:flex-row justify-between items-center">
           <div className="md:w-1/2 flex flex-col md:space-y-4 space-y-4">
-            <h1 className="text-4xl font-medium text-black/80 sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start z-10">
+            <h1 className="text-4xl font-medium mix-blend-multiply text-black/80 sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start z-10">
               Connecting <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#13160f] to-[#1394d0] ">
                 Photographers
@@ -53,29 +53,14 @@ const Hero = () => {
               portfolios, review profiles, and collaborate with professionals to
               bring your vision to life.
             </p>
-            {/* <form
-              onSubmit={(e) => e.preventDefault()}
-              method="POST"
-              className="relative mt-4 hero__form shadow cursive--font rounded-full md:rounded-none shadow-black/30 "
-            >
-              <div className="relative ">
-                <input
-                  type="email"
-                  placeholder="wedding photographer Bhopal."
-                  className="block w-full py-2 pr-6 text-black/60 placeholder-gray-500 bg-secondary  pl-8 sm:py-5 focus:border-transparent border-none rounded-full md:rounded-none outline-none text-[3vw] sm:text-[1.8vw] md:text-[1vw]"
-                />
-              </div>
-              <div className="sm:absolute flex sm:right-1.5 sm:inset-y-1.5 mt-3 sm:mt-0 ">
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center w-full px-5 py-2 text-sm font-[500] tracking-widest text-black/60 uppercase transition-all duration-200 bg-primary/80 md:rounded-l-full rounded-full md:rounded-none sm:w-auto sm:py-3 hover:opacity-90 text-[3vw] sm:text-[1.4vw] md:text-[.8vw]"
-                >
-                  Find A Photographer
-                </button>
-              </div>
-            </form> */}
-            <div className="getStarted mt-4">
-              <Button size="lg" variant="outline" className="text-lg text-neutral-600 shadow">Get Started</Button>
+
+            <div className="getStarted mt-4 flex justify-center md:justify-start">
+              <Button
+                size="lg"
+                className="text-lg text-neutral-100 rounded-xl shadow"
+              >
+                Get Started
+              </Button>
             </div>
           </div>
 

@@ -1,5 +1,4 @@
 import { Plus, Search } from "lucide-react";
-import Header from "@/components/shared/Header";
 import { postsArray } from "../../constants/constatns";
 import Post from "@/components/community/Post";
 import { Input } from "@/components/ui/input";
@@ -18,7 +17,6 @@ const Posts = () => {
 
   return (
     <>
-      <Header />
       <div className="min-h-screen ">
         <div className="max-w-7xl mx-auto flex pt-16">
           <AsideSection>

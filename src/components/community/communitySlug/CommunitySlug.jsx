@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import Header from "../../shared/Header";
 import { Link, Tag, User, User2Icon } from "lucide-react";
 import { toast } from "react-toastify";
 import { photographyCommunities } from "../../../../constants/constatns";
@@ -24,7 +23,6 @@ const CommunitySlug = () => {
   }, [communityName]);
   return (
     <>
-      <Header />
       <div className="pt-16 pb-16  min-h-screen mx-4 md:mx-0">
         <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse py-8 md:mx-4">
           <div className=" w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white">

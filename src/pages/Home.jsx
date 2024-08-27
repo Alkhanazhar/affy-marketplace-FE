@@ -1,9 +1,7 @@
 import HomeClientSection from "@/components/home/HomeClientSection";
-import Header from "@/components/shared/Header";
 import Hero from "@/components/home/Hero";
 import FreelanceService from "@/components/home/FreelanceService";
 import FeedBack from "@/components/home/FeedBack";
-import Footer from "@/components/shared/Footer";
 import Cta from "@/components/home/Cta";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -68,7 +66,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
       <Hero />
       <div className="max-w-7xl md:mx-auto md:-mt-32 my-8 md:my-0 carousel-autoplay mx-4">
         <p className="text-lg  text-black/50 font-[400]">
@@ -118,7 +115,6 @@ const Home = () => {
       <HomeClientSection />
       <FeedBack />
       <FreelanceService />
-      <Footer />
     </>
   );
 };

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Header from "../shared/Header";
 import { ChevronRight } from "lucide-react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -35,7 +34,6 @@ const CreateJobs = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       <section className="flex-1 flex items-center overflow-hidden justify-center relative">
         <main className="flex items-center justify-center px-8 w-full">
           <div className="lg:w-3/4 w-full">

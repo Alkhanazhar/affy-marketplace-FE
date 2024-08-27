@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-// src/components/JobCard.js
 import {
   Card,
   CardContent,
@@ -17,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { Clock2 } from "lucide-react";
 
 const JobCard = ({ job }) => {
   return (
@@ -30,16 +29,18 @@ const JobCard = ({ job }) => {
         <CardContent>
           <CardDescription>{job.description}</CardDescription>
           <div className="mt-4 flex">
-            <p className="text-[#64748b] ">Experience Required: &nbsp;</p>{" "}
+            <p className="text-[#64748b] flex items-center">
+              <Clock2 className="w-4 h-4 mr-2" /> Experience Required: &nbsp;
+            </p>{" "}
             {job.experience}
           </div>
 
-          <ul className="flex gap-2 items-center mt-4">
+          <ul className="flex gap-2 items-center mt-4 flex-wrap">
             <p className="text-[#64748b]">Skills:</p>
             {job.skills.map((skill, index) => (
               <li
                 key={index}
-                className="py-[6px] px-4 rounded-full bg-neutral-200 text-[#546274]"
+                className="py-[4px] text-sm md:text-base px-4 rounded-full bg-neutral-200 text-[#546274]"
               >
                 {skill}
               </li>

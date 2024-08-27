@@ -19,7 +19,7 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
         </div>
 
         <div className="mt-4 md:mt-0 cta md:w-1/2 w-full px-8 flex flex-col space-y-4 cta-content">
-          <h2 className="lg:text-4xl font-[400] md:text-2xl text-xl text-gray-700 ">
+          <h2 className="lg:text-3xl font-[400] md:text-2xl text-xl text-gray-700 ">
             {heading}
           </h2>
           <p className="text-lg text-gray-400 mb-6">{subHeading}</p>
@@ -29,10 +29,10 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
                 {item.icon}
               </div>
               <div className="ml-3">
-                <h5 className="text-base font-medium text-gray-600 ">
+                <h5 className="text-base font-medium text-gray-500 ">
                   {item.heading}
                 </h5>
-                <p className="text-gray-500 text-sm ">{item.subHeading}</p>
+                <p className="text-gray-400 text-sm ">{item.subHeading}</p>
               </div>
             </div>
           ))}
