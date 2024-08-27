@@ -84,7 +84,8 @@ const Footer = () => {
           );
         })}
       </div>
-      <footer className="py-4  cursive--font  text-gray-700 max-w-7xl text-center text-sm w-[90%] footer mx-auto border-t">
+      <hr className="mt-4" />
+      <footer className="py-4  cursive--font  text-gray-700 max-w-7xl text-center text-sm w-[90%] footer mx-auto ">
         © 2015 - 2024 {brand} Global Inc. <br />
         Privacy Policy
       </footer>

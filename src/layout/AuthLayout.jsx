@@ -27,7 +27,7 @@ const AuthLayout = () => {
   return (
     <div>
       <header className="border-b fixed top-0 left-0 w-full bg-white z-[10000]">
-        <div className="max-w-7xl mx-auto flex justify-between md:justify-between p-3 items-center">
+        <div className="max-w-7xl mx-auto flex justify-between cursive--font md:justify-between p-3 items-center">
           <Link
             to="/"
             className="logo  text-primary text-2xl font-bold cursor-pointer "
@@ -67,7 +67,7 @@ const AuthLayout = () => {
           )}
         </div>
       </header>
-      <div className=" relative pb-10">
+      <div className=" relative pb-10 ">
         <Outlet />
       </div>
       <footer className="flex justify-center ">

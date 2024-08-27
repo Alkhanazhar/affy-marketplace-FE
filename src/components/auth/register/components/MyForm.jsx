@@ -110,7 +110,6 @@ const MyForm = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res, "res");
       toast({
         variant: "default",
         title: "Success",
@@ -138,7 +137,7 @@ const MyForm = () => {
         {selectType === "Freelancer" && "Sign up to find work you love"}
         {selectType === "Client" && "Sign up to hire talent"}
       </h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="pb-4">
         {/* First Name */}
         <div className="flex gap-2 ">
           <div className="flex flex-col w-full mb-2">
