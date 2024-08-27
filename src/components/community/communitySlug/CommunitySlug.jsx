@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import Header from "../../Header";
+import Header from "../../shared/Header";
 import { Link, Tag, User, User2Icon } from "lucide-react";
 import { toast } from "react-toastify";
 import { photographyCommunities } from "../../../../constants/constatns";

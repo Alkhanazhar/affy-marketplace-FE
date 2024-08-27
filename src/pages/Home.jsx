@@ -1,72 +1,29 @@
 import HomeClientSection from "@/components/home/HomeClientSection";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import Header from "@/components/shared/Header";
+import Hero from "@/components/home/Hero";
 import FreelanceService from "@/components/home/FreelanceService";
 import FeedBack from "@/components/home/FeedBack";
 import Footer from "@/components/shared/Footer";
 import Cta from "@/components/home/Cta";
 import Autoplay from "embla-carousel-autoplay";
 import {
-  Briefcase,
   BriefcaseBusiness,
-  Building,
   Camera,
-  Globe,
   Headset,
-  Monitor,
   MonitorCheck,
   Phone,
-  Server,
   User,
 } from "lucide-react";
-import useGsapAnimation from "@/hooks/useGsapAnimation";
+import useGsapAnimation from "@/hooks/useGsapAnimation"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import companies from "../../constants/companies.json";
 
 const Home = () => {
   useGsapAnimation(".cta-client, .cta-freelancer , .carousel-autoplay");
-
-  // Define companies array with color property
-  const companies = [
-    {
-      name: "TechCorp",
-      icon: <Monitor width={100} height={100} />,
-      color: "bg-blue-200",
-    },
-    {
-      name: "PhotoPro",
-      icon: <Camera width={100} height={100} />,
-      color: "bg-green-200",
-    },
-    {
-      name: "GlobalComm",
-      icon: <Globe width={100} height={100} />,
-      color: "bg-red-200",
-    },
-    {
-      name: "SecureNet",
-      icon: <Server width={100} height={100} />,
-      color: "bg-yellow-200",
-    },
-    {
-      name: "BizSolutions",
-      icon: <Briefcase width={100} height={100} />,
-      color: "bg-pink-200",
-    },
-    {
-      name: "BuildCo",
-      icon: <Building width={100} height={100} />,
-      color: "bg-purple-200",
-    },
-    {
-      name: "MobileX",
-      icon: <Phone width={100} height={100} />,
-      color: "bg-teal-200",
-    },
-  ];
 
   const clientItems = [
     {
@@ -128,9 +85,11 @@ const Home = () => {
           <CarouselContent className="flex gap-5 sm:gap-20 items-center">
             {companies.map((item, index) => (
               <CarouselItem key={index} className="basis-1/2 lg:basis-1/4 ">
-                <h2 className="md:text-2xl text-xl cursive--font font-[600] text-neutral-500">
-                  {item.name}
-                </h2>
+                <img
+                  src={item.path}
+                  alt={item.name}
+                  className="h-8 sm:h-12 object-contain"
+                />
               </CarouselItem>
             ))}
           </CarouselContent>

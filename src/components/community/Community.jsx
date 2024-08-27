@@ -1,13 +1,4 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";

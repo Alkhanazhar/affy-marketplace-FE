@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Plus } from "lucide-react";
-import Header from "@/components/Header";
+import Header from "@/components/shared/Header";
 import { postsArray } from "../../constants/constatns";
 import Post from "@/components/community/Post";
 import { Input } from "@/components/ui/input";

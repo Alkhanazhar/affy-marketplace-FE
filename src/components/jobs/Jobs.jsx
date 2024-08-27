@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Header from "../Header";
+import Header from "../shared/Header";
 import JobCard from "./JobCard"; // Import the JobPost component
 import { Input } from "../ui/input";
 import { LocateIcon, User } from "lucide-react";

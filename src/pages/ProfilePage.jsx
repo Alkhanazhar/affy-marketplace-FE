@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/shared/Header";
 import { Button } from "@/components/ui/button";
 import { skills } from "../../constants/constatns";
 import { MapPin, Pen, Pencil, Trash, Upload } from "lucide-react";
@@ -17,6 +17,49 @@ const ProfilePage = () => {
           <MobileProfileHeader />
           <UserActions />
         </div>
+        <div className="flex mt-8 border rounded-2xl divide-x divide-neutral-200">
+          <div className="w-1/2 p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="md:text-2xl text-xl font-[500]">Educations</h2>
+              <Button className="text-xl md:w-8 md:h-8  rounded-full hidden md:flex">
+                +
+              </Button>
+            </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+                <span>Schools Mp Bhopal</span>
+                <ActionIcon Icon={Pencil} padding={1} size={3} />
+              </div>
+              <div className="flex justify-between  text-xs md:text-base items-center text-neutral-600">
+                <span>College Btech Mp Bhopal</span>
+                <ActionIcon Icon={Pencil} padding={1} size={3} />
+              </div>
+            </div>
+          </div>
+          <div className="w-1/2 p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="md:text-2xl text-xl font-[500]">Languages</h2>
+              <Button className="text-xl md:w-8 md:h-8  rounded-full hidden md:flex">
+                +
+              </Button>
+            </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center  text-xs md:text-base text-neutral-600">
+                <span>
+                  English: <span className="text-xs">Proficiency</span>
+                </span>
+                <ActionIcon Icon={Pencil} padding={1} size={3} />
+              </div>
+              <div className="flex justify-between items-center  text-xs md:text-base text-neutral-600">
+                <span>
+                  Hindi: <span className="text-xs">Proficiency</span>
+                </span>
+                <ActionIcon Icon={Pencil} padding={1} size={3} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-8 border rounded-3xl flex-col gap-4 ">
           <div className="flex justify-between items-center md:p-6 p-4">
             <div>
@@ -156,9 +199,11 @@ const ExperienceItem = ({ company }) => (
   </div>
 );
 
-const ActionIcon = ({ Icon }) => (
-  <div className="border-primary p-[6px] bg-white rounded-full w-fit border-2 cursor-pointer">
-    <Icon className="text-primary w-4 h-4" />
+const ActionIcon = ({ Icon, size = 4, padding = 2 }) => (
+  <div
+    className={`border-primary p-${padding} bg-white rounded-full w-fit border cursor-pointer`}
+  >
+    <Icon className={`text-primary  w-${size} h-${size}`} />
   </div>
 );
 
@@ -166,14 +211,14 @@ const SkillsSection = ({ skills }) => {
   const [showMore, setShowMore] = useState(false);
   const displayedSkills = showMore ? skills : skills?.slice(0, 10);
   return (
-    <div className="md:p-5 p-4 flex flex-col justify-between mt-8">
+    <div className="md:p-5 p-4 flex flex-col justify-between">
       <div className="flex justify-between w-full items-center">
         <h1 className="md:text-2xl text-xl text-neutral-700 font-medium">
           Skills
         </h1>
         <Button className="rounded-full text-xl w-10 h-10">+</Button>
       </div>
-      <div className="flex flex-wrap gap-2 my-4">
+      <div className="flex flex-wrap gap-2 mt-4">
         {displayedSkills?.map((item, index) => (
           <Button
             size="sm"

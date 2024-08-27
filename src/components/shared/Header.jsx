@@ -1,13 +1,12 @@
 import gsap from "gsap";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { brand } from "../../constants/constatns";
+import { brand } from "../../../constants/constatns";
 import { useEffect, useState } from "react";
 import { AlignCenter, X } from "lucide-react";
 import { useDispatch } from "react-redux";
-import { toggleIsLogIn } from "../app/features/auth/authSlice";
+import { toggleIsLogIn } from "@/app/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
-import { useToast } from "./ui/use-toast";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Popover,
   PopoverContent,
@@ -19,12 +18,12 @@ import {
   NavigationMenuItem,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useToast } from "../ui/use-toast";
 
 const navItems = [
   { title: "Home", href: "/" },
   { title: "Community", href: "/community" },
   { title: "Jobs", href: "/jobs" },
-  { title: "Create-jobs", href: "/create-jobs" },
 ];
 
 const Header = () => {
@@ -60,6 +59,11 @@ const Header = () => {
   const handleLogin = () => {
     dispatch(toggleIsLogIn(true));
     navigate("/auth");
+  };
+
+  const handleCreateJobs = () => {
+    dispatch(toggleIsLogIn(true));
+    navigate("/create-jobs");
   };
 
   const handleLogout = () => {
@@ -134,7 +138,6 @@ const Header = () => {
             </>
           ) : (
             <div className="flex items-center gap-4">
-              <GradientButton text="Log out" onClick={handleLogout} />
               <Popover>
                 <PopoverTrigger>
                   <Avatar className="-z-10">
@@ -143,8 +146,20 @@ const Header = () => {
                   </Avatar>
                 </PopoverTrigger>
                 <PopoverContent>
-                  <div className="cursor-pointer" onClick={handleProfile}>
-                    profile
+                  <div className="flex flex-col gap-2">
+                    <Button variant="outline" size="sm" onClick={handleProfile}>
+                      profile
+                    </Button>
+                    <Button onClick={handleLogout} variant="outline" size="sm">
+                      Log out
+                    </Button>
+                    <Button
+                      onClick={handleCreateJobs}
+                      variant="outline"
+                      size="sm"
+                    >
+                      Create-jobs
+                    </Button>
                   </div>
                 </PopoverContent>
               </Popover>

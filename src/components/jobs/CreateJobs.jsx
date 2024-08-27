@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "../Header";
+import Header from "../shared/Header";
 import { ChevronRight } from "lucide-react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";

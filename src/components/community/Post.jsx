@@ -1,4 +1,8 @@
-import { Heart, MessageCircle, MessageSquareShare } from "lucide-react";
+import {
+  Heart,
+  MessageCircle,
+  ScreenShare,
+} from "lucide-react";
 import { useParams } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -11,7 +15,6 @@ import {
 } from "../ui/card";
 
 const Post = ({ textMessage, communityName }) => {
-
   const params = useParams();
   console.log(params);
 
@@ -41,15 +44,14 @@ const Post = ({ textMessage, communityName }) => {
       </CardContent>
       <CardFooter className="flex justify-between items-center mt-2">
         <PostIcons onClick={handleLike}>
-          <Heart className="w-6 h-6 p-1 rounded-full hover:bg-primary/60" />{" "}
-          Like
+          <Heart className="w-4 h-4  hover:fill-primary/60" /> Like
         </PostIcons>
         <PostIcons onClick={handleComment}>
-          <MessageCircle className="w-6 h-6 p-1 rounded-full hover:bg-primary/60 " />
+          <MessageCircle className="w-4 h-4 hover:fill-primary/60 " />
           Comment
         </PostIcons>
         <PostIcons onClick={handleShare}>
-          <MessageSquareShare className="w-6 h-6 p-1 rounded-full hover:bg-primary/60" />
+          <ScreenShare className="w-4 h-4  hover:fill-primary/60" />
           share
         </PostIcons>
       </CardFooter>
@@ -60,7 +62,10 @@ const Post = ({ textMessage, communityName }) => {
 export default Post;
 export const PostIcons = ({ children, onClick }) => {
   return (
-    <div className="cursor-pointer flex items-center" onClick={onClick}>
+    <div
+      className="cursor-pointer flex items-center gap-2 text-slate-700 hover:text-primary"
+      onClick={onClick}
+    >
       {children}
     </div>
   );
