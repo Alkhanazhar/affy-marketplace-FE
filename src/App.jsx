@@ -14,11 +14,10 @@ import AuthLayout from "./layout/AuthLayout";
 
 const App = () => {
   axios.defaults.baseURL = "http://localhost:8714";
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />, // Main layout for the landing page and other main routes
+      element: <MainLayout />, 
       children: [
         {
           path: "/",
@@ -64,7 +63,7 @@ const App = () => {
     },
     {
       path: "/auth",
-      element: <AuthLayout />, // Auth layout for authentication routes
+      element: <AuthLayout />, 
       children: [
         {
           path: "/auth",

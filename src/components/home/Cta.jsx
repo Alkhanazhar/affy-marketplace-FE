@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 

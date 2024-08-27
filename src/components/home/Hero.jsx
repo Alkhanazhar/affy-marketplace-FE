@@ -48,7 +48,7 @@ const Hero = () => {
               </span>{" "}
               with Clients
             </h1>
-            <p className=" text-gray-400 font-[300] cursive--font text-center md:text-start md:text-[16px] text-[14px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5 my-8">
+            <p className=" text-gray-500 font-[400] cursive--font text-center md:text-start md:text-[16px] text-[14px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5 my-8">
               Find and hire skilled photographers for any assignment—browse
               portfolios, review profiles, and collaborate with professionals to
               bring your vision to life.
