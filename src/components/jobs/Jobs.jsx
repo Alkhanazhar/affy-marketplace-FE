@@ -29,7 +29,7 @@ const useJobFilter = (jobs, searchTitle, searchLocation) => {
         job.location.toLowerCase().includes(searchLocation.toLowerCase())
     );
     setFilteredJobs(filtered);
-  }, [searchLocation, searchTitle, jobs]);
+  }, [searchLocation, searchTitle]);
 
   return filteredJobs;
 };

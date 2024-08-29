@@ -11,13 +11,16 @@ import "./App.css";
 import ProfilePage from "./pages/ProfilePage";
 import MainLayout from "./layout/MainLayout";
 import AuthLayout from "./layout/AuthLayout";
+import AdminLayout from "./layout/AdminLayout";
+import Dashboard from "./pages/Dashboard";
+import CategoryPage from "./pages/Category";
 
 const App = () => {
   axios.defaults.baseURL = "http://localhost:8714";
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />, 
+      element: <MainLayout />,
       children: [
         {
           path: "/",
@@ -63,11 +66,25 @@ const App = () => {
     },
     {
       path: "/auth",
-      element: <AuthLayout />, 
+      element: <AuthLayout />,
       children: [
         {
           path: "/auth",
           element: <LoginPage />,
+        },
+      ],
+    },
+    {
+      path: "/admin",
+      element: <AdminLayout />,
+      children: [
+        {
+          path: "/admin",
+          element: <Dashboard />,
+        },
+        {
+          path: "/admin/category",
+          element: <CategoryPage />,
         },
       ],
     },

@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Link, Tag, User, User2Icon } from "lucide-react";
-import { toast } from "react-toastify";
 import { photographyCommunities } from "../../../../constants/constatns";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 const CommunitySlug = () => {
   const { communityName } = useParams();
   const [data, setData] = useState([]);
+  const toast = useToast();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const user = { isMember: true };
+  const user = { isMember: false };
   function handleJoin() {
-    token ? toast.success(`${communityName} joined`) : navigate("/auth");
+    token
+      ? toast({
+          title: "Community joined",
+          description: "you r a member of" + communityName,
+        })
+      : navigate("/auth");
   }
   useEffect(() => {
     setData(
@@ -127,15 +133,7 @@ const CommunitySlug = () => {
             </div>
             {/* join button */}
             <div className="w-full p-4">
-              {!user.isMember && (
-                <Button
-                  className="w-full  py-4 rounded-md font-bold text-[16px] bg-primary text-white shadow-md shadow-black/30  leading-none"
-                  onClick={handleJoin}
-                >
-                  Join Group
-                </Button>
-              )}
-
+             
               {user.isMember ? (
                 <Button className="w-full">
                   <NavLink
