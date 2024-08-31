@@ -14,6 +14,7 @@ import AuthLayout from "./layout/AuthLayout";
 import AdminLayout from "./layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import CategoryPage from "./pages/Category";
+import CreateCategory from "./pages/CreateCategory";
 
 const App = () => {
   axios.defaults.baseURL = "http://localhost:8714";
@@ -85,6 +86,10 @@ const App = () => {
         {
           path: "/admin/category",
           element: <CategoryPage />,
+        },
+        {
+          path: "/admin/create-category",
+          element: <CreateCategory />,
         },
       ],
     },

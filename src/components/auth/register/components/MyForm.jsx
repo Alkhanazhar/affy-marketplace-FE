@@ -41,6 +41,7 @@ const MyForm = () => {
       occupation: "",
     },
   });
+
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const country = watch("country");
@@ -90,6 +91,8 @@ const MyForm = () => {
   }, [states, state]);
 
   const onSubmit = async (data) => {
+    const submitSelectType = selectType == "Client" ? "Employer" : "Employee";
+    console.log(submitSelectType);
     if (!profilePicture) return;
     setIsLoading(true);
     const formData = new FormData();
@@ -104,6 +107,7 @@ const MyForm = () => {
     formData.append("country", data.country);
     formData.append("occupation", data.occupation);
     formData.append("profilePicture", profilePicture);
+    formData.append("role", submitSelectType);
     try {
       const res = await axios.post("/api/web/user/register", formData, {
         headers: {
@@ -115,14 +119,14 @@ const MyForm = () => {
         title: "Success",
         description: "Sign up successfully",
       }); // Show success toast
-      console.log(res.data);
+      console.log(res?.data);
       dispatch(toggleIsLogIn(true));
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       toast({
         variant: "destructive",
         title: "Registration failed. Please try again.",
-        description: error.response.data.message,
+        description: "Something went wrong. Please try again",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       console.error("Error during registration:", error);
@@ -149,7 +153,7 @@ const MyForm = () => {
                 <Input
                   {...field}
                   className={`${errors.firstName && "border-red-500"}`}
-                  placeholder="*First Name"
+                  placeholder="First Name*"
                 />
               )}
             />

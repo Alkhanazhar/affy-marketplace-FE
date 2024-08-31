@@ -1,34 +1,55 @@
-import { ChartBarBig, Home, UserCircleIcon } from "lucide-react";
+import { ChartBarBig, CreativeCommons, Home, UserCircleIcon } from "lucide-react";
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
+  const [headerExpanded, setHeaderExpanded] = useState(false);
   return (
     <div className="flex">
-      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+      <aside
+        className={`fixed inset-y-0 left-0 z-10 hidden cursive--font ${
+          !headerExpanded ? "w-14" : "w-60 px-4"
+        } flex-col border-r bg-background sm:flex`}
+        onMouseEnter={() => setHeaderExpanded(true)}
+        onMouseLeave={() => setHeaderExpanded(false)}
+      >
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-4">
           <NavLink
             to="/admin"
             className={({ isActive }) =>
-              `flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${
-                isActive ? "text-foreground" : "text-muted-foreground"
+              `flex items-center justify-between w-full  hover:text-foreground  gap-2 ${
+                isActive ? "text-primary " : "text-muted-foreground"
               }`
             }
           >
-            <UserCircleIcon className="h-5 w-5 md:h-12 md:w-12" />
-            <span className="sr-only">Dashboard</span>
+            {/* <div className="h-full w-2 bg-primary"></div> */}
+
+            <UserCircleIcon className="h-5 w-5 md:h-9 md:w-9" />
+            {headerExpanded && <span>Dashboard</span>}
           </NavLink>
 
           <NavLink
             to="/admin/category"
             className={({ isActive }) =>
-              `flex h-12 w-12 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${
-                isActive
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground"
+              `flex items-center justify-between w-full rounded-lg hover:text-foreground  gap-2 ${
+                isActive ? "text-primary" : "text-muted-foreground"
               }`
             }
           >
-            <ChartBarBig className="h-5 w-5 md:h-12 md:w-12" />
+            <ChartBarBig className="h-5 w-5 md:h-9 md:w-9" />
+            {headerExpanded && <span>Category</span>}
+          </NavLink>
+
+          <NavLink
+            to="/admin/create-category"
+            className={({ isActive }) =>
+              `flex items-center justify-between w-full rounded-lg hover:text-foreground  gap-2 ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
+          >
+            <CreativeCommons className="h-5 w-5 md:h-9 md:w-9" />
+            {headerExpanded && <span>Create category</span>}
           </NavLink>
         </nav>
 
@@ -36,13 +57,13 @@ const AdminLayout = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${
-                isActive ? "text-foreground" : "text-muted-foreground"
+              `flex items-center justify-between w-full rounded-lg hover:text-foreground  gap-2 ${
+                isActive ? "text-primary " : "text-muted-foreground"
               }`
             }
           >
-            <Home className="h-5 w-5 md:h-12 md:w-12" />
-            <span className="sr-only">Settings</span>
+            <Home className="h-5 w-5 md:h-9 md:w-9" />
+            {headerExpanded && <span>Home</span>}
           </NavLink>
         </nav>
       </aside>

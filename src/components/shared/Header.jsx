@@ -65,7 +65,9 @@ const Header = () => {
     dispatch(toggleIsLogIn(true));
     navigate("/create-jobs");
   };
-
+  const handleAdmin = () => {
+    navigate("/admin");
+  };
   const handleLogout = () => {
     try {
       localStorage.removeItem("token");
@@ -146,9 +148,12 @@ const Header = () => {
                   </Avatar>
                 </PopoverTrigger>
                 <PopoverContent>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-1">
                     <Button variant="outline" size="sm" onClick={handleProfile}>
                       profile
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={handleAdmin}>
+                      admin
                     </Button>
 
                     <Button
@@ -161,7 +166,7 @@ const Header = () => {
                     <Button
                       onClick={handleLogout}
                       variant="destructive"
-                      size="xs"
+                      size="sm"
                     >
                       Log out
                     </Button>
