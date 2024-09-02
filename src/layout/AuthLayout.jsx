@@ -26,7 +26,7 @@ const AuthLayout = () => {
 
   return (
     <div>
-      <header className="border-b fixed top-0 left-0 w-full bg-white z-[10000]">
+      <header className="border-b fixed top-0 left-0 w-full bg-white z-[100]">
         <div className="max-w-7xl mx-auto flex justify-between cursive--font md:justify-between p-3 items-center">
           <Link
             to="/"
@@ -71,7 +71,9 @@ const AuthLayout = () => {
         <Outlet />
       </div>
       <footer className="justify-center fixed bottom-0 w-full hidden md:flex p-2 bg-white border-t">
-        <h1 className="uppercase cursive--font">made with 💖 by affy cloud</h1>
+        <h1 className="uppercase cursive--font text-xs">
+          made with 💖 by affy cloud
+        </h1>
       </footer>
     </div>
   );

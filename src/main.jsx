@@ -8,8 +8,6 @@ import { Toaster } from "@/components/ui/toaster";
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <App />
-    <div className="z-[100]">
-      <Toaster />
-    </div>
+    <Toaster />
   </Provider>
 );

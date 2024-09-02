@@ -9,6 +9,17 @@ import {
 import { Link } from "react-router-dom";
 import Card from "../shared/Card";
 import { Input } from "../ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Community = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,13 +44,28 @@ const Community = () => {
             Discover communities
           </h1>
           <p className="font-bold text-2xl text-center leading-none">
-            or &nbsp;
-            <Link
-              to="/create-community"
-              className="text-primary font-bold hover:border-b border-primary"
-            >
-              create your own
-            </Link>
+            <div className="text-black/50">or &nbsp;</div>
+
+            <AlertDialog>
+              <AlertDialogTrigger>
+                <div className="text-primary font-bold hover:border-b-2 w-fit mx-auto cursor-pointer border-primary">
+                  create your own
+                </div>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </p>
         </div>
         <div className="flex gap-3 items-center bg-white px-6 py-2 rounded-lg shadow-md shadow-[#00000047] lg:w-4/12 w-10/12 border-t ">

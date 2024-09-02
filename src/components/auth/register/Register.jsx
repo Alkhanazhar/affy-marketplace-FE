@@ -15,7 +15,7 @@ const Register = () => {
   return (
     <div className="min-h-[80vh] pt-16 flex flex-col justify-center items-center max-w-7xl">
       {!isRegisterReady && <SelectRegisterType />}
-      {isRegisterReady && selectType && <MyForm selectType={selectType} />}
+      {isRegisterReady && selectType && <MyForm />}
       <div className="flex justify-center mt-4">
         <Separator text="Already have an account?" />
         <button

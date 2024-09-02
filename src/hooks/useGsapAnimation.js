@@ -17,7 +17,6 @@ const useGsapAnimation = (targets, triggerOptions = {}) => {
                 ...triggerOptions,
             },
         });
-
         tl.from(targets, {
             y: 10,
             opacity: 0,

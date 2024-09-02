@@ -72,7 +72,7 @@ const Hero = () => {
               className="object-cover z-50 aspect-square lg:w-[32rem] lg:h-[32rem] md:w-[25rem] md:h-[25rem] drop-shadow-xl"
               loading="lazy"
             />
-            <div className="p-1 flex gap-2 absolute left-0 z-[100] top-4 bg-black/10 items-center rounded-full">
+            <div className="p-1 flex gap-2 absolute left-0 top-4 bg-black/10 items-center rounded-full">
               <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>AK</AvatarFallback>

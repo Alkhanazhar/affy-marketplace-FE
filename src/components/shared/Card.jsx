@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-// eslint-disable-next-line react/prop-types
 const CardCommunity = ({ description, name, image, slug }) => {
   return (
     <Card className="overflow-hidden">

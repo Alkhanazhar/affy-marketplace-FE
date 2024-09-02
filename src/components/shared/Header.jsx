@@ -87,8 +87,8 @@ const Header = () => {
 
   return (
     <header
-      className={`py-2 duration-150 top-0 fixed  cursive--font   left-0 w-full z-[100] ${
-        bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : "bg-white"
+      className={`py-2 duration-150 top-0 fixed  cursive--font z-[100]  left-0 w-full ${
+        bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : ""
       }`}
     >
       <section className="md:max-w-6xl w-[90%] mx-auto flex justify-between items-center">
@@ -99,8 +99,6 @@ const Header = () => {
           {brand}
           <span className="text-primary">&nbsp;.</span>
         </Link>
-
-        {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:flex gap-2">
           {navItems.map(({ title, href }) => {
             if (title === "Create-jobs" && !token) {

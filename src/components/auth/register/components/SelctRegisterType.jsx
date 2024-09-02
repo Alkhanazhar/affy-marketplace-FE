@@ -54,7 +54,7 @@ const SelectRegisterType = () => {
             </div>
           </button>
         </div>
-        <div className="flex justify-center z-[100]">
+        <div className="flex justify-center ">
           <button
             disabled={selectType == ""}
             onClick={handleRegisterReady}

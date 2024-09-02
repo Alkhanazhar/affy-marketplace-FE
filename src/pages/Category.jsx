@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   flexRender,
   getCoreRowModel,
@@ -13,110 +15,147 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Pen, Trash } from "lucide-react";
 
 const Category = () => {
-  const handleEdit = (item) => {
-    console.log("Editing:", item);
+  const [categories, setCategories] = useState([]);
+  const [updateCategory, setUpdateCategoryId] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [formData, setFormData] = useState({ name: "", description: "" });
+  const { toast } = useToast();
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("/api/admin/category/display", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setCategories(response?.data?.meta);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
   };
 
-  const handleDelete = (item) => {
-    console.log("Deleting:", item);
+  const toggleModal = () => {
+    if (isEdit) {
+      setIsEdit(() => false);
+      setFormData({
+        name: "",
+        description: "",
+      });
+    }
+    setIsModalOpen((prev) => !prev);
   };
-  const data = [
-    {
-      name: "Wedding Photography",
-      description: "Capture the most memorable moments of weddings.",
-      lastUpdated: "2023-01-01",
-      popularity: "High",
-    },
-    {
-      name: "Event Photography",
-      description: "Specializing in corporate and private events.",
-      lastUpdated: "2023-02-15",
-      popularity: "Medium",
-    },
-    {
-      name: "Portrait Photography",
-      description: "Personalized portraits for individuals and families.",
-      lastUpdated: "2023-03-20",
-      popularity: "High",
-    },
-    {
-      name: "Commercial Photography",
-      description: "Professional images for businesses and advertisements.",
-      lastUpdated: "2023-04-10",
-      popularity: "Medium",
-    },
-    {
-      name: "Product Photography",
-      description: "High-quality images of products for e-commerce.",
-      lastUpdated: "2023-05-05",
-      popularity: "High",
-    },
-    {
-      name: "Fashion Photography",
-      description:
-        "Showcasing the latest fashion trends with professional photos.",
-      lastUpdated: "2023-06-18",
-      popularity: "High",
-    },
-    {
-      name: "Real Estate Photography",
-      description: "Photographs of properties for sale or rent.",
-      lastUpdated: "2023-07-22",
-      popularity: "Medium",
-    },
-    {
-      name: "Travel Photography",
-      description: "Capturing the beauty of destinations around the world.",
-      lastUpdated: "2023-08-30",
-      popularity: "Low",
-    },
-    {
-      name: "Food Photography",
-      description:
-        "Mouth-watering images of food for restaurants and cookbooks.",
-      lastUpdated: "2023-09-12",
-      popularity: "High",
-    },
-    {
-      name: "Sports Photography",
-      description: "Action-packed shots of athletes and sports events.",
-      lastUpdated: "2023-10-25",
-      popularity: "Medium",
-    },
-    {
-      name: "Nature Photography",
-      description: "Stunning images of wildlife and landscapes.",
-      lastUpdated: "2023-11-05",
-      popularity: "High",
-    },
-    {
-      name: "Architectural Photography",
-      description: "Capturing the essence of buildings and structures.",
-      lastUpdated: "2023-12-08",
-      popularity: "Medium",
-    },
-    {
-      name: "Documentary Photography",
-      description: "Telling stories through powerful images.",
-      lastUpdated: "2024-01-18",
-      popularity: "Low",
-    },
-    {
-      name: "Aerial Photography",
-      description:
-        "Bird's eye view photos using drones and other aerial methods.",
-      lastUpdated: "2024-02-22",
-      popularity: "Medium",
-    },
-    {
-      name: "Fine Art Photography",
-      description: "Creative and artistic images for display and collection.",
-      lastUpdated: "2024-03-30",
-      popularity: "Low",
-    },
-  ];
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { name, description } = formData;
+
+    if (name.trim() === "" || description.trim() === "") {
+      toast({
+        variant: "destructive",
+        title: "Fill all fields",
+        description: "Please fill all the required fields",
+      });
+      return;
+    }
+
+    try {
+      if (isEdit) {
+        await axios.patch(
+          "/api/admin/category/update/" + updateCategory,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      } else {
+        await axios.post("/api/admin/category/create", formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+      }
+      setUpdateCategoryId("");
+      setIsEdit(() => false);
+      setIsModalOpen(() => false);
+      setFormData({
+        name: "",
+        description: "",
+      });
+      fetchCategories();
+      toast({
+        variant: "default",
+        title: "Success",
+        description: "Category created successfully.",
+      });
+    } catch (error) {
+      setIsModalOpen(false);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description:
+          error?.response?.data?.message ||
+          "Failed to create category. Please try again.",
+      });
+      console.error("Error creating category:", error);
+    }
+  };
+
+  const handleEdit = (category) => {
+    setFormData({ name: category.name, description: category.description });
+    setIsEdit(() => true);
+    setUpdateCategoryId(() => category.id);
+    setIsModalOpen(() => true);
+    console.log("Editing:", category);
+  };
+
+  const handleDelete = async (category) => {
+    try {
+      await axios.delete(`/api/admin/category/delete/${category?.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      fetchCategories();
+      toast({
+        variant: "default",
+        title: "Success",
+        description: "Category deleted successfully.",
+      });
+    } catch (error) {
+      console.log("Error deleting category:", error);
+    }
+  };
 
   const columns = [
     {
@@ -128,39 +167,110 @@ const Category = () => {
       header: "Description",
     },
     {
-      accessorKey: "lastUpdated",
-      header: "Last Updated",
-    },
-    {
-      accessorKey: "popularity",
-      header: "Popularity",
-    },
-    {
       header: "Actions",
       accessorKey: "actions",
-      Cell: ({ row }) => (
-        <td className="flex gap-2">
+      cell: ({ row }) => (
+        <div className="flex gap-2">
           <Button
-            className="bg-blue-500 text-white px-2 py-1 rounded"
+            className="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded-lg"
             onClick={() => handleEdit(row.original)}
           >
-            Edit
+            <Pen className="w-5 h-5" />
           </Button>
-          <Button
-            className="bg-red-500 text-white px-2 py-1 rounded"
-            onClick={() => handleDelete(row.original)}
-          >
-            Delete
-          </Button>
-        </td>
+          <div>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="bg-red-400 hover:bg-red-500 text-white px-2 py-1 rounded-lg">
+                  <Trash className="w-5 h-5" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your Data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction asChild>
+                    <Button
+                      className="bg-red-400 hover:bg-red-500 flex items-center justify-center text-white px-2 py-1 rounded-lg"
+                      onClick={() => handleDelete(row.original)}
+                    >
+                      <Trash className="w-5 h-5" />
+                      <span className="ml-2">Delete</span>
+                    </Button>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        </div>
       ),
     },
   ];
 
   return (
-    <div className="flex flex-col gap-5  w-full">
+    <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Category" />
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={categories} />
+      <AlertDialog open={isModalOpen}>
+        <AlertDialogTrigger asChild>
+          <button
+            className="fixed right-10 bottom-6 rounded-full md:w-12 bg-primary text-white shadow-md md:h-12  md:text-4xl text-2xl w-8 h-8 flex justify-center items-center"
+            onClick={toggleModal}
+          >
+            +
+          </button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center">
+            {isEdit ? "Update your Category" : "Create Your Category"}
+          </AlertDialogTitle>
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 p-4 rounded-xl w-full mx-auto bg-white border mt-4"
+          >
+            <div>
+              <Label htmlFor="name" className="my-4">
+                Category Name
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Enter category name"
+                className="my-2"
+              />
+            </div>
+            <div>
+              <Label htmlFor="description" className="my-4">
+                Description
+              </Label>
+              <Textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                placeholder="Enter category description"
+                className="my-2"
+              />
+            </div>
+            <div className="flex justify-center items-center">
+              <Button type="submit">{isEdit ? "Update Category" : "Create Category"}</Button>
+            </div>
+          </form>
+          <AlertDialogFooter>
+            <Button onClick={toggleModal} variant="outline">
+              Cancel
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
@@ -176,28 +286,25 @@ export function DataTable({ columns, data }) {
 
   return (
     <div className="rounded-md border bg-white">
-    
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {table.getRowModel().rows.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}

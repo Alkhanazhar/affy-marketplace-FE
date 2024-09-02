@@ -12,7 +12,6 @@ import {
   Phone,
   User,
 } from "lucide-react";
-import useGsapAnimation from "@/hooks/useGsapAnimation";
 import {
   Carousel,
   CarouselContent,
@@ -21,7 +20,6 @@ import {
 import companies from "../../constants/companies.json";
 
 const Home = () => {
-  useGsapAnimation(".cta-client, .cta-freelancer , .carousel-autoplay");
 
   const clientItems = [
     {

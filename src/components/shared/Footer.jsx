@@ -1,6 +1,4 @@
-// import useGsapAnimation from "@/hooks/useGsapAnimation";
 import { brand } from "../../../constants/constatns";
-// import { Facebook, Twitter, Instagram, LinkedIn, GitHub } from "lucide-react";
 
 const Footer = () => {
   const items = [
