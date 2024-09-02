@@ -1,30 +1,51 @@
-import { ChartBarBig, Home, UserCircleIcon } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { ChartBarBig, Home, LogOutIcon, UserCircleIcon } from "lucide-react";
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
-const SidebarItem = ({ to, icon: Icon, label, expanded }) => (
+// Sidebar Item component for both Desktop and Mobile
+const SidebarItem = ({ to, icon: Icon, label, expanded, mobile }) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
-      `flex items-center justify-between w-full gap-2  ${
-        isActive ? "text-primary  rounded-lg " : "text-muted-foreground"
+      `flex items-center ${
+        mobile ? "justify-center" : "justify-between w-full"
+      } gap-2 ${isActive ? "text-primary" : "text-muted-foreground"} ${
+        expanded && "rounded-lg"
       }`
     }
   >
     <Icon className="h-5 w-5 md:h-9 md:w-9" />
     {expanded && <span>{label}</span>}
+    {mobile && <span className="sr-only">{label}</span>}
   </NavLink>
 );
 
-const Sidebar = ({ expanded, onExpand }) => (
+// Sidebar component for Desktop
+const Sidebar = ({ expanded, onExpand }) => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("token");
+      toast({
+        variant: "default",
+        title: "Successfully logged out",
+        description: "You have been logged out successfully",
+      });
+      navigate("/auth");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
   <aside
-    className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width ${
-      expanded ? "w-60 px-4" : "w-14"
-    } sm:flex`}
+    className={`fixed inset-y-0 left-0 z-10 hidden sm:flex flex-col border-r bg-background transition-width ${
+      expanded ? "w-60 px-4 shadow-lg" : "w-14"
+    }`}
     onMouseEnter={onExpand}
     onMouseLeave={onExpand}
   >
-    <nav className="flex flex-col items-center gap-4 px-2 py-2 ">
+    <nav className="flex flex-col items-center gap-4 px-2 py-2">
       <SidebarItem
         to="/admin"
         icon={UserCircleIcon}
@@ -40,44 +61,45 @@ const Sidebar = ({ expanded, onExpand }) => (
     </nav>
     <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-4">
       <SidebarItem to="/" icon={Home} label="Home" expanded={expanded} />
+      <div
+        className="flex items-center justify-between w-full gap-2            text-muted-foreground cursor-pointer"
+        onClick={handleLogout}
+      >
+        <LogOutIcon className="h-5 w-5 md:h-9 md:w-9" />
+        {expanded && <span>Log Out</span>}
+      </div>
     </nav>
-  </aside>
-);
-
-const MobileNavItem = ({ to, icon: Icon, label }) => (
-  <NavLink
-    to={to}
-    className={({ isActive }) =>
-      `flex items-center justify-center rounded-lg transition-colors hover:text-foreground ${
-        isActive ? "text-primary" : "text-muted-foreground"
-      }`
-    }
-  >
-    <Icon className="h-5 w-5" />
-    <span className="sr-only">{label}</span>
-  </NavLink>
-);
-
+  </aside>;
+};
+// Mobile Navbar component
 const MobileNavbar = () => (
-  <nav className="fixed p-2 left-0 top-0 z-10 flex w-full justify-between border-r bg-background sm:hidden items-center">
-    <div className="flex items-center gap-4 px-2 py-4">
-      <MobileNavItem to="/admin" icon={UserCircleIcon} label="Dashboard" />
-      <MobileNavItem to="/admin/category" icon={ChartBarBig} label="Category" />
+  <nav className="fixed left-0 top-0 z-10 flex w-full justify-between bg-background p-2 sm:hidden">
+    <div className="flex items-center gap-4">
+      <SidebarItem to="/admin" icon={UserCircleIcon} label="Dashboard" mobile />
+      <SidebarItem
+        to="/admin/category"
+        icon={ChartBarBig}
+        label="Category"
+        mobile
+      />
     </div>
-    <MobileNavItem to="/" icon={Home} label="Home" />
+    <SidebarItem to="/" icon={Home} label="Home" mobile />
   </nav>
 );
 
 const AdminLayout = () => {
-  const [headerExpanded, setHeaderExpanded] = useState(false);
-  const toggleHeaderExpansion = () => setHeaderExpanded((prev) => !prev);
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+
   return (
     <div className="flex">
-      <Sidebar expanded={headerExpanded} onExpand={toggleHeaderExpansion} />
+      <Sidebar
+        expanded={sidebarExpanded}
+        onExpand={() => setSidebarExpanded(!sidebarExpanded)}
+      />
       <MobileNavbar />
-      <div className="flex-1 p-4 md:px-8 md:py-4 md:ml-14 mt-12 md:mt-0">
+      <main className="flex-1 p-4 md:px-8 md:py-4 md:ml-14 mt-12 md:mt-0">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };

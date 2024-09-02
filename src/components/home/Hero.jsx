@@ -41,7 +41,7 @@ const Hero = () => {
       <div className="relative px-6 lg:px-8">
         <div className="max-w-6xl pt-12 sm:pt-28 md:pt-32 lg:pt-40 mx-auto flex flex-col-reverse md:flex-row justify-between items-center">
           <div className="md:w-1/2 flex flex-col md:space-y-4 space-y-4">
-            <h1 className="text-4xl font-medium mix-blend-multiply text-black/80 sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start z-10">
+            <h1 className="text-4xl font-medium mix-blend-multiply text-black/80 sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start ">
               Connecting <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#13160f] to-[#1394d0] ">
                 Photographers

@@ -1,18 +1,13 @@
-/* eslint-disable no-unused-vars */
-
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
-  communitiesConstant,
+  // communitiesConstant,
   photographyCommunities,
 } from "../../../constants/constatns";
-import { Link } from "react-router-dom";
 import Card from "../shared/Card";
 import { Input } from "../ui/input";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -20,22 +15,76 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Textarea } from "../ui/textarea";
+import { Label } from "../ui/label";
+import axios from "axios";
+import { useToast } from "../ui/use-toast";
+import { Button } from "../ui/button";
 
 const Community = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [formData, setFormData] = useState({ name: "", description: "" });
+  const { toast } = useToast();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, description } = formData;
+    if (name.trim() === "" || description.trim() === "") {
+      toast({
+        variant: "destructive",
+        title: "Fill all fields",
+        description: "Please fill all the required fields",
+      });
+      return;
+    }
+
+    try {
+      await axios.post("api/admin/community/create", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      setIsModalOpen(() => false);
+      setFormData({
+        name: "",
+        description: "",
+        category_id: "",
+      });
+      toast({
+        variant: "default",
+        title: "Success",
+        description: "Category created successfully.",
+      });
+    } catch (error) {
+      setIsModalOpen(false);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description:
+          error?.response?.data?.message ||
+          "Failed to create category. Please try again.",
+      });
+      console.error("Error creating category:", error);
+    }
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
   const filteredCommunities = useMemo(() => {
     return photographyCommunities.filter((community) =>
       community.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [searchQuery]);
-  const [isAnonymous, setIsAnonymous] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Anonymous");
-  const [communities, setCommunities] = useState(communitiesConstant);
 
-  function handleToggle() {
-    setIsAnonymous((prev) => !prev);
-  }
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
   return (
     <div className="pt-16 pb-16 min-h-screen ">
       <div className="p-8 flex justify-center items-center flex-col space-y-6 leading-none relative">
@@ -46,23 +95,60 @@ const Community = () => {
           <p className="font-bold text-2xl text-center leading-none">
             <div className="text-black/50">or &nbsp;</div>
 
-            <AlertDialog>
+            <AlertDialog open={isModalOpen}>
               <AlertDialogTrigger>
-                <div className="text-primary font-bold hover:border-b-2 w-fit mx-auto cursor-pointer border-primary">
+                <div
+                  className="text-primary font-bold w-fit mx-auto cursor-pointer border-primary"
+                  onClick={toggleModal}
+                >
                   create your own
                 </div>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogTitle>Create your Community</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4 p-4 rounded-xl w-full mx-auto bg-white border mt-4"
+                    >
+                      <div>
+                        <Label htmlFor="name" className="my-4">
+                          Category Name
+                        </Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Enter category name"
+                          className="my-2"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="description" className="my-4">
+                          Description
+                        </Label>
+                        <Textarea
+                          id="description"
+                          name="description"
+                          value={formData.description}
+                          onChange={handleInputChange}
+                          placeholder="Enter category description"
+                          className="my-2"
+                        />
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <Button type="submit">{"Create Community"}</Button>
+                      </div>
+                    </form>
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction>Continue</AlertDialogAction>
+                  <Button onClick={toggleModal} size="sm" variant="outline">
+                    Cancel
+                  </Button>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
@@ -96,43 +182,4 @@ const Community = () => {
   );
 };
 
-export const AnonymousIcon = ({ visible }) => {
-  if (!visible) return null;
-
-  return (
-    <div className="rounded-full border">
-      <svg
-        width={40}
-        height={40}
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-live="polite"
-        aria-hidden="false"
-        className="icon_Icon__ptI3R"
-      >
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M16.378 17.797a1.905 1.905 0 1 0 0-3.81 1.905 1.905 0 0 0 0 3.81Zm-8.756 0a1.905 1.905 0 1 0 0-3.81 1.905 1.905 0 0 0 0 3.81Zm12.162-1.905a3.405 3.405 0 1 1-6.811 0 3.405 3.405 0 0 1 6.81 0Zm-8.757 0a3.405 3.405 0 1 1-6.81 0 3.405 3.405 0 0 1 6.81 0Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10.542 15.167h2.916v1.5h-2.916v-1.5ZM2.042 10.792a.75.75 0 0 1 .75-.75h18.416a.75.75 0 1 1 0 1.5H2.792a.75.75 0 0 1-.75-.75Z"
-          fill="currentColor"
-        />
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M15.583 10.042v-.25a3.583 3.583 0 1 0-7.166 0v.25h7.166ZM12 4.708a5.083 5.083 0 0 0-5.083 5.084v1.75h10.166v-1.75A5.083 5.083 0 0 0 12 4.708Z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-  );
-};
-
-export const Posts = () => {
-  return <div className="lg:p-4 p-2 "></div>;
-};
 export default Community;

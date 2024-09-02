@@ -136,7 +136,6 @@ const Category = () => {
     setIsEdit(() => true);
     setUpdateCategoryId(() => category.id);
     setIsModalOpen(() => true);
-    console.log("Editing:", category);
   };
 
   const handleDelete = async (category) => {
@@ -261,7 +260,9 @@ const Category = () => {
               />
             </div>
             <div className="flex justify-center items-center">
-              <Button type="submit">{isEdit ? "Update Category" : "Create Category"}</Button>
+              <Button type="submit">
+                {isEdit ? "Update Category" : "Create Category"}
+              </Button>
             </div>
           </form>
           <AlertDialogFooter>

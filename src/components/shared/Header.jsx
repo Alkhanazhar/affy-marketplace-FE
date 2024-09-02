@@ -68,10 +68,11 @@ const Header = () => {
   const handleAdmin = () => {
     navigate("/admin");
   };
-  const handleLogout = () => {
+   const handleLogout = () => {
     try {
       localStorage.removeItem("token");
       toast({
+        variant:"default",
         title: "Successfully logged out",
         description: "You have been logged out successfully",
       });
@@ -87,7 +88,7 @@ const Header = () => {
 
   return (
     <header
-      className={`py-2 duration-150 top-0 fixed  cursive--font z-[100]  left-0 w-full ${
+      className={`py-2 duration-150 top-0 fixed  cursive--font z-[5]  left-0 w-full ${
         bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : ""
       }`}
     >
