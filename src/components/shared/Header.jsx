@@ -68,11 +68,11 @@ const Header = () => {
   const handleAdmin = () => {
     navigate("/admin");
   };
-   const handleLogout = () => {
+  const handleLogout = () => {
     try {
       localStorage.removeItem("token");
       toast({
-        variant:"default",
+        variant: "default",
         title: "Successfully logged out",
         description: "You have been logged out successfully",
       });

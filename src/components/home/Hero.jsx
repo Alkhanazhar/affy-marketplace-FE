@@ -5,10 +5,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Star } from "lucide-react";
 import { Button } from "../ui/button";
+import { imageSrc } from "../../../constants/constatns";
+import Marquee from "../shared/Marquee";
 
 const Hero = () => {
   useGsapAnimation(
-    ".heading, .subheading, .herobtn, .getStarted, .heroimg, .trusted, .hero__form, .trusted-item, .bg-div"
+    ".heading, .subheading, .herobtn, .getStarted, .heroimg, .trusted, .hero__form, .trusted-item, .bg-div, .marquee"
   );
 
   const floatRef = useRef(null);
@@ -73,7 +75,7 @@ const Hero = () => {
               loading="lazy"
             />
             <div className="p-1 flex gap-2 absolute left-0 top-4 bg-black/10 items-center rounded-full">
-              <Avatar>
+              <Avatar w={"10"} h={"10"}>
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>AK</AvatarFallback>
               </Avatar>
@@ -92,6 +94,9 @@ const Hero = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="marquee">
+        <Marquee images={imageSrc} />
       </div>
     </section>
   );

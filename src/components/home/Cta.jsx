@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 
 const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
+  // useGsapAnimation(".cta");
   return (
     <section className="bg-white  mb-8 pb-4 md:pb-0 max-w-7xl mx-auto border rounded-lg">
       <div
@@ -21,7 +22,7 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
           <h2 className="lg:text-3xl font-[400] md:text-2xl text-xl text-gray-700 ">
             {heading}
           </h2>
-          <p className="text-lg text-gray-400 mb-6">{subHeading}</p>
+          <p className="text-base text-gray-400 mb-6">{subHeading}</p>
           {items?.map((item, index) => (
             <div className="flex items-start item" key={index}>
               <div className="text-primary flex items-center justify-center p-2">

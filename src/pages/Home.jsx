@@ -3,7 +3,6 @@ import Hero from "@/components/home/Hero";
 import FreelanceService from "@/components/home/FreelanceService";
 import FeedBack from "@/components/home/FeedBack";
 import Cta from "@/components/home/Cta";
-import Autoplay from "embla-carousel-autoplay";
 import {
   BriefcaseBusiness,
   Camera,
@@ -12,15 +11,10 @@ import {
   Phone,
   User,
 } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import companies from "../../constants/companies.json";
+
+import useGsapAnimation from "@/hooks/useGsapAnimation";
 
 const Home = () => {
-
   const clientItems = [
     {
       icon: <Camera />,
@@ -62,34 +56,12 @@ const Home = () => {
     },
   ];
 
+  
+
+  useGsapAnimation(".Trusted, .cta-client");
   return (
     <>
       <Hero />
-      <div className="max-w-7xl md:mx-auto md:-mt-32 my-8 md:my-0 carousel-autoplay mx-4">
-        <p className="text-lg  text-black/50 font-[400]">
-          Trusted by top companies and 50k+ peoples.
-        </p>
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 2000,
-            }),
-          ]}
-          className="w-full md:py-10 py-5"
-        >
-          <CarouselContent className="flex gap-5 sm:gap-20 items-center">
-            {companies.map((item, index) => (
-              <CarouselItem key={index} className="basis-1/2 lg:basis-1/4 ">
-                <img
-                  src={item.path}
-                  alt={item.name}
-                  className="h-8 sm:h-12 object-contain"
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
       <div className="cta-client">
         <Cta
           reverse={false}

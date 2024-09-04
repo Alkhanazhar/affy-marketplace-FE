@@ -42,10 +42,7 @@ const App = () => {
           path: "/community/:communityName/posts",
           element: <Posts />,
         },
-        {
-          path: "/community/:communityName/posts/:postId",
-          element: <Posts />,
-        },
+
         {
           path: "/profile",
           element: <ProfilePage />,

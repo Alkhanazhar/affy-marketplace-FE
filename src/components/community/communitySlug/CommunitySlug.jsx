@@ -8,15 +8,15 @@ import { useToast } from "@/components/ui/use-toast";
 const CommunitySlug = () => {
   const { communityName } = useParams();
   const [data, setData] = useState([]);
-  const toast = useToast();
+  const { toast } = useToast();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const user = { isMember: false };
+  const user = { isMember: true };
   function handleJoin() {
     token
       ? toast({
           title: "Community joined",
-          description: "you r a member of" + communityName,
+          description: "you r now member of" + communityName,
         })
       : navigate("/auth");
   }
@@ -133,7 +133,6 @@ const CommunitySlug = () => {
             </div>
             {/* join button */}
             <div className="w-full p-4">
-             
               {user.isMember ? (
                 <Button className="w-full">
                   <NavLink

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import {
   flexRender,
@@ -31,31 +31,15 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Pen, Trash } from "lucide-react";
+import useCategories from "@/hooks/useCategories";
 
 const Category = () => {
-  const [categories, setCategories] = useState([]);
   const [updateCategory, setUpdateCategoryId] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [formData, setFormData] = useState({ name: "", description: "" });
   const { toast } = useToast();
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get("/api/admin/category/display", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setCategories(response?.data?.meta);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
+  const { categories, loading, error, fetchCategories } = useCategories();
 
   const toggleModal = () => {
     if (isEdit) {
@@ -106,13 +90,13 @@ const Category = () => {
         });
       }
       setUpdateCategoryId("");
+      fetchCategories();
       setIsEdit(() => false);
       setIsModalOpen(() => false);
       setFormData({
         name: "",
         description: "",
       });
-      fetchCategories();
       toast({
         variant: "default",
         title: "Success",
@@ -199,7 +183,7 @@ const Category = () => {
                       onClick={() => handleDelete(row.original)}
                     >
                       <Trash className="w-5 h-5" />
-                      <span className="ml-2">Delete</span>
+                      <span className="ml-1 text-base">Delete</span>
                     </Button>
                   </AlertDialogAction>
                 </AlertDialogFooter>
@@ -211,6 +195,8 @@ const Category = () => {
     },
   ];
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
   return (
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Category" />

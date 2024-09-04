@@ -4,7 +4,33 @@ import Post from "@/components/community/Post";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Label } from "@/components/ui/label";
+
 const Posts = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data, setData] = useState({});
   const AsideSection = ({ children }) => (
     <aside className="md:w-1/4 hidden md:flex h-fit   p-4 sticky top-12 w-full rounded-lg">
       <div className="space-y-4 w-full">
@@ -26,12 +52,41 @@ const Posts = () => {
               </h3>
             </div>
             <div className="flex justify-center items-center">
-              <Button
-                className="rounded-full flex gap-4 text-gray-700 shadow"
-                variant="outline"
-              >
-                Create Post <Plus />
-              </Button>
+              <AlertDialog>
+                <div className="flex justify-center">
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      className="rounded-3xl flex gap-2 cursive--font text-gray-700 shadow"
+                      variant="outline"
+                    >
+                      Create Post <Plus className="text-black/50 w-5 h-5" />
+                    </Button>
+                  </AlertDialogTrigger>
+                </div>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="md:text-3xl text-center text-2xl">
+                      Create your Post
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      <div className="my-4 flex flex-col gap-4 ">
+                        <Label className="font-[400] text-sm">Subject</Label>
+                        <Input />
+                      </div>
+                      <div className="my-4 flex flex-col gap-4">
+                        <Label className="font-[400] text-sm">Post</Label>
+                        <Textarea placeholder="write something here less than 255 words" />
+                      </div>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction asChild>
+                      <Button>Create your post</Button>
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
             <div className="flex justify-center text-gray-600">
               <h3 className="text-center leading-none text- font-[500] text-lg my-4 underline cursor-pointer">
@@ -53,8 +108,11 @@ const Posts = () => {
                 {postsArray.map((item) => (
                   <div
                     key={item.textMessage}
-                    className="mx-2 mb-2"
-                    onClick={() => {}}
+                    className="mx-2 mb-2 cursor-pointer"
+                    onClick={() => {
+                      setData(() => item);
+                      setIsModalOpen(true);
+                    }}
                   >
                     <Post
                       communityName={item.communityId}
@@ -71,6 +129,13 @@ const Posts = () => {
                 Communities for you
               </h2>
             </div>
+            {isModalOpen && (
+              <Modal
+                item={data}
+                toggleModal={() => setIsModalOpen((prev) => !prev)}
+                isModalOpen={isModalOpen}
+              />
+            )}
           </AsideSection>
         </div>
       </div>
@@ -79,3 +144,65 @@ const Posts = () => {
 };
 
 export default Posts;
+
+const Modal = ({ item, toggleModal, isModalOpen }) => {
+  return (
+    <AlertDialog open={isModalOpen}>
+      <AlertDialogTrigger>Open</AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          {/* <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle> */}
+          <AlertDialogDescription className="h-[30rem] overflow-scroll overflow-x-hidden no-scroll">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>AK</AvatarFallback>
+                  </Avatar>
+                  <CardTitle>Card Title</CardTitle>
+                </div>
+                <CardDescription>{item?.textMessage}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Textarea placeholder="Comment here" />
+                <div className="mt-4 w-full justify-end mr-auto flex">
+                  <Button
+                    onClick={toggleModal}
+                    className="bg-black/10 text-sm font-[500] text-black px-4 py-2 rounded-md hover:bg-black/20"
+                    size="sm"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    className="bg-black/80 text-sm font-[500] px-4 py-2 rounded-md text-white hover:bg-black/70 ml-2"
+                    size="sm"
+                  >
+                    Comment
+                  </Button>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <div className="">
+                  {item?.comments?.map((comment) => (
+                    <div
+                      key={comment.text}
+                      className="border mb-4 p-2 rounded-md"
+                    >
+                      <CardDescription className="font-[500] mb-2 text-base">
+                        {comment?.commentedBy}
+                      </CardDescription>
+                      <CardDescription>
+                        <div className="text-xs">{comment?.text}</div>
+                      </CardDescription>
+                    </div>
+                  ))}
+                </div>
+              </CardFooter>
+            </Card>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};

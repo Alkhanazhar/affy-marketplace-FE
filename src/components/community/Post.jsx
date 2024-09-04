@@ -1,8 +1,4 @@
-import {
-  Heart,
-  MessageCircle,
-  ScreenShare,
-} from "lucide-react";
+import { Heart, MessageCircle, ScreenShare } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -33,11 +29,14 @@ const Post = ({ textMessage, communityName }) => {
   return (
     <Card>
       <div className="flex items-center gap-2 px-6 py-4">
-        <Avatar>
+        <Avatar w={"10"} h={"10"}>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>AK</AvatarFallback>
         </Avatar>
-        <CardTitle> {communityName}</CardTitle>
+        <CardTitle className="text-black/80 text-xl font-medium">
+          {" "}
+          {communityName}
+        </CardTitle>
       </div>
       <CardContent>
         <CardDescription>{textMessage}</CardDescription>

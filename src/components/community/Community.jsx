@@ -20,18 +20,24 @@ import { Label } from "../ui/label";
 import axios from "axios";
 import { useToast } from "../ui/use-toast";
 import { Button } from "../ui/button";
+import useCategories from "@/hooks/useCategories";
 
 const Community = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { categories, loading, error } = useCategories();
 
-  const [formData, setFormData] = useState({ name: "", description: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    category_id: "",
+  });
   const { toast } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, description } = formData;
-    if (name.trim() === "" || description.trim() === "") {
+    const { name, description, category_id } = formData;
+    if (name.trim() === "" || description.trim() === "" || category_id == "") {
       toast({
         variant: "destructive",
         title: "Fill all fields",
@@ -46,7 +52,6 @@ const Community = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-
       setIsModalOpen(() => false);
       setFormData({
         name: "",
@@ -83,8 +88,22 @@ const Community = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-[50vh]">
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="flex justify-center items-center min-h-[50vh] text-red-500 md:text-3xl text-2xl">
+        {error}
+      </div>
+    );
   return (
     <div className="pt-16 pb-16 min-h-screen ">
       <div className="p-8 flex justify-center items-center flex-col space-y-6 leading-none relative">
@@ -94,7 +113,6 @@ const Community = () => {
           </h1>
           <p className="font-bold text-2xl text-center leading-none">
             <div className="text-black/50">or &nbsp;</div>
-
             <AlertDialog open={isModalOpen}>
               <AlertDialogTrigger>
                 <div
@@ -106,7 +124,9 @@ const Community = () => {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Create your Community</AlertDialogTitle>
+                  <AlertDialogTitle className="text-3xl text-center text-black/70">
+                    Create your Community
+                  </AlertDialogTitle>
                   <AlertDialogDescription>
                     <form
                       onSubmit={handleSubmit}
@@ -138,6 +158,19 @@ const Community = () => {
                           placeholder="Enter category description"
                           className="my-2"
                         />
+                        <select
+                          name="category_id"
+                          value={formData.category_id}
+                          onChange={handleInputChange}
+                          className="p-2 border-[1px] rounded-md"
+                        >
+                          <option value="">Select a Category</option>
+                          {categories?.map((category, index) => (
+                            <option value={category?.id} key={index}>
+                              {category?.name}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                       <div className="flex justify-center items-center">
                         <Button type="submit">{"Create Community"}</Button>

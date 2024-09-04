@@ -1,5 +1,5 @@
 import { brand } from "../../../constants/constatns";
-
+  
 const Footer = () => {
   const items = [
     {

@@ -38,12 +38,12 @@ const CreateJobs = () => {
         <main className="flex items-center justify-center px-8 w-full">
           <div className="lg:w-3/4 w-full">
             <div className="relative flex items-center flex-col justify-center md:mt-10">
-              <h1 className="text-center font-[500] text-gray-800 mt-10 md:text-4xl text-3xl z-10">
+              <h1 className="text-center font-[500] text-gray-800 mt-10 md:text-4xl text-3xl ">
                 Create Jobs
               </h1>
               <form
                 onSubmit={handleSubmit}
-                className="space-y-2 md:w-1/2 w-full border mx-auto p-4 rounded-lg shadow-lg my-4 z-10 bg-white create-jobs"
+                className="space-y-2 md:w-1/2 w-full border mx-auto p-4 rounded-lg shadow-lg my-4  bg-white create-jobs"
               >
                 <div className="flex flex-col sm:flex-row gap-2 create-jobs ">
                   <Input
@@ -152,11 +152,6 @@ const CreateJobs = () => {
             </div>
           </div>
         </main>
-        <img
-          src="bg.png"
-          className="absolute top-0 left-0 opacity-30 object-cover -z-5 w-full h-full"
-          alt=""
-        />
       </section>
     </div>
   );
