@@ -17,9 +17,9 @@ const CardCommunity = ({ description, name, image, slug }) => {
           alt="image"
         />
       </Link>
-      <CardContent>
+      <CardContent className="cursive--font">
         <Link to={slug} className="inline-block mb-4">
-          <CardTitle>{name}</CardTitle>
+          <CardTitle className="text-xl">{name}</CardTitle>
         </Link>
         <CardDescription className="line-clamp-3 mt-1">
           {description}

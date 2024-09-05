@@ -41,7 +41,7 @@ const HomeClientSection = () => {
           <div className="w-full flex md:mt-12 mt-8 justify-between lg:gap-4 md:gap-3 gap-2 flex-col md:flex-row">
             {items.map((item, index) => (
               <div
-                className="md:p-4 p-2 md:h-36 w-full text-2xl hover:bg-white rounded-lg cursor-pointer flex flex-col justify-between gap-2 bg-primary hover:text-primary duration-250"
+                className="md:p-4 p-2 md:h-36 w-full text-2xl hover:bg-white rounded-lg cursor-pointer flex flex-col justify-between gap-2 bg-primary hover:text-primary duration-250 hover:-translate-y-2 duration-150"
                 key={index}
               >
                 <h1 className="lg:text-3xl md:text-xl text-xl font-medium lg:w-68 leading-none">

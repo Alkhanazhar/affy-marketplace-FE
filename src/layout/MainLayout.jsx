@@ -1,15 +1,95 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { brand } from "../../constants/constatns";
 
 const MainLayout = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
+  const [intro, setIntro] = useState(false);
+  const tl = gsap.timeline({
+    onComplete: () => {
+      setIntro(true);
+    },
+  });
+  useGSAP(() => {
+    tl.to(".show", {
+      height: "100%",
+      duration: 1.5,
+      ease: "circ.inOut",
+    })
+      .to(".heading", {
+        opacity: 1,
+        duration: 1,
+        ease: "circ.inOut",
+      })
+      .to("heading span", {
+        x: 10,
+        ease: "circ.inOut",
+
+        stagger: 0.2, // Staggering duration
+        duration: 0.6, // Duration of opacity animation
+      })
+      .to(".heading span", {
+        ease: "circ.inOut",
+        stagger: 0.2, // Staggering duration
+        duration: 1, // Duration of opacity animation
+        x: -2000,
+        opacity: 0,
+      })
+      .to(".heading-2", {
+        opacity: 1,
+        duration: 1,
+        ease: "circ.inOut",
+      })
+      .to("heading-2 span", {
+        x: 10,
+        ease: "circ.inOut",
+
+        stagger: 0.2, // Staggering duration
+        duration: 0.6, // Duration of opacity animation
+      })
+      .to(".heading-2 span", {
+        ease: "circ.inOut",
+        stagger: 0.2, // Staggering duration
+        duration: 1, // Duration of opacity animation
+        x: -2000,
+        opacity: 0,
+      });
+  }, []);
+
+  if (!intro) {
+    return (
+      <div className="h-screen bg-black flex justify-center items-center overflow-hidden w-screen relative ">
+        <div className="line w-full show bg-white flex justify-center items-center ">
+          <h1 className="flex gap-2 sm:text-5xl heading opacity-0 block-head text-3xl cursive--font">
+            <span>Welcome</span>
+            <span>to</span>
+            <span>{brand}</span>
+          </h1>
+          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl cursive--font sm:text-5xl">
+            <span>Find</span>
+            <span>and</span>
+            <span>hire</span>
+            <span>skilled</span>
+            <span>photographers</span>
+          </h1>
+          <div>
+            <img src="" alt="" className="absolute " />
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="">
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    );
+  }
 };
 
 export default MainLayout;

@@ -1,7 +1,14 @@
 import { useToast } from "@/components/ui/use-toast";
+import { brand } from "../../constants/constatns";
 import { ChartBarBig, Home, LogOutIcon, UserCircleIcon } from "lucide-react";
 import { useState } from "react";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
   const location = useLocation();
@@ -9,9 +16,11 @@ const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
     <NavLink
       to={to}
       className={() =>
-        `flex items-center justify-between w-full gap-2   text-muted-foreground ${
-          location.pathname == to ? "text-primary rounded-2xl" : ""
-        }`
+        `flex items-center w-full gap-20 py-2 text-muted-foreground   ${
+          location.pathname == to
+            ? "text-primary border-r-4 border-primary bg-primary/10"
+            : ""
+        } ${expanded ? "justify-between px-10" : "justify-center px-2"}`
       }
     >
       <Icon className="h-5 w-5 md:h-9 md:w-9" />
@@ -41,9 +50,9 @@ const LogoutSidebarBtn = ({ to, expanded }) => {
     <div
       to={to}
       onClick={handleLogout}
-      className={
-        "flex items-center justify-between w-full gap-2   text-muted-foreground cursor-pointer"
-      }
+      className={`flex items-center  w-full gap-2   text-muted-foreground cursor-pointer  ${
+        expanded ? "justify-between px-10" : "justify-center px-2"
+      }`}
     >
       <LogOutIcon className="h-5 w-5 md:h-9 md:w-9" />
       {expanded && <span className="cursive--font">Logout</span>}
@@ -53,13 +62,20 @@ const LogoutSidebarBtn = ({ to, expanded }) => {
 
 const Sidebar = ({ expanded, onExpand }) => (
   <aside
-    className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width p-2 ${
-      expanded ? "w-60 px-4 shadow-2xl shadow-black/30" : "w-fit"
+    className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width items-center  ${
+      expanded ? "shadow-2xl shadow-black/30 backdrop-blur-md" : ""
     } sm:flex`}
     onMouseEnter={onExpand}
     onMouseLeave={onExpand}
   >
     <nav className="flex flex-col items-center gap-4 mt-4 ">
+      <Link
+        to={"/"}
+        className="cursive--font inline-block text-xl font-bold text-black/60 cursor-pointer border-b w-full p-2 text-center"
+      >
+        {!expanded ? brand[0] : brand}
+      </Link>
+
       <SidebarItem
         to="/admin"
         icon={UserCircleIcon}
@@ -73,7 +89,7 @@ const Sidebar = ({ expanded, onExpand }) => (
         expanded={expanded}
       />
     </nav>
-    <nav className="mt-auto flex flex-col items-center gap-4 mb-4">
+    <nav className="mt-auto flex flex-col items-center gap-4 py-2 border-t w-full ">
       <LogoutSidebarBtn expanded={expanded} />
       <SidebarItem to="/" icon={Home} label="Home" expanded={expanded} />
     </nav>

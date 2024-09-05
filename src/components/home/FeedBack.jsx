@@ -71,36 +71,38 @@ const FeedBack = () => {
             </div>
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
               {reviews.map((review, index) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <div className="flex">
-                      {Array(review.stars)
-                        .fill(0)
-                        .map((_, i) => (
-                          <div key={i}>
-                            <Star className="fill-yellow-300 border-none text-yellow-300" />
-                          </div>
-                        ))}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-1 mt-8">
-                    <CardDescription>{review.feedback}</CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <div className="ml-4">
-                      <CardTitle className="text-base  text-gray-900 font-[500]">
-                        {review.name}
-                      </CardTitle>
-                      <p className="mt-0.5 text-sm font-[400] text-gray-600">
-                        {review.role}
-                      </p>
-                    </div>
-                  </CardFooter>
-                </Card>
+                <div key={index} className="hover:-translate-y-2 duration-150">
+                  <Card>
+                    <CardHeader>
+                      <div className="flex">
+                        {Array(review.stars)
+                          .fill(0)
+                          .map((_, i) => (
+                            <div key={i}>
+                              <Star className="fill-yellow-300 border-none text-yellow-300" />
+                            </div>
+                          ))}
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex-1 mt-8">
+                      <CardDescription>{review.feedback}</CardDescription>
+                    </CardContent>
+                    <CardFooter>
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      <div className="ml-4">
+                        <CardTitle className="text-base  text-gray-900 font-[500]">
+                          {review.name}
+                        </CardTitle>
+                        <p className="mt-0.5 text-sm font-[400] text-gray-600">
+                          {review.role}
+                        </p>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </div>
               ))}
             </div>
           </div>

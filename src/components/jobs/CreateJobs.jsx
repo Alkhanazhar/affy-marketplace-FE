@@ -1,159 +1,390 @@
 import { useState } from "react";
-import { ChevronRight } from "lucide-react";
 import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
 const CreateJobs = () => {
-  const [jobDetails, setJobDetails] = useState({
-    title: "",
-    description: "",
-    type: "",
-    location: "",
-    budget: "",
-    duration: "",
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+    portfolioURL: "",
+    sampleWork: null,
+    resume: null,
+    coverLetter: "",
+    yearsOfExperience: "",
+    specialization: "",
     equipment: "",
-    additionalRequirements: "",
-    contactEmail: "",
-    contactPhone: "",
-    date: "", // Added this missing field
+    software: "",
+    preferredStartDate: "",
+    availability: "",
+    referenceName: "",
+    referenceContact: "",
+    certifications: "",
+    awards: "",
+    personalStatement: "",
+    consent: false,
   });
 
   const handleChange = (e) => {
-    setJobDetails((prevDetails) => ({
-      ...prevDetails,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value, type, files, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]:
+        type === "file" ? files[0] : type === "checkbox" ? checked : value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add form submission logic here
+    // Handle form submission logic
+    console.log(formData);
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <section className="flex-1 flex items-center overflow-hidden justify-center relative">
-        <main className="flex items-center justify-center px-8 w-full">
-          <div className="lg:w-3/4 w-full">
-            <div className="relative flex items-center flex-col justify-center md:mt-10">
-              <h1 className="text-center font-[500] text-gray-800 mt-10 md:text-4xl text-3xl ">
-                Create Jobs
-              </h1>
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-2 md:w-1/2 w-full border mx-auto p-4 rounded-lg shadow-lg my-4  bg-white create-jobs"
-              >
-                <div className="flex flex-col sm:flex-row gap-2 create-jobs ">
-                  <Input
-                    type="text"
-                    name="title"
-                    placeholder="Job Title"
-                    value={jobDetails.title}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Input
-                    type="text"
-                    name="location"
-                    placeholder="Job Location"
-                    value={jobDetails.location}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <Textarea
-                  name="description"
-                  placeholder="Job Description"
-                  value={jobDetails.description}
-                  onChange={handleChange}
-                  className="resize-none"
-                />
-                <select
-                  name="type"
-                  value={jobDetails.type}
-                  onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded-lg outline-none bg-white"
-                >
-                  <option value="" disabled>
-                    Select Photography Type
-                  </option>
-                  <option value="Wedding">Wedding</option>
-                  <option value="Portrait">Portrait</option>
-                  <option value="Product">Product</option>
-                  <option value="Event">Event</option>
-                </select>
-                <div className="flex items-center gap-2 ">
-                  <Label className="flex flex-1 text-[#64748b] border font-[400] rounded-lg p-2 items-center justify-between">
-                    Starting date <ChevronRight />
-                  </Label>
-                  <Input
-                    type="date"
-                    name="date"
-                    value={jobDetails.date}
-                    onChange={handleChange}
-                    className="flex-1 text-[#64748b] border font-[400]"
-                    required
-                  />
-                </div>
-                <div className="flex flex-row gap-2">
-                  <Input
-                    type="number"
-                    name="budget"
-                    placeholder="Budget"
-                    value={jobDetails.budget}
-                    onChange={handleChange}
-                  />
-                  <Input
-                    type="text"
-                    name="duration"
-                    placeholder="Duration"
-                    value={jobDetails.duration}
-                    onChange={handleChange}
-                  />
-                </div>
-                <Textarea
-                  name="equipment"
-                  placeholder="Required Equipment"
-                  value={jobDetails.equipment}
-                  onChange={handleChange}
-                  className="resize-none"
-                />
-                <Textarea
-                  name="additionalRequirements"
-                  placeholder="Additional Requirements"
-                  value={jobDetails.additionalRequirements}
-                  onChange={handleChange}
-                  className="resize-none"
-                />
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <Input
-                    type="email"
-                    name="contactEmail"
-                    placeholder="Email address"
-                    value={jobDetails.contactEmail}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Input
-                    type="tel"
-                    name="contactPhone"
-                    placeholder="Phone"
-                    value={jobDetails.contactPhone}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  Submit Job
-                </Button>
-              </form>
-            </div>
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6 p-6 max-w-4xl rounded-2xl cursive--font bg-white shadow-md shadow-black/20 mx-4 md:mx-auto border mt-32 mb-10"
+    >
+      <h1 className="md:text-3xl text-2xl text-center font-bold">
+        Create your job here
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="space-y-4">
+          <div>
+            <Label
+              htmlFor="fullName"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Full Name:
+            </Label>
+            <Input
+              type="text"
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
           </div>
-        </main>
-      </section>
-    </div>
+          <div>
+            <Label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email Address:
+            </Label>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Phone Number:
+            </Label>
+            <Input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Address:
+            </Label>
+            <Input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="portfolioURL"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Portfolio URL:
+            </Label>
+            <Input
+              type="url"
+              id="portfolioURL"
+              name="portfolioURL"
+              value={formData.portfolioURL}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="sampleWork"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Upload Sample Work:
+            </Label>
+            <Input
+              type="file"
+              id="sampleWork"
+              name="sampleWork"
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="resume"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Resume/CV Upload:
+            </Label>
+            <Input
+              type="file"
+              id="resume"
+              name="resume"
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="coverLetter"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Cover Letter:
+            </Label>
+            <Textarea
+              id="coverLetter"
+              name="coverLetter"
+              value={formData.coverLetter}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="yearsOfExperience"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Years of Experience:
+            </Label>
+            <Input
+              type="number"
+              id="yearsOfExperience"
+              name="yearsOfExperience"
+              value={formData.yearsOfExperience}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="preferredStartDate"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Preferred Start Date:
+            </Label>
+            <Input
+              type="date"
+              id="preferredStartDate"
+              name="preferredStartDate"
+              value={formData.preferredStartDate}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <Label
+              htmlFor="specialization"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Specialization:
+            </Label>
+            <Input
+              type="text"
+              id="specialization"
+              name="specialization"
+              value={formData.specialization}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="equipment"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Photography Equipment Used:
+            </Label>
+            <Input
+              type="text"
+              id="equipment"
+              name="equipment"
+              value={formData.equipment}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="software"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Software Proficiency:
+            </Label>
+            <Input
+              type="text"
+              id="software"
+              name="software"
+              value={formData.software}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <Label
+              htmlFor="availability"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Availability for Work:
+            </Label>
+            <Input
+              type="text"
+              id="availability"
+              name="availability"
+              value={formData.availability}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="referenceName"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Reference Name:
+            </Label>
+            <Input
+              type="text"
+              id="referenceName"
+              name="referenceName"
+              value={formData.referenceName}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="referenceContact"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Reference Contact Information:
+            </Label>
+            <Input
+              type="text"
+              id="referenceContact"
+              name="referenceContact"
+              value={formData.referenceContact}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="certifications"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Certifications:
+            </Label>
+            <Input
+              type="text"
+              id="certifications"
+              name="certifications"
+              value={formData.certifications}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="awards"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Awards and Recognitions:
+            </Label>
+            <Textarea
+              id="awards"
+              name="awards"
+              value={formData.awards}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+          <div>
+            <Label
+              htmlFor="personalStatement"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Personal Statement:
+            </Label>
+            <Textarea
+              id="personalStatement"
+              name="personalStatement"
+              value={formData.personalStatement}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center">
+        <Input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          checked={formData.consent}
+          onChange={handleChange}
+          className="mr-2 h-4 w-4 border-gray-300 rounded"
+        />
+        <Label htmlFor="consent" className="text-sm font-medium text-gray-700">
+          I agree to the terms and conditions
+        </Label>
+      </div>
+
+      <Button
+        type="submit"
+        className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/70 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+      >
+        Submit
+      </Button>
+    </form>
   );
 };
 

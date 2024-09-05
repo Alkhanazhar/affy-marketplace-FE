@@ -28,7 +28,7 @@ const Post = ({ textMessage, communityName }) => {
   }
   return (
     <Card>
-      <div className="flex items-center gap-2 px-6 py-4">
+      <div className="flex items-center gap-2 px-6 py-4 cursive--font">
         <Avatar w={"10"} h={"10"}>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>AK</AvatarFallback>

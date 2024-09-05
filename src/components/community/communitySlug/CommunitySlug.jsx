@@ -29,10 +29,10 @@ const CommunitySlug = () => {
   }, [communityName]);
   return (
     <>
-      <div className="pt-16 pb-16  min-h-screen mx-4 md:mx-0">
+      <div className="pt-16 pb-16  min-h-screen mx-4 md:mx-0 cursive--font">
         <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse py-8 md:mx-4">
           <div className=" w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white">
-            <h1 className="leading-none text-zinc-600 md:text-[24px] text-[20px] font-[600]">
+            <h1 className="leading-none text-black/70  md:text-3xl text-2xl font-[700]">
               {data[0]?.name}
             </h1>
             <div className="my-4 rounded-xl overflow-hidden">
