@@ -19,6 +19,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useToast } from "../ui/use-toast";
+// import useGsapAnimation from "@/hooks/useGsapAnimation";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -86,13 +87,15 @@ const Header = () => {
     navigate("/profile");
   };
 
+  // useGsapAnimation(".header a, .avatar");
+
   return (
     <header
       className={`py-2 duration-150 top-0 fixed  cursive--font z-[5]  left-0 w-full ${
         bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : ""
       }`}
     >
-      <section className="md:max-w-6xl w-[90%] mx-auto flex justify-between items-center">
+      <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center">
         <Link
           to="/"
           className="logo inline-block  md:text-[28px] text-[20px] text-gray-700 font-bold z-10"
@@ -131,14 +134,14 @@ const Header = () => {
         </div>
 
         {/* Auth and Profile Buttons */}
-        <div className="md:flex gap-4 items-center hidden">
+        <div className="md:flex gap-4 items-center hidden avatar">
           {!token ? (
             <>
               <LinkButton text="Login" onClick={handleLogin} />
               <GradientButton text="Sign Up" onClick={handleSignup} />
             </>
           ) : (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 ">
               <Popover>
                 <PopoverTrigger>
                   <Avatar className="-z-10">

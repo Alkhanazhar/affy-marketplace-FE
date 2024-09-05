@@ -1,5 +1,6 @@
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   // communitiesConstant,
   photographyCommunities,
@@ -94,8 +95,70 @@ const Community = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-[50vh]">
-        Loading...
+      <div className=" min-h-[50vh] grid md:grid-cols-3 grid-cols-1 max-w-7xl md:mx-auto mt-10 my-40 mx-4">
+        <div className="flex flex-col space-y-3 w-full justify-center items-center mt-20">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>{" "}
+        <div className="flex flex-col space-y-3 w-full justify-center items-center">
+          <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        </div>
       </div>
     );
   if (error)

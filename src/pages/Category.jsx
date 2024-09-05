@@ -198,7 +198,7 @@ const Category = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-full cursive--font">
       <PageTitle title="Category" />
       <DataTable columns={columns} data={categories} />
       <AlertDialog open={isModalOpen}>

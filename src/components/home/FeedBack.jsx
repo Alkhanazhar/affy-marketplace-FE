@@ -55,19 +55,9 @@ const FeedBack = () => {
             </h2>
           </div>
 
-          <div className="mt-8 text-center md:mt-16 md:order-3">
-            <a
-              href="#"
-              title=""
-              className="pb-2 text-base font-medium leading-7 text-gray-700 transition-all duration-200 border-b-2 border-gray-600 hover:border-gray-600 font-pj focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600"
-            >
-              Check all 21,157 reviews
-            </a>
-          </div>
-
-          <div className="relative mt-10 md:mt-16 md:order-2">
+          <div className="relative mt-10 md:mt-16 md:order-2 cursive--font">
             <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-xl filter bg-gradient-to-t from-primary to-secondary"></div>
+              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-xl filter bg-gradient-to-t from-primary to-secondary -mt-4"></div>
             </div>
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
               {reviews.map((review, index) => (
@@ -85,7 +75,9 @@ const FeedBack = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="flex-1 mt-8">
-                      <CardDescription>{review.feedback}</CardDescription>
+                      <CardDescription className="line-clamp-3 cursor-default">
+                        {review.feedback}
+                      </CardDescription>
                     </CardContent>
                     <CardFooter>
                       <Avatar>
