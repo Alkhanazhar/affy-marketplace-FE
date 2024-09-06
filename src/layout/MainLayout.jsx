@@ -65,12 +65,12 @@ const MainLayout = () => {
     return (
       <div className="h-screen bg-white flex justify-center items-center overflow-hidden w-screen relative ">
         <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
-          <h1 className="flex gap-2 sm:text-6xl font-bold heading opacity-0 block-head text-3xl cursive--font absolute top-[50%] left-[50%] -translate-x-[50%] -mt-10 -translate-y-[50%] text-white">
+          <h1 className="flex gap-2 sm:text-6xl font-bold heading opacity-0 block-head text-3xl cursive--font absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white">
             <span>Welcome</span>
             <span>to</span>
             <span>{brand}</span>
           </h1>
-          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl cursive--font sm:text-6xl font-bold absolute top-[50%] left-[50%] -translate-x-[50%] -mt-10 -translate-y-[50%] text-white">
+          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl cursive--font sm:text-6xl font-bold absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white">
             <span>Find</span>
             <span>and</span>
             <span>hire</span>

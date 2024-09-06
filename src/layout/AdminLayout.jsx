@@ -113,7 +113,13 @@ const MobileNavItem = ({ to, icon: Icon, label }) => {
 
 const MobileNavbar = () => (
   <nav className="fixed px-4 left-0 top-0 z-10 flex w-full justify-between border-r bg-background sm:hidden items-center">
-    <div className="flex items-center gap-4 px-2 py-4">
+    <div className="flex items-center gap-4 px-2 py-2">
+      <Link
+        to={"/"}
+        className="cursive--font inline-block text-2xl font-bold text-black/60 cursor-pointer  w-full text-center"
+      >
+        {brand[0]}
+      </Link>
       <MobileNavItem to="/admin" icon={UserCircleIcon} label="Dashboard" />
       <MobileNavItem to="/admin/category" icon={ChartBarBig} label="Category" />
     </div>

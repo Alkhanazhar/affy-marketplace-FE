@@ -30,7 +30,7 @@ const ProfilePage = () => {
           <MobileProfileHeader />
           <UserActions />
         </div>
-        <div className="flex mt-8 border rounded-2xl divide-x divide-neutral-200">
+        <div className="flex mt-4 border rounded-2xl divide-x divide-neutral-200">
           <div className="w-1/2 p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="md:text-2xl text-xl font-[500]">Educations</h2>
@@ -137,7 +137,7 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        <div className="mt-8 border rounded-3xl flex-col gap-4 ">
+        <div className="mt-4 border rounded-3xl flex-col gap-4 ">
           <div className="flex justify-between items-center md:p-6 p-4">
             <div>
               <h1 className="md:text-2xl text-xl">Your title</h1>
@@ -288,7 +288,7 @@ const ActionIcon = ({ Icon, padding = 2, size = 4 }) => (
 );
 
 const ProfileSection = ({ title, children }) => (
-  <div className="mt-8 border rounded-3xl">
+  <div className="mt-4 border rounded-3xl">
     <div className="flex justify-between items-center md:p-6 p-4">
       <h2 className="md:text-2xl text-xl">{title}</h2>
     </div>

@@ -171,7 +171,7 @@ const Community = () => {
     <div className="pt-16 pb-16 min-h-screen ">
       <div className="p-8 flex justify-center items-center flex-col space-y-6 leading-none relative">
         <div>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center bg-clip-text text-transparent leading-none bg-gradient-to-tr from-gray-400 to-primary pb-2">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center bg-clip-text text-transparent leading-none bg-gradient-to-tr from-green-300 to-primary pb-2">
             Discover communities
           </h1>
           <p className="font-bold text-2xl text-center leading-none">
@@ -179,7 +179,7 @@ const Community = () => {
             <AlertDialog open={isModalOpen}>
               <AlertDialogTrigger>
                 <div
-                  className="text-primary font-bold w-fit mx-auto cursor-pointer border-primary"
+                  className="text-2xl sm:text-3xl font-bold tracking-tight text-center bg-clip-text text-transparent leading-none bg-gradient-to-tr from-green-300 to-primary"
                   onClick={toggleModal}
                 >
                   create your own
