@@ -46,7 +46,7 @@ const CreateJobs = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 p-6 max-w-4xl rounded-2xl cursive--font bg-white shadow-md shadow-black/20 mx-4 md:mx-auto border mt-32 mb-10"
+      className="space-y-6 p-6 max-w-4xl rounded-2xl cursive--font bg-white dark:bg-black/50 shadow-md shadow-black/20 dark:shadow-white/20 mx-4 md:mx-auto border mt-32 mb-10"
     >
       <h1 className="md:text-3xl text-2xl text-center font-bold">
         Create your job here
@@ -57,7 +57,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="fullName"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Full Name:
             </Label>
@@ -74,7 +74,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Email Address:
             </Label>
@@ -91,7 +91,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="phone"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Phone Number:
             </Label>
@@ -108,7 +108,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="address"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Address:
             </Label>
@@ -125,7 +125,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="portfolioURL"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Portfolio URL:
             </Label>
@@ -141,7 +141,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="sampleWork"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Upload Sample Work:
             </Label>
@@ -156,7 +156,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="resume"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Resume/CV Upload:
             </Label>
@@ -171,7 +171,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="coverLetter"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Cover Letter:
             </Label>
@@ -186,7 +186,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="yearsOfExperience"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Years of Experience:
             </Label>
@@ -202,7 +202,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="preferredStartDate"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Preferred Start Date:
             </Label>
@@ -221,7 +221,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="specialization"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Specialization:
             </Label>
@@ -237,7 +237,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="equipment"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Photography Equipment Used:
             </Label>
@@ -253,7 +253,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="software"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Software Proficiency:
             </Label>
@@ -270,7 +270,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="availability"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Availability for Work:
             </Label>
@@ -286,7 +286,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="referenceName"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Reference Name:
             </Label>
@@ -302,7 +302,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="referenceContact"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Reference Contact Information:
             </Label>
@@ -318,7 +318,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="certifications"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Certifications:
             </Label>
@@ -334,7 +334,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="awards"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Awards and Recognitions:
             </Label>
@@ -349,7 +349,7 @@ const CreateJobs = () => {
           <div>
             <Label
               htmlFor="personalStatement"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
               Personal Statement:
             </Label>
@@ -373,7 +373,7 @@ const CreateJobs = () => {
           onChange={handleChange}
           className="mr-2 h-4 w-4 border-gray-300 rounded"
         />
-        <Label htmlFor="consent" className="text-sm font-medium text-gray-700">
+        <Label htmlFor="consent" className="text-sm font-medium text-gray-700 dark:text-zinc-200">
           I agree to the terms and conditions
         </Label>
       </div>

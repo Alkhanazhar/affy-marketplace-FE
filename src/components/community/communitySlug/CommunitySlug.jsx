@@ -31,8 +31,8 @@ const CommunitySlug = () => {
     <>
       <div className="pt-16 pb-16  min-h-screen mx-4 md:mx-0 cursive--font">
         <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse py-8 md:mx-4">
-          <div className=" w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white">
-            <h1 className="leading-none text-black/70  md:text-3xl text-2xl font-[700]">
+          <div className=" w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white dark:bg-transparent">
+            <h1 className="leading-none text-black/70  dark:text-zinc-100 md:text-3xl text-2xl font-[700]">
               {data[0]?.name}
             </h1>
             <div className="my-4 rounded-xl overflow-hidden">
@@ -43,7 +43,7 @@ const CommunitySlug = () => {
                 className="aspect-video"
               />
             </div>
-            <div className="flex justify-between md:gap-2 lg:gap-4 gap-2 text-gray-600  my-4 text-xs md:text-sm">
+            <div className="flex justify-between md:gap-2 lg:gap-4 gap-2 text-gray-600 dark:text-gray-100  my-4 text-xs md:text-sm">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 5.9k members
@@ -57,11 +57,11 @@ const CommunitySlug = () => {
                 <a href="">By Cassandra Smith</a>
               </div>
             </div>
-            <div className="text-base text-gray-600 leading-7">
+            <div className="text-base text-gray-600 dark:text-gray-400  leading-7">
               <p>{data[0]?.description}</p>
             </div>
           </div>
-          <div className="col-span-4 w-full rounded-xl flex-[.8] shadow-container border overflow-hidden h-fit bg-white">
+          <div className="col-span-4 w-full rounded-xl flex-[.8] shadow-container border overflow-hidden h-fit bg-white dark:bg-transparent">
             <div className="">
               <img
                 src={data[0]?.images[0]}

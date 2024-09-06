@@ -1,5 +1,5 @@
 import { brand } from "../../../constants/constatns";
-  
+
 const Footer = () => {
   const items = [
     {
@@ -63,7 +63,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="pt-10  border-b border-t  cursive--font bg-white ">
+    <footer className="pt-10  border-b border-t  cursive--font bg-white dark:bg-slate-900  ">
       <div className="max-w-7xl mx-auto  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4">
         {items.map((item) => {
           return (
@@ -72,7 +72,7 @@ const Footer = () => {
               {item.items.map((item) => {
                 return (
                   <div key={item} className="text-sm mb-2 ">
-                    <span className="cursor-pointer text-gray-600 text-[400] hover:text-primary">
+                    <span className="cursor-pointer text-gray-600 dark:text-gray-400 text-[400] hover:text-primary">
                       {item}
                     </span>
                   </div>
@@ -83,7 +83,7 @@ const Footer = () => {
         })}
       </div>
       <hr className="mt-4" />
-      <footer className="py-4  cursive--font  text-gray-700 max-w-7xl text-center text-sm w-[90%] footer mx-auto ">
+      <footer className="py-4  cursive--font  text-gray-700 dark:text-gray-400 max-w-7xl text-center text-sm w-[90%] footer mx-auto ">
         © 2015 - 2024 {brand} Global Inc. <br />
         Privacy Policy
       </footer>

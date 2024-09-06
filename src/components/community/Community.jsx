@@ -95,7 +95,7 @@ const Community = () => {
 
   if (loading)
     return (
-      <div className=" min-h-[50vh] grid md:grid-cols-3 grid-cols-1 max-w-7xl md:mx-auto mt-10 my-40 mx-4">
+      <div className=" min-h-[50vh] grid md:grid-cols-3 grid-cols-1 max-w-7xl md:mx-auto mt-32 my-40 mx-4">
         <div className="flex flex-col space-y-3 w-full justify-center items-center mt-20">
           <Skeleton className="h-[125px] w-[250px] rounded-xl" />
           <div className="space-y-2">
@@ -175,7 +175,7 @@ const Community = () => {
             Discover communities
           </h1>
           <p className="font-bold text-2xl text-center leading-none">
-            <div className="text-black/50">or &nbsp;</div>
+            <div className="text-black/50 dark:text-white/90">or &nbsp;</div>
             <AlertDialog open={isModalOpen}>
               <AlertDialogTrigger>
                 <div
@@ -250,7 +250,7 @@ const Community = () => {
             </AlertDialog>
           </p>
         </div>
-        <div className="flex gap-3 items-center bg-white px-6 py-2 rounded-lg shadow-md shadow-[#00000047] lg:w-4/12 w-10/12 border-t ">
+        <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/20 lg:w-4/12 w-10/12 border-t ">
           <Search className="text-gray-500" />
           <Input
             type="text"

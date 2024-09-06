@@ -43,14 +43,14 @@ const Hero = () => {
       <div className="relative px-6 lg:px-8">
         <div className="max-w-6xl pt-12 sm:pt-28 md:pt-32 lg:pt-40 mx-auto flex flex-col-reverse md:flex-row justify-between items-center">
           <div className="md:w-1/2 flex flex-col md:space-y-4 space-y-4">
-            <h1 className="text-4xl font-medium mix-blend-multiply text-black/80 sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start ">
+            <h1 className="text-4xl font-medium    dark:text-white/80  sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start ">
               Connecting <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#13160f] to-[#1394d0] ">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r dark:from-white  from-[#161616c9] dark:to-[#1394d0] to-[#1394d0] ">
                 Photographers
               </span>{" "}
               with Clients
             </h1>
-            <p className=" text-gray-500 font-[400] cursive--font text-center md:text-start md:text-[16px] text-[14px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5 my-8">
+            <p className=" dark:text-gray-400 text-gray-500 font-[400] cursive--font text-center md:text-start md:text-[16px] text-[14px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5 my-8">
               Find and hire skilled photographers for any assignment—browse
               portfolios, review profiles, and collaborate with professionals to
               bring your vision to life.
@@ -71,17 +71,17 @@ const Hero = () => {
               ref={floatRef}
               src="camera-vector.webp"
               alt="Photographer ready for an assignment"
-              className="object-cover z-50 aspect-square lg:w-[32rem] lg:h-[32rem] md:w-[25rem] md:h-[25rem] drop-shadow-xl"
+              className="object-cover -z-10 aspect-square lg:w-[32rem] lg:h-[32rem] md:w-[25rem] md:h-[25rem] drop-shadow-xl"
               loading="lazy"
             />
-            <div className="p-1 flex gap-2 absolute left-0 top-4 bg-black/10 items-center rounded-full">
+            <div className="p-1 flex gap-2 absolute left-0 top-4 bg-black/10 dark:bg-zinc-100/20 items-center rounded-full">
               <Avatar w={"10"} h={"10"}>
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>AK</AvatarFallback>
               </Avatar>
 
               <div className="mr-4">
-                <p className="text-sm text-black/60">
+                <p className="text-sm text-black/60 dark:text-zinc-100">
                   {"I found the best photographer here!"}
                 </p>
                 <div className="flex gap-1 ">

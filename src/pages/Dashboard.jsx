@@ -73,11 +73,11 @@ const Dashboard = () => {
         ))}
       </section>
       <section className="grid grid-cols-1 gap-4 transition-all lg:grid-cols-2">
-        <CardContent className="bg-white">
+        <CardContent className="bg-white dark:bg-slate-900">
           <p className="p-4 font-semibold">Overview</p>
           <BarChart />
         </CardContent>
-        <CardContent className="flex justify-between gap-4 bg-white">
+        <CardContent className="flex justify-between gap-4 bg-white dark:bg-slate-900">
           <section>
             <p>Recent Sales</p>
             <p className="text-sm text-gray-500">
@@ -186,7 +186,7 @@ export function BarChart() {
 
 export function Card(props) {
   return (
-    <CardContent className="bg-white">
+    <CardContent className="bg-white dark:bg-slate-900">
       <section className="flex justify-between gap-2 ">
         <p className="text-base">{props.label}</p>
         <props.icon className="h-5 w-5 text-gray-500" />
@@ -213,7 +213,7 @@ export function CardContent(props) {
 
 export function SalesCard(props) {
   return (
-    <div className="flex flex-wrap justify-between gap-3 bg-white">
+    <div className="flex flex-wrap justify-between gap-3 bg-white dark:bg-slate-900">
       <section className="flex justify-between gap-3">
         <div className="h-12 w-12 rounded-full bg-gray-100 p-1">
           <img

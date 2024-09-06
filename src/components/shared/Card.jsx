@@ -12,7 +12,7 @@ const CardCommunity = ({ description, name, image, slug }) => {
     <Card className="overflow-hidden">
       <Link to={slug} className="inline-block mb-4 w-full">
         <img
-          className="object-cover mix-blend-multiply w-full  h-[14rem]"
+          className="object-cover  w-full  h-[14rem]"
           src={image}
           alt="image"
         />

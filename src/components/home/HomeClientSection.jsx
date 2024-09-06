@@ -26,11 +26,11 @@ const HomeClientSection = () => {
           alt=""
           className="absolute w-full left-0 top-0 bg-top h-full -z-10 object-cover"
         />
-        <div className="md:text-4xl text-2xl font-normal text-white">
+        <div className="md:text-4xl text-2xl font-normal text-zinc-100">
           For clients
         </div>
-        <div className="flex flex-col space-y-4 text-white lg:mt-60 md:mt-52 mt-32 ">
-          <h1 className="lg:text-7xl md:text-5xl sm:text-4xl text-3xl md:mt-0 leading-none font-medium text-white">
+        <div className="flex flex-col space-y-4 text-zinc-100 lg:mt-60 md:mt-52 mt-32 ">
+          <h1 className="lg:text-7xl md:text-5xl sm:text-4xl text-3xl md:mt-0 leading-none font-medium text-zinc-100">
             Find talent <br />
             your way
           </h1>

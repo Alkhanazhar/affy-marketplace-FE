@@ -71,7 +71,7 @@ const Sidebar = ({ expanded, onExpand }) => (
     <nav className="flex flex-col items-center gap-4 mt-4 ">
       <Link
         to={"/"}
-        className="cursive--font inline-block text-xl font-bold text-black/60 cursor-pointer border-b w-full p-2 text-center"
+        className="cursive--font inline-block md:text-3xl text-xl font-bold text-black/60 dark:text-slate-100 cursor-pointer border-b w-full p-2 text-center"
       >
         {!expanded ? brand[0] : brand}
       </Link>
@@ -116,9 +116,9 @@ const MobileNavbar = () => (
     <div className="flex items-center gap-4 px-2 py-2">
       <Link
         to={"/"}
-        className="cursive--font inline-block text-2xl font-bold text-black/60 cursor-pointer  w-full text-center"
+        className="cursive--font inline-block text-2xl font-bold text-black/60 dark:text-slate-100 cursor-pointer  w-full text-center"
       >
-        {brand[0]}
+        {brand}
       </Link>
       <MobileNavItem to="/admin" icon={UserCircleIcon} label="Dashboard" />
       <MobileNavItem to="/admin/category" icon={ChartBarBig} label="Category" />

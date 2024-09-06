@@ -22,7 +22,7 @@ const JobCard = ({ job }) => {
     <Dialog>
       <Card>
         <CardHeader className="cursive--font">
-          <CardTitle className="text-black/80 cursive--font">
+          <CardTitle className="text-black/80 dark:text-zinc-200 cursive--font">
             {job.title}
           </CardTitle>
           <p>{job.location}</p>
@@ -30,7 +30,7 @@ const JobCard = ({ job }) => {
         </CardHeader>
         <CardContent>
           <CardDescription>{job.description}</CardDescription>
-          <div className="mt-4 flex text-black/70">
+          <div className="mt-4 flex text-black/70 dark:text-zinc-300">
             <p className="text-[#64748b] flex items-center">
               <Clock2 className="w-4 h-4 mr-2" /> Experience Required: &nbsp;
             </p>{" "}
@@ -41,7 +41,7 @@ const JobCard = ({ job }) => {
             {job.skills.map((skill, index) => (
               <li
                 key={index}
-                className="py-[4px] text-xs md:text-sm px-4 rounded-full bg-neutral-100 border cursor-pointer text-neutral-600"
+                className="py-[4px] text-xs md:text-sm px-4 rounded-full bg-neutral-100 dark:bg-zinc-300 border cursor-pointer text-neutral-600"
               >
                 {skill}
               </li>

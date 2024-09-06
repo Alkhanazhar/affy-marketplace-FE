@@ -211,12 +211,12 @@ const Category = () => {
           </button>
         </AlertDialogTrigger>
         <AlertDialogContent>
-          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center">
+          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center dark:text-slate-100">
             {isEdit ? "Update your Category" : "Create Your Category"}
           </AlertDialogTitle>
           <form
             onSubmit={handleSubmit}
-            className="space-y-4 p-4 rounded-xl w-full mx-auto bg-white border mt-4"
+            className="space-y-4 p-4 rounded-xl w-full mx-auto bg-white border mt-4 dark:bg-transparent"
           >
             <div>
               <Label htmlFor="name" className="my-4">
@@ -272,7 +272,7 @@ export function DataTable({ columns, data }) {
   });
 
   return (
-    <div className="rounded-md border bg-white">
+    <div className="rounded-md border bg-white dark:bg-slate-900">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

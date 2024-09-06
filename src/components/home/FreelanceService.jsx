@@ -11,7 +11,7 @@ const FreelanceService = () => {
           Photography services just a
           <span className="text-secondary cursive">&nbsp;click away!</span>
         </h2>
-        <Button className="py-2 px-4 mt-4 md:text-lg bg-secondary  hover:bg-secondary/90 font-[500] w-fit mx-auto text-black/80">
+        <Button className="py-2 px-4 mt-4 md:text-lg bg-secondary  hover:bg-secondary/90 font-[500] w-fit mx-auto text-black/80 dark:text-zinc-700">
           Join {brand}
         </Button>
       </div>

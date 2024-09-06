@@ -19,6 +19,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useToast } from "../ui/use-toast";
+import { useGSAP } from "@gsap/react";
+import ThemeSwitcher from "@/pages/themeSwitcher";
 // import useGsapAnimation from "@/hooks/useGsapAnimation";
 
 const navItems = [
@@ -28,6 +30,14 @@ const navItems = [
 ];
 
 const Header = () => {
+  const tl = gsap.timeline();
+  useGSAP(() => {
+    tl.from("section a", {
+      y: 10,
+      duration: 1,
+      stagger: true,
+    });
+  }, []);
   const token = localStorage.getItem("token");
   const location = useLocation();
   const [bgColor, setBgColor] = useState(false);
@@ -95,10 +105,10 @@ const Header = () => {
         bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : ""
       }`}
     >
-      <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center">
+      <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center z-50">
         <Link
           to="/"
-          className="logo inline-block  md:text-[28px] text-[20px] text-gray-700 font-bold z-10"
+          className="logo inline-block  md:text-[28px] text-[20px] text-gray-700 dark:text-zinc-100 font-bold z-10"
         >
           {brand}
           <span className="text-primary">&nbsp;.</span>
@@ -135,6 +145,8 @@ const Header = () => {
 
         {/* Auth and Profile Buttons */}
         <div className="md:flex gap-4 items-center hidden avatar">
+          <ThemeSwitcher />
+
           {!token ? (
             <>
               <LinkButton text="Login" onClick={handleLogin} />

@@ -33,24 +33,27 @@ const Post = ({ textMessage, communityName }) => {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>AK</AvatarFallback>
         </Avatar>
-        <CardTitle className="text-black/80 text-xl font-medium">
+        <CardTitle className="text-black/80 dark:text-zinc-200 text-xl font-medium">
           {" "}
           {communityName}
         </CardTitle>
       </div>
       <CardContent>
-        <CardDescription>{textMessage}</CardDescription>
+        <CardDescription className="cursive--font dark:text-zinc-300">
+          {textMessage}
+        </CardDescription>
       </CardContent>
       <CardFooter className="flex justify-between items-center mt-2">
         <PostIcons onClick={handleLike}>
-          <Heart className="w-4 h-4  hover:fill-primary/60" /> Like
+          <Heart className="w-4 h-4  hover:fill-primary/60 dark:text-zinc-200" />{" "}
+          Like
         </PostIcons>
         <PostIcons onClick={handleComment}>
-          <MessageCircle className="w-4 h-4 hover:fill-primary/60 " />
+          <MessageCircle className="w-4 h-4 hover:fill-primary/60 dark:text-zinc-200" />
           Comment
         </PostIcons>
         <PostIcons onClick={handleShare}>
-          <ScreenShare className="w-4 h-4  hover:fill-primary/60" />
+          <ScreenShare className="w-4 h-4  hover:fill-primary/60 dark:text-zinc-200" />
           share
         </PostIcons>
       </CardFooter>

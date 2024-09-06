@@ -50,7 +50,7 @@ const FeedBack = () => {
             <p className="text-lg font-[400] text-gray-600 ">
               2,157 people have said how good Rareblocks
             </p>
-            <h2 className="mt-4 text-3xl font-[400] text-gray-800 sm:text-3xl xl:text-4xl ">
+            <h2 className="mt-4 text-3xl font-[400] text-gray-800 dark:text-zinc-100 sm:text-3xl xl:text-4xl ">
               Our happy clients say about us
             </h2>
           </div>
@@ -62,7 +62,7 @@ const FeedBack = () => {
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
               {reviews.map((review, index) => (
                 <div key={index} className="hover:-translate-y-2 duration-150">
-                  <Card>
+                  <Card className="backdrop-blur ">
                     <CardHeader>
                       <div className="flex">
                         {Array(review.stars)
@@ -85,10 +85,10 @@ const FeedBack = () => {
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
                       <div className="ml-4">
-                        <CardTitle className="text-base  text-gray-900 font-[500]">
+                        <CardTitle className="text-base  text-gray-900 dark:text-gray-100 font-[500]">
                           {review.name}
                         </CardTitle>
-                        <p className="mt-0.5 text-sm font-[400] text-gray-600">
+                        <p className="mt-0.5 text-sm font-[400] text-gray-600 dark:text-zinc-200">
                           {review.role}
                         </p>
                       </div>

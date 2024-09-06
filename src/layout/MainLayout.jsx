@@ -63,7 +63,7 @@ const MainLayout = () => {
 
   if (!intro) {
     return (
-      <div className="h-screen bg-white flex justify-center items-center overflow-hidden w-screen relative ">
+      <div className="h-screen bg-white dark:bg-slate-900 flex justify-center items-center overflow-hidden w-screen relative ">
         <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
           <h1 className="flex gap-2 sm:text-6xl font-bold heading opacity-0 block-head text-3xl cursive--font absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white">
             <span>Welcome</span>

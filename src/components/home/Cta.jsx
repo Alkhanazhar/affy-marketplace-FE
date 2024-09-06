@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
   // useGsapAnimation(".cta");
   return (
-    <section className="bg-white  mb-8 pb-4 md:pb-0 max-w-7xl md:mx-auto border rounded-lg mx-4">
+    <section className="bg-white  dark:bg-slate-900 mb-8 pb-4 md:pb-0 max-w-7xl md:mx-auto border rounded-lg mx-4">
       <div
         className={`flex items-center justify-between  md:gap-10 gap-0 flex-col  ${
           reverse ? "md:flex-row-reverse" : "md:flex-row"
@@ -19,7 +19,7 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
         </div>
 
         <div className="mt-4 md:mt-0 cta md:w-1/2 w-full px-8 flex flex-col space-y-4 cta-content cursive--font">
-          <h2 className="lg:text-3xl font-[400]  md:text-2xl text-xl text-gray-700 ">
+          <h2 className="lg:text-3xl font-[400]  md:text-2xl text-xl text-gray-700 dark:text-zinc-100 ">
             {heading}
           </h2>
           <p className="text-base text-gray-400 mb-6">{subHeading}</p>
@@ -41,10 +41,10 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
               href="#"
               size="sm"
               variant="outline"
-              className="w-fit text-black/70"
+              className="w-fit text-black/70 dark:text-zinc-100"
             >
               Get started
-              <ChevronRight className="ml-1 w-4 h-4" />
+              <ChevronRight className="ml-1 -mt-[2px] w-4 h-4" />
             </Button>
           </div>
         </div>

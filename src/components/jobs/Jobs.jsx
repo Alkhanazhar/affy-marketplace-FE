@@ -42,7 +42,7 @@ const SearchBar = ({
   setSearchLocation,
 }) => (
   <div className="py-4 flex items-center justify-center md:max-w-7xl mx-auto w-[90%]">
-    <div className="flex gap-3 items-center bg-white px-6 py-2 rounded-lg shadow-md shadow-[#00000047] lg:w-5/12 w-10/12 border-t">
+    <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/20 lg:w-5/12 w-10/12 border-t">
       <div className="rounded-l-full md:px-4 flex items-center px-2 bg-transparent relative">
         <User className="text-gray-500" />
         <Input
@@ -72,7 +72,7 @@ const CollapsibleFilters = () => {
   // eslint-disable-next-line no-unused-vars
   const [filters, setFilters] = useState(["frontend", "backend", "search"]);
   const renderCollapsibleSection = (title, placeholder) => (
-    <Collapsible className="w-full ">
+    <Collapsible className="w-full dark:text-zinc-100 ">
       <div className="flex justify-between w-full items-center">
         <p className="text-base">{title}</p>
         <CollapsibleTrigger>
@@ -81,17 +81,33 @@ const CollapsibleFilters = () => {
       </div>
       <CollapsibleContent className="mt-4">
         <Select>
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full dark:text-zinc-100">
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="text-zinc-50">
             <SelectGroup>
               <SelectLabel className="font-[500]">{placeholder}</SelectLabel>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
+              <SelectItem value="apple" className="w-full dark:text-zinc-100">
+                Apple
+              </SelectItem>
+              <SelectItem value="banana" className="w-full dark:text-zinc-100">
+                Banana
+              </SelectItem>
+              <SelectItem
+                value="blueberry"
+                className="w-full dark:text-zinc-100"
+              >
+                Blueberry
+              </SelectItem>
+              <SelectItem value="grapes" className="w-full dark:text-zinc-100">
+                Grapes
+              </SelectItem>
+              <SelectItem
+                value="pineapple"
+                className="w-full dark:text-zinc-100"
+              >
+                Pineapple
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -100,7 +116,7 @@ const CollapsibleFilters = () => {
   );
 
   return (
-    <div className="col-span-3 border rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 bg-white p-4">
+    <div className="col-span-3 border rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 bg-white dark:bg-transparent p-4">
       <div className="flex items-center gap-2 flex-wrap">
         Selected filters:
         {filters.map((item, index) => {

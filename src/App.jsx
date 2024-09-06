@@ -14,6 +14,7 @@ import AuthLayout from "./layout/AuthLayout";
 import AdminLayout from "./layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import CategoryPage from "./pages/Category";
+import { ThemeProvider } from "../src/components/themeProvider";
 
 const App = () => {
   axios.defaults.baseURL = "http://localhost:8714";
@@ -89,8 +90,11 @@ const App = () => {
 
   return (
     <div>
-      <div className="bg-grid"></div>
-      <RouterProvider router={router} />
+      <ThemeProvider defaultTheme={"light"} storageKey="vite-ui-theme">
+        <div className="bg-grid dark:hidden"></div>
+        <div className="bg-grid-dark dark:block hidden"></div>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </div>
   );
 };

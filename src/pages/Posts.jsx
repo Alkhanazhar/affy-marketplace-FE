@@ -34,7 +34,7 @@ const Posts = () => {
   const AsideSection = ({ children }) => (
     <aside className="md:w-1/4 hidden md:flex h-fit   p-4 sticky top-12 w-full rounded-lg">
       <div className="space-y-4 w-full">
-        <div className="w-full py-4 rounded-lg  text-neutral-800  bg-zinc-100/90">
+        <div className="w-full py-4 rounded-lg  text-neutral-800  bg-zinc-100/90 dark:bg-zinc-100/10">
           {children}
         </div>
       </div>
@@ -46,7 +46,7 @@ const Posts = () => {
       <div className="min-h-screen ">
         <div className="max-w-7xl mx-auto flex pt-16">
           <AsideSection>
-            <div className="flex justify-center text-gray-700">
+            <div className="flex justify-center text-gray-700 dark:text-zinc-200">
               <h3 className="text-center leading-none my-4 text-xl font-medium hover:underline cursor-pointer">
                 Front end developer
               </h3>
@@ -56,10 +56,11 @@ const Posts = () => {
                 <div className="flex justify-center">
                   <AlertDialogTrigger asChild>
                     <Button
-                      className="rounded-3xl flex gap-2 cursive--font text-gray-700 shadow"
+                      className="rounded-3xl flex gap-2 cursive--font text-gray-700 dark:text-zinc-100 shadow"
                       variant="outline"
                     >
-                      Create Post <Plus className="text-black/50 w-5 h-5" />
+                      Create Post{" "}
+                      <Plus className="text-black/50 w-5 h-5 dark:text-zinc-100" />
                     </Button>
                   </AlertDialogTrigger>
                 </div>
@@ -88,16 +89,16 @@ const Posts = () => {
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-            <div className="flex justify-center text-gray-600">
+            <div className="flex justify-center text-gray-600 dark:text-zinc-300 cursive--font">
               <h3 className="text-center leading-none text- font-[500] text-lg my-4 underline cursor-pointer">
                 Your Communities
               </h3>
             </div>
           </AsideSection>
-          <main className="md:w-2/4 w-full bg-zinc-100/90 rounded-lg overflow-y-auto mx-2">
+          <main className="md:w-2/4 w-full bg-zinc-100/90  dark:bg-transparent rounded-lg overflow-y-auto mx-2">
             <div className="space-y-4">
-              <div className="flex gap-3 items-center bg-white px-6 py-2 rounded-lg shadow-md shadow-[#00000047] mx-4 mt-4 border-t ">
-                <Search className="text-gray-500" />
+              <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/20 mx-4 mt-4 border-t ">
+                <Search className="text-gray-500 dark:text-zinc-100" />
                 <Input
                   type="text"
                   className="w-full outline-none border-none"
