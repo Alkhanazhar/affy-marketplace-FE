@@ -65,7 +65,7 @@ export default Post;
 export const PostIcons = ({ children, onClick }) => {
   return (
     <div
-      className="cursor-pointer flex items-center gap-2 text-slate-700 hover:text-primary"
+      className="cursor-pointer flex items-center dark:text-slate-400 cursive--font text-sm gap-2 text-slate-700 hover:text-primary"
       onClick={onClick}
     >
       {children}

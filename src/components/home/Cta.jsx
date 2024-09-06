@@ -41,7 +41,7 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
               href="#"
               size="sm"
               variant="outline"
-              className="w-fit text-black/70 dark:text-zinc-100"
+              className="w-fit text-black/70 dark:bg-primary dark:hover:bg-primary/70 dark:text-zinc-100"
             >
               Get started
               <ChevronRight className="ml-1 -mt-[2px] w-4 h-4" />

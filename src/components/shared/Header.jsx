@@ -102,7 +102,7 @@ const Header = () => {
   return (
     <header
       className={`py-2 duration-150 top-0 fixed  cursive--font z-[5]  left-0 w-full ${
-        bgColor ? "backdrop-blur-sm bg-white/40 shadow-md" : ""
+        bgColor ? "backdrop-blur-sm bg-white/40 dark:bg-white/10 shadow-md" : ""
       }`}
     >
       <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center z-50">

@@ -239,7 +239,7 @@ export function PageTitle({ title, classname }) {
   return (
     <h1
       className={cn(
-        "lg:text-3xl md:text-2xl text-2xl font-semibold text-primary",
+        "lg:text-4xl md:text-2xl text-2xl font-semibold text-primary",
         classname
       )}
     >

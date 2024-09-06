@@ -15,9 +15,9 @@ const ThemeSwitcher = () => {
   return (
     <Button
       onClick={toggleTheme}
-      className="px-4 bg-gray-200 dark:bg-gray-800 rounded text- dark:text-white"
+      className="px-4 bg-gray-200 dark:bg-gray-800/40 hover:text-zinc-100  text-zinc-600 dark:text-white"
     >
-      Switch to {theme === "light" ? "Dark" : "Light"} Mode
+      {theme === "light" ? "Dark" : "Light"} Mode
     </Button>
   );
 };

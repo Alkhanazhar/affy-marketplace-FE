@@ -137,7 +137,7 @@ const AdminLayout = () => {
     <div className="flex">
       <Sidebar expanded={headerExpanded} onExpand={toggleHeaderExpansion} />
       <MobileNavbar />
-      <div className="flex-1 p-4 md:px-8 md:py-4 md:ml-14 mt-12 md:mt-0">
+      <div className="flex-1 p-4 md:px-10 md:py-8 md:ml-14 mt-12 md:mt-0">
         <Outlet />
       </div>
     </div>
