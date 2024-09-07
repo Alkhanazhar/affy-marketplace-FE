@@ -39,12 +39,12 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
           <div className="flex">
             <Button
               href="#"
-              size="sm"
+              size="lg"
               variant="outline"
-              className="w-fit text-black/70 dark:bg-primary dark:hover:bg-primary/70 dark:text-zinc-100"
+              className="w-fit md:text-xl text-primary dark:bg-primary dark:hover:bg-primary/70 dark:text-zinc-100"
             >
               Get started
-              <ChevronRight className="ml-1 -mt-[2px] w-4 h-4" />
+              <ChevronRight className="ml-1  w-5 h-5" />
             </Button>
           </div>
         </div>

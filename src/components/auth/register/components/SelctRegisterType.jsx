@@ -24,7 +24,7 @@ const SelectRegisterType = () => {
         </div>
         <div className="flex justify-center flex-col md:flex-row mt-8 md:gap-8 gap-4 ">
           <button
-            className={`border-2 p-6 rounded-md md:w-2/6 active:scale-95 relative active:border-black duration-150 flex flex-col justify-start items-center space-y-4  bg-zinc-50 ${
+            className={`border-2 p-6 rounded-md md:w-2/6 active:scale-95 relative active:border-black duration-150 flex flex-col justify-start items-center space-y-4  bg-zinc-50 dark:bg-zinc-950 ${
               selectType === "Freelancer" ? "border-primary" : ""
             }`}
             onClick={() => handleSetSelectType("Freelancer")}
@@ -39,7 +39,7 @@ const SelectRegisterType = () => {
             </div>
           </button>
           <button
-            className={`border-2 p-6 rounded-md md:w-2/6 active:scale-95 relative active:border-black duration-150 flex flex-col justify-start items-center space-y-4 bg-zinc-50 ${
+            className={`border-2 p-6 rounded-md md:w-2/6 active:scale-95 relative active:border-black duration-150 flex flex-col justify-start items-center dark:bg-zinc-950 space-y-4 bg-zinc-50 ${
               selectType === "Client" ? "border-primary" : ""
             }`}
             onClick={() => handleSetSelectType("Client")}

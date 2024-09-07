@@ -22,6 +22,7 @@ const MainLayout = () => {
     })
       .to(".heading", {
         opacity: 1,
+        y: -30,
         duration: 1,
       })
       .to("heading span", {
@@ -38,6 +39,7 @@ const MainLayout = () => {
       })
       .to(".heading-2", {
         opacity: 1,
+        y: -30,
         duration: 1,
       })
       .to("heading-2 span", {
@@ -52,6 +54,10 @@ const MainLayout = () => {
         x: -100,
         opacity: 0,
       })
+      .to(".camera", {
+        duration: 1.2,
+        opacity: 1,
+      })
       .to(".show", {
         ease: "elastic.inOut",
         y: 1000,
@@ -65,12 +71,12 @@ const MainLayout = () => {
     return (
       <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen relative ">
         <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
-          <h1 className="flex gap-2 sm:text-6xl font-bold heading opacity-0 block-head text-3xl cursive--font absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
+          <h1 className="flex gap-2 sm:text-6xl font-semibold heading opacity-0 block-head text-3xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
             <span>Welcome</span>
             <span>to</span>
             <span>{brand}</span>
           </h1>
-          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl cursive--font sm:text-6xl font-bold absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
+          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl  sm:text-6xl font-semibold absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
             <span>Find</span>
             <span>and</span>
             <span>hire</span>
@@ -78,7 +84,11 @@ const MainLayout = () => {
             <span>photographers</span>
           </h1>
           <div>
-            <img src="" alt="" className="absolute " />
+            <img
+              src="camera-vector.webp"
+              alt=""
+              className="w-96 h-96 opacity-0 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] camera"
+            />
           </div>
         </div>
       </div>

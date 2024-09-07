@@ -20,7 +20,7 @@ import { Clock2 } from "lucide-react";
 const JobCard = ({ job }) => {
   return (
     <Dialog>
-      <Card>
+      <Card className="cursive--font">
         <CardHeader className="cursive--font">
           <CardTitle className="text-black/80 dark:text-zinc-200 cursive--font">
             {job.title}

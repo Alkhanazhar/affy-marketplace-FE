@@ -60,8 +60,8 @@ const Login = () => {
   return (
     <section className="">
       <div className="min-h-[90vh] pt-12 flex justify-center items-center max-w-7xl ">
-        <div className="p-10 border shadow-xl rounded-lg max-w-4xl w-[30rem] bg-white ">
-          <div className="md:text-[36px] text-[32px] text-gray-700  text-center bg">
+        <div className="p-10 border shadow-xl rounded-lg max-w-4xl w-[30rem] bg-white dark:bg-slate-950 ">
+          <div className="md:text-[36px] text-[32px] text-gray-700  text-center bg dark:text-zinc-100">
             Log in to {brand}
           </div>
 

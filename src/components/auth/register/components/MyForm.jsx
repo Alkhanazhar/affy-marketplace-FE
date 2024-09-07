@@ -140,8 +140,8 @@ const MyForm = () => {
   };
 
   return (
-    <div className="md:w-[60%] h-full  rounded-lg w-[90%] md:p-4 p-2 -mt-4 bg-white  shadow shadow-black/30">
-      <h2 className="text-center md:text-[36px] text-[28px] font-[500] text-gray-800 mb-2">
+    <div className="md:w-[60%] h-full  rounded-lg w-[90%] md:p-4 p-2 -mt-4 bg-white  dark:bg-slate-950 shadow-xl shadow-black/30 dark:shadow-white/10">
+      <h2 className="text-center md:text-[36px] text-[28px] font-[500] text-gray-800 mb-2 dark:text-gray-100">
         {selectType === "Freelancer" && "Sign up to find work you love"}
         {selectType === "Client" && "Sign up to hire talent"}
       </h2>
@@ -345,7 +345,7 @@ const MyForm = () => {
               render={({ field }) => (
                 <select
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]   font-[400]  rounded-lg dark:bg-transparent ${
                     errors.country && "border-red-500"
                   }`}
                 >
@@ -376,7 +376,7 @@ const MyForm = () => {
                 <select
                   disabled={!country}
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 dark:bg-transparent p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.state && "border-red-500"
                   }`}
                 >
@@ -406,7 +406,7 @@ const MyForm = () => {
                 <select
                   disabled={!state}
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 dark:bg-transparent p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.city && "border-red-500"
                   }`}
                 >
@@ -437,7 +437,7 @@ const MyForm = () => {
           render={({ field }) => (
             <select
               {...field}
-              className={`outline-none w-full mt-2 focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+              className={`outline-none w-full mt-2 focus:border-gray-600 dark:bg-transparent p-2 border-[1px]  font-[400]  rounded-lg ${
                 errors.gender && "border-red-500"
               }`}
             >

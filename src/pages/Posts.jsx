@@ -32,7 +32,7 @@ const Posts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState({});
   const AsideSection = ({ children }) => (
-    <aside className="md:w-1/4 hidden md:flex h-fit   p-4 sticky top-12 w-full rounded-lg">
+    <aside className="md:w-1/4 hidden md:flex h-fit p-4 sticky top-20 w-full rounded-lg">
       <div className="space-y-4 w-full">
         <div className="w-full py-4 rounded-lg  text-neutral-800  bg-zinc-100/90 dark:bg-zinc-100/10">
           {children}
@@ -149,7 +149,6 @@ export default Posts;
 const Modal = ({ item, toggleModal, isModalOpen }) => {
   return (
     <AlertDialog open={isModalOpen}>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           {/* <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle> */}

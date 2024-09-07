@@ -187,13 +187,13 @@ const Community = () => {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle className="text-3xl text-center text-black/70">
+                  <AlertDialogTitle className="text-3xl text-center text-black/70 dark:text-zinc-100">
                     Create your Community
                   </AlertDialogTitle>
                   <AlertDialogDescription>
                     <form
                       onSubmit={handleSubmit}
-                      className="space-y-4 p-4 rounded-xl w-full mx-auto bg-white border mt-4"
+                      className="space-y-4 p-4 rounded-xl w-full mx-auto bg-white dark:bg-transparent border mt-4"
                     >
                       <div>
                         <Label htmlFor="name" className="my-4">
@@ -225,7 +225,7 @@ const Community = () => {
                           name="category_id"
                           value={formData.category_id}
                           onChange={handleInputChange}
-                          className="p-2 border-[1px] rounded-md"
+                          className="p-2 border-[1px] rounded-md dark:bg-transparent mt-2"
                         >
                           <option value="">Select a Category</option>
                           {categories?.map((category, index) => (

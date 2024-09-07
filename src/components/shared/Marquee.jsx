@@ -1,24 +1,3 @@
-// import { motion } from "framer-motion";
-
-// const Marquee = ({ images }) => {
-//   return (
-//     <div className="flex w-full overflow-hidden">
-//       <motion.div
-//         initial={{ x: "0" }}
-//         animate={{ x: "-100%" }}
-//         transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-//         className="flex gap-20 shrink-0 pt-10"
-//       >
-//         {images.map((item, index) => {
-//           return <img src={item} alt={"images"} key={index} className="w-32" />;
-//         })}
-//       </motion.div>
-//     </div>
-//   );
-// };
-
-// export default Marquee;
-
 import { motion } from "framer-motion";
 
 const Marquee = ({ images }) => {
@@ -28,12 +7,12 @@ const Marquee = ({ images }) => {
       <div className="flex w-full overflow-hidden">
         <motion.div
           className="flex gap-20 shrink-0 my-5"
-          animate={{ x: ["0%", "-100%"] }} // Animate from 0% to -100%
+          animate={{ x: ["0%", "-100%"] }}
           transition={{
-            duration: 400, // Control the speed of the animation
-            ease: "linear", // Keep the speed consistent
-            repeat: Infinity, // Repeat the animation infinitely
-            repeatType: "loop", // Ensure that the animation repeats in a loop
+            duration: 400,
+            ease: "linear",
+            repeat: Infinity,
+            repeatType: "loop",
           }}
         >
           {/* Repeat the images array twice for a smooth loop */}
@@ -50,13 +29,12 @@ const Marquee = ({ images }) => {
       <div className="flex w-full overflow-hidden">
         <motion.div
           className="flex gap-20 shrink-0 mb-5"
-          initial={{ x: "-100%" }} // Start at the end position (-100%)
-          animate={{ x: 0 }} // Move to the start position (0%)
+          animate={{ x: ["-10%", "0%"] }}
           transition={{
-            duration: 400, // Control the speed of the animation
-            ease: "linear", // Keep the speed consistent
-            repeat: Infinity, // Repeat the animation infinitely
-            repeatType: "mirror", // Reverse the animation direction on repeat
+            duration: 40,
+            ease: "linear",
+            repeat: Infinity,
+            repeatType: "loop",
           }}
         >
           {/* Repeat the images array twice for a smooth loop */}

@@ -55,9 +55,9 @@ const FeedBack = () => {
             </h2>
           </div>
 
-          <div className="relative mt-10 md:mt-16 md:order-2 cursive--font">
+          <div className="relative mt-10 md:mt-8 md:order-2 cursive--font">
             <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-xl filter bg-gradient-to-t from-primary to-secondary -mt-4"></div>
+              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t from-primary/60 to-secondary/60 -mt-8"></div>
             </div>
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
               {reviews.map((review, index) => (
@@ -74,7 +74,7 @@ const FeedBack = () => {
                           ))}
                       </div>
                     </CardHeader>
-                    <CardContent className="flex-1 mt-8">
+                    <CardContent className="flex-1 mt-4">
                       <CardDescription className="line-clamp-3 cursor-default">
                         {review.feedback}
                       </CardDescription>

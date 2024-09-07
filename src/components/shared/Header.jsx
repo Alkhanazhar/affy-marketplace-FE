@@ -32,10 +32,11 @@ const navItems = [
 const Header = () => {
   const tl = gsap.timeline();
   useGSAP(() => {
-    tl.from("section a", {
-      y: 10,
-      duration: 1,
-      stagger: true,
+    tl.from(".header a, .popover", {
+      y: -10,
+      duration: 0.6,
+      opacity: 0,
+      stagger: 0.2,
     });
   }, []);
   const token = localStorage.getItem("token");
@@ -108,7 +109,7 @@ const Header = () => {
       <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center z-50">
         <Link
           to="/"
-          className="logo inline-block  md:text-[28px] text-[20px] text-gray-700 dark:text-zinc-100 font-bold z-10"
+          className="logo inline-block  md:text-[28px] opacity-1 text-[20px] text-gray-700 dark:text-zinc-100 font-bold z-10"
         >
           {brand}
           <span className="text-primary">&nbsp;.</span>
@@ -125,7 +126,7 @@ const Header = () => {
                   className={({ isActive }) =>
                     `${navigationMenuTriggerStyle()} ${
                       isActive
-                        ? "text-base font-medium text-primary transition-all duration-200"
+                        ? "text-base font-medium opacity-1 text-primary transition-all duration-200"
                         : ""
                     }`
                   }
@@ -145,7 +146,9 @@ const Header = () => {
 
         {/* Auth and Profile Buttons */}
         <div className="md:flex gap-4 items-center hidden avatar">
-          <ThemeSwitcher />
+          <div className="popover">
+            <ThemeSwitcher />
+          </div>
 
           {!token ? (
             <>
@@ -153,7 +156,7 @@ const Header = () => {
               <GradientButton text="Sign Up" onClick={handleSignup} />
             </>
           ) : (
-            <div className="flex items-center gap-4 ">
+            <div className="flex items-center gap-4 popover">
               <Popover>
                 <PopoverTrigger>
                   <Avatar className="-z-10">
@@ -213,8 +216,8 @@ const Header = () => {
                     to={href}
                     className={({ isActive }) =>
                       isActive
-                        ? "text-primary font-[400] md:text-[16px] text-[16px]"
-                        : "text-gray-600 hover:text-gray-500 font-[500] md:text-[16px] text-[14px]"
+                        ? "text-primary font-[400] opacity-1 md:text-[16px] text-[16px]"
+                        : "text-gray-600 hover:text-gray-500 opacity-1 font-[500] md:text-[16px] text-[14px]"
                     }
                     aria-label={title}
                   >
@@ -223,7 +226,7 @@ const Header = () => {
                 </li>
               );
             })}
-            <div className="md:hidden gap-2 mt-2 flex flex-col items-start">
+            <div className="md:hidden gap-2 mt-2 flex flex-col items-start popover">
               {!token ? (
                 <>
                   <LinkButton text="Login" onClick={handleLogin} />

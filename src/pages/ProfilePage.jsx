@@ -20,8 +20,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 const ProfilePage = () => {
   return (
-    <div className="py-32 px-4 md:px-0 cursive--font">
-      <div className="max-w-7xl mx-auto rounded-2xl w-full h-full border overflow-hidden md:p-6 p-4 md:pb-12 pb-4 bg-white shadow-md">
+    <div className="py-20 pt-32 px-4 md:px-0 cursive--font">
+      <div className="max-w-7xl mx-auto rounded-2xl w-full h-full border overflow-hidden md:p-6 p-4 md:pb-12 pb-4 bg-white dark:bg-slate-950 shadow-md">
         <div className="hidden md:flex md:flex-row flex-col gap-4">
           <ProfileImageWrapper />
           <UserInfoWrapper />
@@ -71,11 +71,11 @@ const ProfilePage = () => {
               </AlertDialog>
             </div>
             <div className="space-y-4">
-              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
                 <span>Schools Mp Bhopal</span>
                 <ActionIcon Icon={Pen} padding={2} size={4} />
               </div>
-              <div className="flex justify-between text-xs md:text-base items-center text-neutral-600">
+              <div className="flex justify-between text-xs md:text-base items-center text-neutral-600  dark:text-neutral-200">
                 <span>College Btech Mp Bhopal</span>
                 <ActionIcon Icon={Pen} padding={2} size={4} />
               </div>
@@ -95,7 +95,7 @@ const ProfilePage = () => {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle className="md:text-3xl text-center text-2xl">
+                    <AlertDialogTitle className="md:text-3xl text-center text-2xl  dark:text-neutral-200">
                       Add your Certificates
                     </AlertDialogTitle>
                     <AlertDialogDescription>
@@ -121,13 +121,13 @@ const ProfilePage = () => {
               </AlertDialog>
             </div>
             <div className="space-y-4">
-              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
                 <span>
                   English: <span className="text-xs">Proficiency</span>
                 </span>
                 <ActionIcon Icon={Pen} padding={2} size={4} />
               </div>
-              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+              <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
                 <span>
                   Hindi: <span className="text-xs">Proficiency</span>
                 </span>
@@ -215,7 +215,7 @@ const ProfileImage = () => (
 
 const UserInfo = () => (
   <div className="flex flex-col justify-between">
-    <h1 className="md:text-4xl sm:text-2xl text-xl text-gray-700 font-medium">
+    <h1 className="md:text-4xl sm:text-2xl text-xl text-gray-700  dark:text-neutral-200 font-medium">
       Azhar K.
     </h1>
     <div className="text-gray-400 text-sm md:text-base flex items-center gap-1">
@@ -235,8 +235,8 @@ const UserActions = () => (
       </Button>
     </div>
     <div className="flex gap-2 ml-auto">
-      <Button className="rounded-md bg-neutral-300" size="sm">
-        <Trash size={15} className="text-white" />
+      <Button className="rounded-md  bg-red-500 hover:bg-red-600 " size="sm">
+        <Trash size={15} className="text-white  dark:text-neutral-200 " />
       </Button>
       <Button className="rounded-md bg-primary text-white" size="sm">
         <Upload size={15} />
@@ -257,7 +257,7 @@ const SkillsSection = ({ skills }) => {
             key={skill}
             variant="outline"
             size="sm"
-            className="flex justify-between items-center border text-xs md:text-base text-neutral-600"
+            className="flex justify-between items-center border text-xs md:text-sm text-neutral-600  dark:text-neutral-200 "
           >
             <span>{skill}</span>
           </Button>
@@ -299,11 +299,11 @@ const ProfileSection = ({ title, children }) => (
 
 const Certification = () => (
   <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600 dark:text-neutral-200">
       <span>Certified Photography Professional</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
-    <div className="flex justify-between text-xs md:text-base items-center text-neutral-600">
+    <div className="flex justify-between text-xs md:text-base items-center text-neutral-600  dark:text-neutral-200">
       <span>Adobe Photoshop Certification</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
@@ -344,11 +344,11 @@ const Certification = () => (
 
 const Experiences = () => (
   <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Frontend Developer at Affy Cloud</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Photography Assistant at Local Studio</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
@@ -389,7 +389,7 @@ const Experiences = () => (
 
 const AddExperience = () => (
   <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Freelance Photographer</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
@@ -430,11 +430,11 @@ const AddExperience = () => (
 
 const Portfolios = () => (
   <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Wedding Photography Portfolio</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Commercial Photography Portfolio</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
@@ -475,11 +475,11 @@ const Portfolios = () => (
 
 const Projects = () => (
   <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Personal Photography Blog</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600">
+    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
       <span>Online Portfolio Website</span>
       <ActionIcon Icon={UserPen}></ActionIcon>
     </div>

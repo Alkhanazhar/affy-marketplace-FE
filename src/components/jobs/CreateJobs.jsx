@@ -68,7 +68,7 @@ const CreateJobs = () => {
               value={formData.fullName}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  sm:text-sm"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm  text-sm"
             />
           </div>
           <div>
@@ -373,7 +373,10 @@ const CreateJobs = () => {
           onChange={handleChange}
           className="mr-2 h-4 w-4 border-gray-300 rounded"
         />
-        <Label htmlFor="consent" className="text-sm font-medium text-gray-700 dark:text-zinc-200">
+        <Label
+          htmlFor="consent"
+          className="text-sm font-medium text-gray-700 dark:text-zinc-200"
+        >
           I agree to the terms and conditions
         </Label>
       </div>

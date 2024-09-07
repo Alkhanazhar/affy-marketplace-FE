@@ -15,13 +15,11 @@ const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
   return (
     <NavLink
       to={to}
-      className={() =>
-        `flex items-center w-full gap-20 py-2 text-muted-foreground   ${
-          location.pathname == to
-            ? "text-primary border-r-4 border-primary bg-primary/10"
-            : ""
-        } ${expanded ? "justify-between px-10" : "justify-center px-2"}`
-      }
+      className={`flex items-center w-full gap-20 py-2 text-muted-foreground   ${
+        location.pathname == to
+          ? "text-primary border-r-4 border-primary bg-primary/10"
+          : ""
+      } ${expanded ? "justify-between w-64 px-4" : "justify-center px-2"}`}
     >
       <Icon className="h-5 w-5 md:h-9 md:w-9" />
       {expanded && <span className="cursive--font">{label}</span>}
@@ -51,7 +49,7 @@ const LogoutSidebarBtn = ({ to, expanded }) => {
       to={to}
       onClick={handleLogout}
       className={`flex items-center  w-full gap-2   text-muted-foreground cursor-pointer  ${
-        expanded ? "justify-between px-10" : "justify-center px-2"
+        expanded ? "justify-between w-64 px-4" : "justify-center px-2"
       }`}
     >
       <LogOutIcon className="h-5 w-5 md:h-9 md:w-9" />

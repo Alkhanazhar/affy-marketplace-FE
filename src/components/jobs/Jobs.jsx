@@ -116,7 +116,7 @@ const CollapsibleFilters = () => {
   );
 
   return (
-    <div className="col-span-3 border rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 bg-white dark:bg-transparent p-4">
+    <div className="col-span-3 border rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 bg-white dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
       <div className="flex items-center gap-2 flex-wrap">
         Selected filters:
         {filters.map((item, index) => {
@@ -146,7 +146,7 @@ const Jobs = () => {
   const filteredJobs = useJobFilter(jobsData, searchTitle, searchLocation);
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 ">
       <SearchBar
         searchTitle={searchTitle}
         setSearchTitle={setSearchTitle}
@@ -155,7 +155,7 @@ const Jobs = () => {
       />
       <div className="grid grid-cols-12 md:max-w-6xl w-[90%] mx-auto gap-2 py-2">
         <CollapsibleFilters />
-        <div className="md:col-span-9 col-span-12 space-y-2 w-full md:w-auto">
+        <div className="md:col-span-9 col-span-12 space-y-2 w-full md:w-auto ">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job, index) => <JobCard job={job} key={index} />)
           ) : (

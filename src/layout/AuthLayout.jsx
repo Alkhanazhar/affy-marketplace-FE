@@ -26,7 +26,7 @@ const AuthLayout = () => {
 
   return (
     <div>
-      <header className="border-b fixed top-0 left-0 w-full bg-white z-[100]">
+      <header className="border-b fixed top-0 left-0 w-full bg-white dark:bg-slate-950 z-[100]">
         <div className="max-w-7xl mx-auto flex justify-between cursive--font md:justify-between p-3 items-center">
           <Link
             to="/"
@@ -55,7 +55,7 @@ const AuthLayout = () => {
                     Here to hire talent?
                   </p>
                   <button
-                    className="text-primary font-[400] text-[12px] md:text-[16px]"
+                    className="text-primary  font-[400] text-[12px] md:text-[16px]"
                     onClick={() => handleSetSelectedRegisterType("Client")}
                     aria-label="Join as a client"
                   >
@@ -70,7 +70,7 @@ const AuthLayout = () => {
       <div className=" relative pb-10 ">
         <Outlet />
       </div>
-      <footer className="justify-center fixed bottom-0 w-full hidden md:flex p-2 bg-white border-t">
+      <footer className="justify-center fixed bottom-0 w-full hidden md:flex p-2 bg-white dark:bg-slate-950 border-t">
         <h1 className="uppercase cursive--font text-xs">
           made with 💖 by affy cloud
         </h1>
