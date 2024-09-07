@@ -250,7 +250,7 @@ const Community = () => {
             </AlertDialog>
           </p>
         </div>
-        <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/20 lg:w-4/12 w-10/12 border-t ">
+        <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 lg:w-4/12 w-10/12 border-t ">
           <Search className="text-gray-500" />
           <Input
             type="text"

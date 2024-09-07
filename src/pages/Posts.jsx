@@ -32,9 +32,9 @@ const Posts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState({});
   const AsideSection = ({ children }) => (
-    <aside className="md:w-1/4 hidden md:flex h-fit p-4 sticky top-20 w-full rounded-lg">
+    <aside className="md:w-1/4 hidden md:flex h-fit p-4 sticky top-20 w-full rounded-lg border dark:bg-[#020817]">
       <div className="space-y-4 w-full">
-        <div className="w-full py-4 rounded-lg  text-neutral-800  bg-zinc-100/90 dark:bg-zinc-100/10">
+        <div className="w-full py-4 rounded-lg  text-neutral-800  bg-zinc-100/90 dark:bg-[#020817]">
           {children}
         </div>
       </div>
@@ -89,15 +89,15 @@ const Posts = () => {
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-            <div className="flex justify-center text-gray-600 dark:text-zinc-300 cursive--font">
-              <h3 className="text-center leading-none text- font-[500] text-lg my-4 underline cursor-pointer">
+            <div className="flex justify-center text-gray-600 dark:text-zinc-100 cursive--font">
+              <h3 className="text-center leading-none text- font-[500] text-lg my-4 dark:text-zinc-200 underline cursor-pointer">
                 Your Communities
               </h3>
             </div>
           </AsideSection>
           <main className="md:w-2/4 w-full bg-zinc-100/90  dark:bg-transparent rounded-lg overflow-y-auto mx-2">
             <div className="space-y-4">
-              <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/20 mx-4 mt-4 border-t ">
+              <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:bg-[#020817] dark:shadow-white/20 mx-4 mt-4 border-t ">
                 <Search className="text-gray-500 dark:text-zinc-100" />
                 <Input
                   type="text"
@@ -126,7 +126,7 @@ const Posts = () => {
           </main>
           <AsideSection>
             <div className="px-4">
-              <h2 className="text-[20px] font-[500] text-zinc-800">
+              <h2 className="text-[20px] font-[500] dark:text-zinc-200 text-zinc-800">
                 Communities for you
               </h2>
             </div>

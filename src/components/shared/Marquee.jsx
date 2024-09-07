@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const Marquee = ({ images }) => {
   return (
-    <div className="flex flex-col gap-5 relative max-w-7xl mx-auto my-10">
-      <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white dark:from-[#020817]  to-transparent z-10 pointer-events-none"></div>
+    <div className="flex flex-col gap-5 relative max-w-6xl mx-auto my-10">
+      <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white dark:from-[#060C1B]  to-transparent z-10 pointer-events-none"></div>
       <div className="flex w-full overflow-hidden">
         <motion.div
           className="flex gap-20 shrink-0 my-5"
@@ -48,7 +48,7 @@ const Marquee = ({ images }) => {
           ))}
         </motion.div>
       </div>
-      <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white dark:from-[#020817]  to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white dark:from-[#060C1B]  to-transparent z-10 pointer-events-none"></div>
     </div>
   );
 };

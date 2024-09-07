@@ -42,7 +42,7 @@ const SearchBar = ({
   setSearchLocation,
 }) => (
   <div className="py-4 flex items-center justify-center md:max-w-7xl mx-auto w-[90%]">
-    <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/20 lg:w-5/12 w-10/12 border-t">
+    <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 lg:w-5/12 w-10/12 border-t">
       <div className="rounded-l-full md:px-4 flex items-center px-2 bg-transparent relative">
         <User className="text-gray-500" />
         <Input

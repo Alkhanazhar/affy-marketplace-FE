@@ -50,13 +50,17 @@ const MainLayout = () => {
       })
       .to(".heading-2 span", {
         stagger: 0.2, // Staggering duration
-        duration: 1, // Duration of opacity animation
+        duration: 1.2, // Duration of opacity animation
         x: -100,
         opacity: 0,
       })
       .to(".camera", {
         duration: 1.2,
         opacity: 1,
+      })
+      .to(".camera", {
+        duration: 1,
+        opacity: 0,
       })
       .to(".show", {
         ease: "elastic.inOut",
@@ -71,12 +75,12 @@ const MainLayout = () => {
     return (
       <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen relative ">
         <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
-          <h1 className="flex gap-2 sm:text-6xl font-semibold heading opacity-0 block-head text-3xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
+          <h1 className="flex gap-2 sm:text-6xl font-medium heading opacity-0 block-head text-3xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
             <span>Welcome</span>
             <span>to</span>
             <span>{brand}</span>
           </h1>
-          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl  sm:text-6xl font-semibold absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
+          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl  sm:text-6xl font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
             <span>Find</span>
             <span>and</span>
             <span>hire</span>

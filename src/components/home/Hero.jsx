@@ -27,9 +27,9 @@ const Hero = () => {
   const gradients = [
     "from-primary to-secondary drop-shadow-md blur md:w-40 md:h-40 w-32 h-32 absolute md:left-[20%] left-[50%] top-[50%] opacity-10",
     "from-green-400 to-blue-500 drop-shadow-lg blur w-24 h-24 md:w-36 md:h-36 rounded-full absolute md:left-[10%] left-[40%] top-[30%] opacity-20",
-    "from-purple-500 to-pink-500 drop-shadow-xl blur w-32 h-32 md:w-48 md:h-48 rounded-tr-full absolute md:left-[60%] left-[20%] top-[10%] opacity-15",
+    "from-purple-500 to-pink-500 drop-shadow-xl blur w-32 h-32 md:w-48 md:h-48 rounded-tr-full absolute md:left-[50%] left-[20%] top-[40%] opacity-15",
     "from-red-500 to-yellow-500 drop-shadow-md blur w-20 h-20 md:w-28 md:h-28 absolute md:right-[20%] right-[10%] top-[60%] opacity-25 rounded-bl-lg",
-    "from-indigo-500 to-blue-400 drop-shadow-sm blur w-36 h-36 md:w-52 md:h-52 rounded-full absolute md:left-[70%] left-[15%] top-[80%] opacity-10",
+    "from-indigo-500 to-blue-400 drop-shadow-sm blur w-36 h-36 md:w-52 md:h-52 rounded-full absolute md:left-[70%] left-[15%] top-[20%] opacity-10",
   ];
 
   return (
