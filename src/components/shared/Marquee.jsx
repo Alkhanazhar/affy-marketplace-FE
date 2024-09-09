@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 
 const Marquee = ({ images }) => {
   return (
-    <div className="flex flex-col gap-5 relative max-w-6xl mx-auto my-10">
+    <div className="flex flex-col gap-5 relative max-w-7xl mx-auto my-10">
       <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white dark:from-[#060C1B]  to-transparent z-10 pointer-events-none"></div>
       <div className="flex w-full overflow-hidden">
         <motion.div
-          className="flex gap-20 shrink-0 my-5"
+          className="flex gap-20 shrink-0 md:my-5 my-2"
           animate={{ x: ["0%", "-100%"] }}
           transition={{
             duration: 400,
@@ -21,14 +21,14 @@ const Marquee = ({ images }) => {
               src={item}
               alt={`marquee-image-${index}`}
               key={index}
-              className="w-32 h-10 opacity-70 dark:invert"
+              className="md:w-32 w-20 md:h-10 h-8 opacity-70 dark:invert"
             />
           ))}
         </motion.div>
       </div>
       <div className="flex w-full overflow-hidden">
         <motion.div
-          className="flex gap-20 shrink-0 mb-5"
+          className="flex gap-20 shrink-0 md:mb-5 mb-2"
           animate={{ x: ["-10%", "0%"] }}
           transition={{
             duration: 40,
@@ -43,7 +43,7 @@ const Marquee = ({ images }) => {
               src={item}
               alt={`marquee-image-${index}`}
               key={index}
-              className="w-32 opacity-70 h-10 dark:invert"
+              className="md:w-32 w-20 opacity-70 md:h-10 h-8 dark:invert"
             />
           ))}
         </motion.div>

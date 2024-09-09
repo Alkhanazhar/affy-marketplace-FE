@@ -25,16 +25,16 @@ const MainLayout = () => {
         y: -30,
         duration: 1,
       })
-      .to("heading span", {
+      .to("heading", {
         x: 10,
         ease: "circ.inOut",
         stagger: 0.2, // Staggering duration
         duration: 0.6, // Duration of opacity animation
       })
       .to(".heading span", {
-        stagger: 0.2, // Staggering duration
-        duration: 1, // Duration of opacity animation
-        x: -100,
+        stagger: 0.1, // Staggering duration
+        duration: 0.2, // Duration of opacity animation
+        x: -5,
         opacity: 0,
       })
       .to(".heading-2", {
@@ -42,24 +42,16 @@ const MainLayout = () => {
         y: -30,
         duration: 1,
       })
-      .to("heading-2 span", {
+      .to("heading-2", {
         x: 10,
         ease: "circ.inOut",
         stagger: 0.2, // Staggering duration
         duration: 0.6, // Duration of opacity animation
       })
       .to(".heading-2 span", {
-        stagger: 0.2, // Staggering duration
-        duration: 1.2, // Duration of opacity animation
-        x: -100,
-        opacity: 0,
-      })
-      .to(".camera", {
-        duration: 1.2,
-        opacity: 1,
-      })
-      .to(".camera", {
-        duration: 1,
+        stagger: 0.1, // Staggering duration
+        duration: 0.2, // Duration of opacity animation
+        x: -5,
         opacity: 0,
       })
       .to(".show", {
@@ -71,29 +63,23 @@ const MainLayout = () => {
       });
   }, []);
 
+  const introText = "Welcome to " + brand;
+  const outroText = "Find and hire skilled photographers";
   if (!intro) {
     return (
-      <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen relative ">
+      <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen  relative ">
         <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
-          <h1 className="flex gap-2 sm:text-6xl font-medium heading opacity-0 block-head text-3xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
-            <span>Welcome</span>
-            <span>to</span>
-            <span>{brand}</span>
+          <h1 className="flex gap-2 sm:text-6xl font-medium heading opacity-0 block-head text-2xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
+       
+            {introText.split("").map((item) => {
+              return <span key={item + "2"}>{item}</span>;
+            })}
           </h1>
-          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-3xl  sm:text-6xl font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
-            <span>Find</span>
-            <span>and</span>
-            <span>hire</span>
-            <span>skilled</span>
-            <span>photographers</span>
+          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-2xl  sm:text-6xl font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
+            {outroText.split("").map((item) => {
+              return <span key={item + "3"} >{item}</span>;
+            })}
           </h1>
-          <div>
-            <img
-              src="camera-vector.webp"
-              alt=""
-              className="w-96 h-96 opacity-0 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] camera"
-            />
-          </div>
         </div>
       </div>
     );

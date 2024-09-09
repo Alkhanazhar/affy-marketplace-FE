@@ -57,19 +57,19 @@ const FeedBack = () => {
 
           <div className="relative mt-10 md:mt-8 md:order-2 cursive--font">
             <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t from-primary/60 to-secondary/60 -mt-8"></div>
+              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t feedback from-red-400/60 to-red-500/40 -mt-8"></div>
             </div>
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
               {reviews.map((review, index) => (
                 <div key={index} className="hover:-translate-y-2 duration-150">
-                  <Card className="backdrop-blur ">
+                  <Card className="backdrop-blur bg-zinc-100/80 dark:bg-black/40">
                     <CardHeader>
                       <div className="flex">
                         {Array(review.stars)
                           .fill(0)
                           .map((_, i) => (
                             <div key={i}>
-                              <Star className="fill-yellow-300 border-none text-yellow-300" />
+                              <Star className="fill-yellow-400 border-none text-yellow-400" />
                             </div>
                           ))}
                       </div>

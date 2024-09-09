@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="getStarted mt-4 flex justify-center md:justify-start">
               <Button
                 size="lg"
-                className="text-lg text-neutral-100 rounded-xl shadow"
+                className="text-lg text-neutral-100 shadow"
               >
                 Get Started
               </Button>
@@ -74,14 +74,14 @@ const Hero = () => {
               className="object-cover -z-10 aspect-square lg:w-[32rem] lg:h-[32rem] md:w-[25rem] md:h-[25rem] drop-shadow-xl"
               loading="lazy"
             />
-            <div className="p-1 flex gap-2 absolute left-0 top-4 bg-black/10 dark:bg-zinc-100/20 items-center rounded-full">
+            <div className="p-1 flex gap-2 absolute left-0 top-4  dark:bg-zinc-100/20 items-center  backdrop-blur bg-black/20 rounded-full">
               <Avatar w={"10"} h={"10"}>
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>AK</AvatarFallback>
               </Avatar>
 
-              <div className="mr-4">
-                <p className="text-sm text-black/60 dark:text-zinc-100">
+              <div className="mr-4 ">
+                <p className="text-sm text-black/70 dark:text-zinc-100 ">
                   {"I found the best photographer here!"}
                 </p>
                 <div className="flex gap-1 ">

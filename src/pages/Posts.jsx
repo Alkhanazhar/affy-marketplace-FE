@@ -96,8 +96,8 @@ const Posts = () => {
             </div>
           </AsideSection>
           <main className="md:w-2/4 w-full bg-zinc-100/90  dark:bg-transparent rounded-lg overflow-y-auto mx-2">
-            <div className="space-y-4">
-              <div className="flex gap-3 items-center bg-white dark:bg-transparent px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:bg-[#020817] dark:shadow-white/20 mx-4 mt-4 border-t ">
+            <div className="space-y-4 ">
+              <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047]  dark:shadow-white/20 mx-4 mt-4 border-t ">
                 <Search className="text-gray-500 dark:text-zinc-100" />
                 <Input
                   type="text"

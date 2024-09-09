@@ -58,7 +58,7 @@ const Header = () => {
     const nav = document.getElementById("mobileNav");
     gsap.to(nav, {
       x: isOpen ? "100%" : "0%",
-      duration: 0.2,
+      duration: 0.3,
     });
     setIsOpen(!isOpen);
   };
@@ -97,8 +97,6 @@ const Header = () => {
   const handleProfile = () => {
     navigate("/profile");
   };
-
-  // useGsapAnimation(".header a, .avatar");
 
   return (
     <header
@@ -210,14 +208,15 @@ const Header = () => {
               return (
                 <li
                   key={title}
-                  className="hover:bg-gray-100 p-1 rounded-md ps-2"
+                  onClick={toggleNav}
+                  className="hover:bg-gray-100 p-1  rounded-md ps-2"
                 >
                   <NavLink
                     to={href}
                     className={({ isActive }) =>
                       isActive
-                        ? "text-primary font-[400] opacity-1 md:text-[16px] text-[16px]"
-                        : "text-gray-600 hover:text-gray-500 opacity-1 font-[500] md:text-[16px] text-[14px]"
+                        ? "text-primary font-[400] inline-block w-full opacity-1 md:text-[16px] text-[16px]"
+                        : "text-gray-600 hover:text-gray-500 opacity-1 font-[500] md:text-[16px] inline-block w-full text-[14px]"
                     }
                     aria-label={title}
                   >

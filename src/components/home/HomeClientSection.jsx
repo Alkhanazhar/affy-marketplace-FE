@@ -19,8 +19,8 @@ const items = [
 const HomeClientSection = () => {
   useGsapAnimation(".forClients");
   return (
-    <section className="mb-4 forClients">
-      <div className="lg:max-w-7xl w-[95%] mx-auto rounded-lg bg-gradient-to-t from-[#2f39628a] to-[#0000009b]  via-[#00000032] p-6 relative overflow-hidden">
+    <section className="mb-4 forClients ">
+      <div className="lg:max-w-7xl w-[95%] mx-auto rounded-lg bg-gradient-to-t from-[#2f39628a] to-[#0000009b]  via-[#00000032] p-6 relative overflow-hidden dark:border">
         <img
           src="camera-women.webp"
           alt=""

@@ -56,13 +56,12 @@ const Home = () => {
     },
   ];
 
-  
-
   useGsapAnimation(".Trusted, .cta-client");
   return (
     <>
       <Hero />
-      <div className="cta-client">
+      <div className="cta-client relative max-w-7xl mx-auto overflow-hidden h-fit mb-8">
+        <div className="-z-10 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] dark:bg-gradient-to-r cta-client from-blue-400/80 dark:to-blue-600/80 blur-3xl opacity-40 w-full h-full"></div>
         <Cta
           reverse={false}
           imgSrc="https://images.unsplash.com/photo-1531496681078-27dc2277e898?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -72,7 +71,8 @@ const Home = () => {
           btnName="Find Photographers"
         />
       </div>
-      <div className="cta-freelancer">
+      <div className="cta-freelancer relative max-w-7xl mx-auto overflow-hidden h-fit mb-8">
+        <div className="-z-10 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] dark:bg-gradient-to-r from-blue-400/80 dark:to-blue-600/80 blur-3xl opacity-40 w-full h-full cta-freelancer"></div>
         <Cta
           reverse={true}
           imgSrc="https://images.unsplash.com/photo-1522198684868-88edd8463fc9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
