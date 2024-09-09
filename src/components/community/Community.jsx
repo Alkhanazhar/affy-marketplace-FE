@@ -1,10 +1,7 @@
 import { Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect,  useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  // communitiesConstant,
-  photographyCommunities,
-} from "../../../constants/constatns";
+
 import Card from "../shared/Card";
 import { Input } from "../ui/input";
 import {
@@ -26,6 +23,9 @@ import useCategories from "@/hooks/useCategories";
 const Community = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [community, setCommunity] = useState([]);
+  const [communityLoading, setCommunityLoading] = useState(false);
+
   const { categories, loading, error } = useCategories();
 
   const [formData, setFormData] = useState({
@@ -34,7 +34,6 @@ const Community = () => {
     category_id: "",
   });
   const { toast } = useToast();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, description, category_id } = formData;
@@ -59,6 +58,8 @@ const Community = () => {
         description: "",
         category_id: "",
       });
+      filteredCommunities();
+
       toast({
         variant: "default",
         title: "Success",
@@ -81,11 +82,22 @@ const Community = () => {
     setIsModalOpen((prev) => !prev);
   };
 
-  const filteredCommunities = useMemo(() => {
-    return photographyCommunities.filter((community) =>
-      community.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [searchQuery]);
+  const filteredCommunities = async () => {
+    setCommunityLoading(true);
+    const { data } = await axios.get("api/admin/community/display", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    console.log(data?.meta);
+    setCommunity(data.meta);
+    setCommunityLoading(false);
+  };
+
+  useEffect(() => {
+    filteredCommunities();
+    console.log("Commun");
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -93,7 +105,7 @@ const Community = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  if (loading)
+  if (loading && communityLoading)
     return (
       <div className=" min-h-[50vh] grid md:grid-cols-3 grid-cols-1 max-w-7xl md:mx-auto mt-32 my-40 mx-4">
         <div className="flex flex-col space-y-3 w-full justify-center items-center mt-20">
@@ -251,7 +263,7 @@ const Community = () => {
           </p>
         </div>
         <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 lg:w-4/12 w-10/12 border-t ">
-          <Search className="text-gray-500" />
+          <Search className="text-gray-500 " />
           <Input
             type="text"
             className="w-full outline-none border-none"
@@ -262,15 +274,9 @@ const Community = () => {
         </div>
       </div>
       <div className="md:max-w-5xl max-w-3xl md:mx-auto grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 lg:gap-4 mx-4 gap-4">
-        {filteredCommunities.map(({ slug, name, description, images }) => {
+        {community?.map(({ name, description, id }) => {
           return (
-            <Card
-              name={name}
-              key={slug}
-              slug={slug}
-              description={description}
-              image={images[0]}
-            />
+            <Card name={name} key={name} id={id} description={description} />
           );
         })}
       </div>

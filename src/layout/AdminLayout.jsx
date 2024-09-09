@@ -1,6 +1,6 @@
 import { useToast } from "@/components/ui/use-toast";
 import { brand } from "../../constants/constatns";
-import { ChartBarBig, Home, LogOutIcon, UserCircleIcon } from "lucide-react";
+import { ChartBarBig, Home, LogOutIcon, UserCircleIcon, UserRoundCheck } from "lucide-react";
 import { useState } from "react";
 import {
   Link,
@@ -84,6 +84,12 @@ const Sidebar = ({ expanded, onExpand }) => (
         to="/admin/category"
         icon={ChartBarBig}
         label="Category"
+        expanded={expanded}
+      />
+      <SidebarItem
+        to="/admin/community"
+        icon={UserRoundCheck}
+        label="Community"
         expanded={expanded}
       />
     </nav>

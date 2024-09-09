@@ -4,6 +4,7 @@ import { Link, Tag, User, User2Icon } from "lucide-react";
 import { photographyCommunities } from "../../../../constants/constatns";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import axios from "axios";
 
 const CommunitySlug = () => {
   const { communityName } = useParams();
@@ -11,7 +12,7 @@ const CommunitySlug = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const user = { isMember: true };
+  // const user = { isMember: true };
   function handleJoin() {
     token
       ? toast({
@@ -20,12 +21,26 @@ const CommunitySlug = () => {
         })
       : navigate("/auth");
   }
-  useEffect(() => {
-    setData(
-      photographyCommunities.filter((community) => {
-        return community.slug == communityName;
-      })
+
+  async function getCommunitySlug() {
+    const { data } = await axios.get(
+      "api/admin/community/display/" + communityName,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
+    setData(() => data?.meta);
+    console.log(data?.meta);
+  }
+  useEffect(() => {
+    getCommunitySlug();
+    // setData(
+    //   photographyCommunities.filter((community) => {
+    //     return community.slug == communityName;
+    //   })
+    // );
   }, [communityName]);
   return (
     <>
@@ -33,14 +48,16 @@ const CommunitySlug = () => {
         <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse py-8 md:mx-4 ">
           <div className=" w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white dark:bg-slate-950">
             <h1 className="leading-none text-black/70  dark:text-zinc-100 md:text-3xl text-2xl font-[700]">
-              {data[0]?.name}
+              {data?.name}
             </h1>
             <div className="my-4 rounded-xl overflow-hidden">
               <img
-                src={data[0]?.images[0]}
+                src={
+                  "https://cdn.pixabay.com/photo/2014/07/08/10/47/team-386673_1280.jpg"
+                }
                 alt=""
                 loading="lazy"
-                className="aspect-video"
+                className="aspect-video object-cover"
               />
             </div>
             <div className="flex justify-between md:gap-2 lg:gap-4 gap-2 text-gray-600 dark:text-gray-100  my-4 text-xs md:text-sm ">
@@ -58,13 +75,15 @@ const CommunitySlug = () => {
               </div>
             </div>
             <div className="text-base text-gray-600 dark:text-gray-400  leading-7">
-              <p>{data[0]?.description}</p>
+              <p>{data?.description}</p>
             </div>
           </div>
           <div className="col-span-4 w-full rounded-xl flex-[.8] shadow-container border overflow-hidden h-fit bg-white dark:dark:bg-slate-950">
             <div className="">
               <img
-                src={data[0]?.images[0]}
+                src={
+                  "https://cdn.pixabay.com/photo/2014/07/08/10/47/team-386673_1280.jpg"
+                }
                 alt=""
                 className="w-full h-full object-cover aspect-video"
               />
@@ -75,11 +94,10 @@ const CommunitySlug = () => {
                 href="#"
                 className="hover:underline font-[500] md:text-[20px]  text-[16px] "
               >
-                {data[0]?.name}
+                {data?.name}
               </a>
               <p className="md:text-[15px] font-[400] text-[12px] text-gray-500">
-                Welcome to Digital Growth Community! Our Mission: To Help You
-                Build a Daily Pay Customer Base Digitally!
+                Welcome to {data?.name}!
               </p>
               <div className="flex flex-col space-y-0">
                 <a
@@ -132,7 +150,7 @@ const CommunitySlug = () => {
               </div>
             </div>
             {/* join button */}
-            <div className="w-full p-4">
+            {/* <div className="w-full p-4">
               {user.isMember ? (
                 <Button className="w-full">
                   <NavLink
@@ -151,7 +169,7 @@ const CommunitySlug = () => {
                   Join
                 </Button>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ import AdminLayout from "./layout/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import CategoryPage from "./pages/Category";
 import { ThemeProvider } from "../src/components/themeProvider";
+import CommunityDashboard from "./pages/CommunityDashboard";
 
 const App = () => {
   axios.defaults.baseURL = "http://localhost:8714";
@@ -83,6 +84,10 @@ const App = () => {
         {
           path: "/admin/category",
           element: <CategoryPage />,
+        },
+        {
+          path: "/admin/community",
+          element: <CommunityDashboard />,
         },
       ],
     },

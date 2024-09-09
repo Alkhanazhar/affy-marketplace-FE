@@ -1,3 +1,4 @@
+import { useTheme } from "@/components/themeProvider";
 import { cn } from "@/lib/utils";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 import { Bar, ResponsiveContainer, XAxis, YAxis } from "recharts";
@@ -160,6 +161,8 @@ const data = [
 ];
 
 export function BarChart() {
+  const {theme} = useTheme();
+  console.log(theme);
   return (
     <ResponsiveContainer width={"100%"} height={350}>
       <BarGraph data={data}>
@@ -167,17 +170,23 @@ export function BarChart() {
           dataKey={"name"}
           tickLine={false}
           axisLine={false}
-          stroke="#888888"
+          stroke={theme == "light" ? "#ffffff" : "#000000"}
           fontSize={12}
+          color="white"
+          className="bg-white"
         />
         <YAxis
           tickLine={false}
           axisLine={false}
-          stroke="#888888"
+          stroke={theme == "light" ? "black" : "white"}
           fontSize={12}
           tickFormatter={(value) => `$${value}`}
         />
-        <Bar dataKey={"total"} radius={[4, 4, 0, 0]} />
+        <Bar
+          dataKey={"total"}
+          radius={[4, 4, 0, 0]}
+          fill={theme == "ight" ? "black" : "white"}
+        />
       </BarGraph>
     </ResponsiveContainer>
   );

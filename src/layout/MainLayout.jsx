@@ -69,13 +69,13 @@ const MainLayout = () => {
     return (
       <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen  relative ">
         <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
-          <h1 className="flex gap-2 sm:text-6xl font-medium heading opacity-0 block-head text-2xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
+          <h1 className="flex gap-2 sm:text-[3vw] font-medium heading opacity-0 block-head text-2xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
        
             {introText.split("").map((item) => {
               return <span key={item + "2"}>{item}</span>;
             })}
           </h1>
-          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-2xl  sm:text-6xl font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
+          <h1 className="flex gap-2 heading-2 opacity-0 block-head text-2xl  sm:text-[3vw] font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
             {outroText.split("").map((item) => {
               return <span key={item + "3"} >{item}</span>;
             })}
