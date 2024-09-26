@@ -504,7 +504,7 @@ const MyForm = () => {
 
         <Button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading } // Disable if loading or form is invalid
           className="relative overflow-hidden duration-150 rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full mt-2 md:text-[18px] text-[16px] bg-green-500/50 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
         >
           {/* Button Text */}

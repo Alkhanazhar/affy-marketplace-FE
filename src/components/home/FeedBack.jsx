@@ -43,8 +43,8 @@ const FeedBack = () => {
   ];
 
   return (
-    <section className="py-4 sm:py-12 lg:py-4 my-4 feedback mx-4 md:mx-0">
-      <div className="md:px-4  mx-auto max-w-7xl sm:px-6 lg:px-0">
+    <section className="py-4 sm:py-12 lg:py-4 my-4 feedback md:mx-0 overflow-hidden ">
+      <div className="  md:mx-auto max-w-7xl  lg:px-0 mx-4">
         <div className="flex flex-col items-center">
           <div className="text-center">
             <p className="text-lg font-[400] text-gray-600 ">
@@ -54,12 +54,11 @@ const FeedBack = () => {
               Our happy clients say about us
             </h2>
           </div>
-
-          <div className="relative mt-10 md:mt-8 md:order-2 cursive--font">
+          <div className="relative mt-10 md:mt-8 md:order-2 cursive--font ">
             <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t feedback from-red-400/60 to-red-500/40 -mt-8"></div>
+              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t feedback dark:from-red-400/60 dark:to-red-500/40 from-primary/60 to-primary/40 -mt-8"></div>
             </div>
-            <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3">
+            <div className="relative grid grid-cols-1 gap-4 mx-auto md:max-w-none lg:gap-4 md:grid-cols-3 max-w-[90%]">
               {reviews.map((review, index) => (
                 <div key={index} className="hover:-translate-y-2 duration-150">
                   <Card className="backdrop-blur bg-zinc-100/80 dark:bg-black/40">

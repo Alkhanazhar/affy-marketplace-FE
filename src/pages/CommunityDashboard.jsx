@@ -85,11 +85,11 @@ const CommunityDashboard = () => {
             },
           }
         );
-         toast({
-           variant: "default",
-           title: "Success",
-           description: "Community updated successfully.",
-         });
+        toast({
+          variant: "default",
+          title: "Success",
+          description: "Community updated successfully.",
+        });
       } else {
         await axios.post("/api/admin/community/create", formData, {
           headers: {
@@ -117,14 +117,19 @@ const CommunityDashboard = () => {
         title: "Error",
         description:
           error?.response?.data?.message ||
-          "Failed to create Community. Please try again.",
+          "Failed to create Community.Please try again.",
       });
       console.error("Error creating Community:", error);
     }
   };
 
   const handleEdit = (category) => {
-    setFormData({ name: category.name, description: category.description });
+    console.log(category);
+    setFormData({
+      name: category.name,
+      description: category?.description,
+      category_id: category.category_id,
+    });
     setIsEdit(() => true);
     setUpdateCategoryId(() => category.id);
     setIsModalOpen(() => true);
@@ -207,7 +212,7 @@ const CommunityDashboard = () => {
   if (error) return <div>{error}</div>;
   return (
     <div className="flex flex-col gap-5 w-full cursive--font">
-      <PageTitle title="Category" />
+      <PageTitle title="Community" />
       <DataTable columns={columns} data={community} />
       <AlertDialog open={isModalOpen}>
         <AlertDialogTrigger asChild>
@@ -219,7 +224,7 @@ const CommunityDashboard = () => {
           </button>
         </AlertDialogTrigger>
         <AlertDialogContent>
-          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center dark:text-slate-100">
+          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center rounded-full  dark:text-slate-100">
             {isEdit ? "Update your Community" : "Create Your Community"}
           </AlertDialogTitle>
           <form

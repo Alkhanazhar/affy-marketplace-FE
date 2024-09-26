@@ -61,7 +61,7 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col gap-5 w-full relative cursive--font">
       <PageTitle title="Dashboard" />
-      <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
+      <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2  md:grid-cols-3 xl:grid-cols-4">
         {cardData.map((data, index) => (
           <Card
             key={index}
@@ -162,7 +162,6 @@ const data = [
 
 export function BarChart() {
   const {theme} = useTheme();
-  console.log(theme);
   return (
     <ResponsiveContainer width={"100%"} height={350}>
       <BarGraph data={data}>
@@ -170,7 +169,7 @@ export function BarChart() {
           dataKey={"name"}
           tickLine={false}
           axisLine={false}
-          stroke={theme == "light" ? "#ffffff" : "#000000"}
+          stroke={theme == "dark" ? "#ffffff" : "#000000"}
           fontSize={12}
           color="white"
           className="bg-white"
@@ -178,14 +177,14 @@ export function BarChart() {
         <YAxis
           tickLine={false}
           axisLine={false}
-          stroke={theme == "light" ? "black" : "white"}
+          stroke={theme == "dark" ? "#ffffff" : "#000000"}
           fontSize={12}
           tickFormatter={(value) => `$${value}`}
         />
         <Bar
           dataKey={"total"}
           radius={[4, 4, 0, 0]}
-          fill={theme == "ight" ? "black" : "white"}
+          fill={theme == "dark" ? "#ffffff" : "#000000"}
         />
       </BarGraph>
     </ResponsiveContainer>
@@ -196,7 +195,7 @@ export function Card(props) {
   return (
     <CardContent className="bg-white dark:bg-slate-900">
       <section className="flex justify-between gap-2 ">
-        <p className="text-base">{props.label}</p>
+        <p className="text-base">{props?.label}</p>
         <props.icon className="h-5 w-5 text-gray-500" />
       </section>
       <section className="flex flex-col gap-1">

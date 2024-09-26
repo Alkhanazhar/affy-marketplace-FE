@@ -16,9 +16,14 @@ import Dashboard from "./pages/Dashboard";
 import CategoryPage from "./pages/Category";
 import { ThemeProvider } from "../src/components/themeProvider";
 import CommunityDashboard from "./pages/CommunityDashboard";
-
+import { brand } from "../constants/constatns";
+import { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { v4 as uuidv4 } from "uuid";
 const App = () => {
   axios.defaults.baseURL = "http://localhost:8714";
+  const [intro, setIntro] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -92,13 +97,97 @@ const App = () => {
       ],
     },
   ]);
+  // text
+  const introText = "Welcome to " + brand;
+  const outroText = "Find and hire skilled photographers";
+  const tl = gsap.timeline({
+    onComplete: () => {
+      setIntro(true);
+    },
+  });
+  
+  useGSAP(() => {
+    tl.to(".show", {
+      height: "100%",
+      duration: 1,
+      ease: "circ.inOut",
+    })
+      .to(".heading", {
+        opacity: 1,
+        y: -30,
+        duration: 1,
+      })
+      .to("heading", {
+        x: 10,
+        ease: "circ.inOut",
+        stagger: 0.2, // Staggering duration
+        duration: 0.6, // Duration of opacity animation
+      })
+      .to(".heading span", {
+        stagger: 0.1, // Staggering duration
+        duration: 0.2, // Duration of opacity animation
+        x: -5,
+        opacity: 0,
+      })
+      .to(".heading-2", {
+        opacity: 1,
+        y: -30,
+        duration: 1,
+      })
+      .to("heading-2", {
+        x: 10,
+        ease: "circ.inOut",
+        stagger: 0.2, // Staggering duration
+        duration: 0.6, // Duration of opacity animation
+      })
+      .to(".heading-2 span", {
+        stagger: 0.1, // Staggering duration
+        duration: 0.2, // Duration of opacity animation
+        x: -5,
+        opacity: 0,
+      })
+      .to(".show", {
+        ease: "elastic.inOut",
+        y: 1000,
+        height: 0,
+        duration: 1.6,
+        // opacity: 0,
+      });
+  }, []);
 
   return (
     <div>
       <ThemeProvider defaultTheme={"light"} storageKey="vite-ui-theme">
         <div className="bg-grid dark:hidden"></div>
         <div className="bg-grid-dark dark:block hidden"></div>
-        <RouterProvider router={router} />
+        {!intro ? (
+          <>
+            <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen  relative ">
+              <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
+                <h1 className="flex gap-2 sm:text-[3vw] font-medium heading opacity-0 block-head text-2xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
+                  {introText.split("").map((item) => {
+                    return (
+                      <span key={uuidv4()} className="-mx-[1px]">
+                        {item}
+                      </span>
+                    );
+                  })}
+                </h1>
+                <h1 className="flex gap-2 heading-2 opacity-0 block-head  sm:text-[3vw] font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
+                  {outroText.split("").map((item) => {
+                    return (
+                      <span key={uuidv4()} className="-mx-[1px]">
+                        {item}
+                      </span>
+                    );
+                  })}
+                </h1>
+              </div>
+            </div>
+          </>
+        ) : (
+          <RouterProvider router={router} />
+        )}
       </ThemeProvider>
     </div>
   );

@@ -106,6 +106,15 @@ body {
   @apply shadow-lg shadow-[#00000025];
 }
 
+
+
+input{
+   font-family: "Recursive", sans-serif ;
+}
+
+select{
+   font-family: "Recursive", sans-serif ;
+}
 .mobile-nav {
   position: absolute;
   top: 0;

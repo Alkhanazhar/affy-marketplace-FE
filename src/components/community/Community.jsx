@@ -89,14 +89,12 @@ const Community = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
-    console.log(data?.meta);
     setCommunity(data.meta);
     setCommunityLoading(false);
   };
 
   useEffect(() => {
     filteredCommunities();
-    console.log("Commun");
   }, []);
 
   const handleInputChange = (e) => {

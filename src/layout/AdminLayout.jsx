@@ -1,6 +1,12 @@
 import { useToast } from "@/components/ui/use-toast";
 import { brand } from "../../constants/constatns";
-import { ChartBarBig, Home, LogOutIcon, UserCircleIcon, UserRoundCheck } from "lucide-react";
+import {
+  ChartBarBig,
+  Home,
+  LogOutIcon,
+  UserCircleIcon,
+  UserRoundCheck,
+} from "lucide-react";
 import { useState } from "react";
 import {
   Link,
@@ -21,7 +27,7 @@ const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
           : ""
       } ${expanded ? "justify-between w-64 px-4" : "justify-center px-2"}`}
     >
-      <Icon className="h-5 w-5 md:h-9 md:w-9" />
+      <Icon className="h-5 w-5 md:h-8 md:w-8" />
       {expanded && <span className="cursive--font">{label}</span>}
     </NavLink>
   );
@@ -52,7 +58,7 @@ const LogoutSidebarBtn = ({ to, expanded }) => {
         expanded ? "justify-between w-64 px-4" : "justify-center px-2"
       }`}
     >
-      <LogOutIcon className="h-5 w-5 md:h-9 md:w-9" />
+      <LogOutIcon className="h-5 w-5 md:h-8 md:w-8" />
       {expanded && <span className="cursive--font">Logout</span>}
     </div>
   );
@@ -141,7 +147,7 @@ const AdminLayout = () => {
     <div className="flex">
       <Sidebar expanded={headerExpanded} onExpand={toggleHeaderExpansion} />
       <MobileNavbar />
-      <div className="flex-1 p-4 md:px-10 md:py-8 md:ml-14 mt-12 md:mt-0">
+      <div className="flex-1 p-4 sm:px-10 md:py-8 sm:ml-14 mt-12 sm:mt-0">
         <Outlet />
       </div>
     </div>

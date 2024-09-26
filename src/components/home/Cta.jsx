@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
   // useGsapAnimation(".cta");
   return (
-    <section className="bg-white/60  dark:bg-slate-900/70 backdrop-blur-md  pb-4 md:pb-0 max-w-7xl md:mx-auto border-[.5px] dark:border-white/10  rounded-lg mx-4">
+    <section className="bg-white/60  dark:bg-slate-900/70 backdrop-blur-md  pb-4 md:pb-0 max-w-7xl md:mx-auto border-[.5px] dark:border-white/10  rounded-lg">
       <div
         className={`flex items-center justify-between  md:gap-10 gap-0 flex-col  ${
           reverse ? "md:flex-row-reverse" : "md:flex-row"

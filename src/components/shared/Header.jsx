@@ -250,8 +250,7 @@ const Header = () => {
 
 const LinkButton = ({ text, onClick }) => (
   <Button
-    variant="secondary"
-    className="text-gray-600 font-[500]"
+    variant="secondary" className="dark:text-black"
     onClick={onClick}
     aria-label={text}
     size="sm"

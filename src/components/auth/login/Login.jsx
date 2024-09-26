@@ -32,7 +32,6 @@ const Login = () => {
     setIsLoading(true);
     try {
       const { data } = await axios.post("/api/web/user/login", dataForm);
-      console.log(data);
       if (data.error === false) {
         localStorage.setItem("token", data?.meta?.token);
         toast({

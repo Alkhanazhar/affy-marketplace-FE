@@ -27,9 +27,28 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
+import axios from "axios";
 
 const Posts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [post, setPost] = useState("");
+
+  // Step 2: Handle change for the input fields
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value); // Update title state
+  };
+
+  const handlePostChange = (e) => {
+    setPost(e.target.value); // Update post state
+  };
+
+  async function handleCreatePost() {
+    const { data } = await axios.post("/api/web/post/create", {
+      community_id: "",
+    });
+    console.log(data);
+  }
   const [data, setData] = useState({});
   const AsideSection = ({ children }) => (
     <aside className="md:w-1/4 hidden md:flex h-fit p-4 sticky top-20 w-full rounded-lg border dark:bg-[#020817]">
@@ -43,7 +62,7 @@ const Posts = () => {
 
   return (
     <>
-      <div className="min-h-screen ">
+      <div className="min-h-screen mx-4 xl:mx-0">
         <div className="max-w-7xl mx-auto flex pt-16">
           <AsideSection>
             <div className="flex justify-center text-gray-700 dark:text-zinc-200">
@@ -59,37 +78,53 @@ const Posts = () => {
                       className="rounded-3xl flex gap-2 cursive--font text-gray-700 dark:text-zinc-100 shadow"
                       variant="outline"
                     >
-                      Create Post{" "}
+                      Create Post
                       <Plus className="text-black/50 w-5 h-5 dark:text-zinc-100" />
                     </Button>
                   </AlertDialogTrigger>
                 </div>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle className="md:text-3xl text-center text-2xl">
+                    <AlertDialogTitle
+                      className="md:text-3xl text-center text-2xl"
+                      asChild
+                    >
                       Create your Post
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      <div className="my-4 flex flex-col gap-4 ">
-                        <Label className="font-[400] text-sm">Subject</Label>
-                        <Input />
-                      </div>
-                      <div className="my-4 flex flex-col gap-4">
-                        <Label className="font-[400] text-sm">Post</Label>
-                        <Textarea placeholder="write something here less than 255 words" />
+                      <div>
+                        {/* Title Input */}
+                        <div className="my-4 flex flex-col gap-4">
+                          <Label className="font-[400] text-sm">Title</Label>
+                          <Input value={title} onChange={handleTitleChange} />
+                        </div>
+
+                        {/* Post Textarea */}
+                        <div className="my-4 flex flex-col gap-4">
+                          <Label className="font-[400] text-sm">Post</Label>
+                          <Textarea
+                            placeholder="Write something here, less than 255 words"
+                            value={post}
+                            onChange={handlePostChange}
+                          />
+                        </div>
+
+                        {/* You can add a submit button or other actions */}
                       </div>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <AlertDialogAction asChild>
-                      <Button>Create your post</Button>
+                      <Button onClick={handleCreatePost}>
+                        Create your post
+                      </Button>
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-            <div className="flex justify-center text-gray-600 dark:text-zinc-100 cursive--font">
+            <div className="flex justify-center text-gray-600 dark:text-zinc-100 cursive--font ">
               <h3 className="text-center leading-none text- font-[500] text-lg my-4 dark:text-zinc-200 underline cursor-pointer">
                 Your Communities
               </h3>

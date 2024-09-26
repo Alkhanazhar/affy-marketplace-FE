@@ -28,18 +28,18 @@ const Post = ({ textMessage, communityName }) => {
   }
   return (
     <Card>
-      <div className="flex items-center gap-2 px-6 py-4 cursive--font">
+      <div className="flex items-center gap-2 px-6 py-4 cursive--font overflow-hidden">
         <Avatar w={"10"} h={"10"}>
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>AK</AvatarFallback>
         </Avatar>
-        <CardTitle className="text-black/80 dark:text-zinc-200 text-xl font-medium">
+        <CardTitle className="text-black/80 dark:text-zinc-200 md:text-xl text-base font-medium">
           {" "}
           {communityName}
         </CardTitle>
       </div>
       <CardContent>
-        <CardDescription className="cursive--font dark:text-zinc-300">
+        <CardDescription className="cursive--font dark:text-zinc-300 font-thin">
           {textMessage}
         </CardDescription>
       </CardContent>

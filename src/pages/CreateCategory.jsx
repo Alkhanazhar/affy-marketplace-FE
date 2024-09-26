@@ -12,9 +12,7 @@ const CreateCategory = () => {
     name: "",
     description: "",
   });
-
   const { toast } = useToast();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -22,9 +20,7 @@ const CreateCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { name, description } = formData;
-
     if (name.trim() === "" || description.trim() === "") {
       toast({
         variant: "destructive",

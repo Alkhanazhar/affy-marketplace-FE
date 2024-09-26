@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Link, Tag, User, User2Icon } from "lucide-react";
-import { photographyCommunities } from "../../../../constants/constatns";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
@@ -32,7 +31,6 @@ const CommunitySlug = () => {
       }
     );
     setData(() => data?.meta);
-    console.log(data?.meta);
   }
   useEffect(() => {
     getCommunitySlug();
@@ -42,6 +40,8 @@ const CommunitySlug = () => {
     //   })
     // );
   }, [communityName]);
+
+  const user = { isMember: true };
   return (
     <>
       <div className="pt-16 pb-16  min-h-screen mx-4 md:mx-0 cursive--font ">
@@ -150,7 +150,7 @@ const CommunitySlug = () => {
               </div>
             </div>
             {/* join button */}
-            {/* <div className="w-full p-4">
+            <div className="w-full p-4">
               {user.isMember ? (
                 <Button className="w-full">
                   <NavLink
@@ -169,7 +169,7 @@ const CommunitySlug = () => {
                   Join
                 </Button>
               )}
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
