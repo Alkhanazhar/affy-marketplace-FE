@@ -10,14 +10,13 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
           reverse ? "md:flex-row-reverse" : "md:flex-row"
         }`}
       >
-        <div className="p-4 h-96 cta  md:w-1/2 w-full overflow-hidden rounded-lg">
+        <div className="p-4 md:h-96 h-auto cta  md:w-1/2 w-full overflow-hidden rounded-lg">
           <img
-            className="object-cover opacity-90 heroimg w-full h-full rounded-lg"
+            className="object-cover opacity-90 heroimg w-full md:h-full h-[40vh] rounded-lg"
             src={imgSrc}
-            alt="cta image"
+            alt="cta"
           />
         </div>
-
         <div className="mt-4 md:mt-0 cta md:w-1/2 w-full px-8 flex flex-col space-y-4 cta-content cursive--font">
           <h2 className="lg:text-3xl font-[400]  md:text-2xl text-xl text-gray-700 dark:text-zinc-100 ">
             {heading}
@@ -41,7 +40,7 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
               href="#"
               size="lg"
               variant="outline"
-              className="w-fit md:text-xl text-primary dark:bg-primary dark:hover:bg-primary/70 dark:text-zinc-100"
+              className="w-fit md:text-xl text-primary dark:bg-secondary  dark:hover:bg-secondary/70 dark:text-zinc-900 px-4"
             >
               Get started
               <ChevronRight className="ml-1  w-5 h-5" />

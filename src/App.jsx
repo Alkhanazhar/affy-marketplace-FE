@@ -22,6 +22,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { v4 as uuidv4 } from "uuid";
 const App = () => {
+  // base url / backend url
   axios.defaults.baseURL = "http://localhost:8714";
   const [intro, setIntro] = useState(false);
   const router = createBrowserRouter([

@@ -45,7 +45,7 @@ const Hero = () => {
           <div className="md:w-1/2 flex flex-col md:space-y-4 space-y-4">
             <h1 className="text-4xl font-medium    dark:text-white/80  sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start ">
               Connecting <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r dark:from-white  from-[#161616c9] dark:to-[#1394d0] to-[#1394d0] ">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r dark:from-white  from-[#0a3c72] dark:to-[#1394d0] to-[#1394d0] ">
                 Photographers
               </span>{" "}
               with Clients
@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="getStarted mt-4 flex justify-center md:justify-start">
               <Button
                 size="lg"
-                className="text-lg text-neutral-100 shadow"
+                className="text-lg text-neutral-100 dark:bg-secondary shadow dark:text-neutral-900"
               >
                 Get Started
               </Button>

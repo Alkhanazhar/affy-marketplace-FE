@@ -28,11 +28,16 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const Posts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
+  const user = localStorage.getItem("token");
+  const userData = jwtDecode(user);
+  console.log(userData);
+
 
   // Step 2: Handle change for the input fields
   const handleTitleChange = (e) => {

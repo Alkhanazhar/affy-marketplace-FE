@@ -641,10 +641,10 @@ export const countries = [
           "Haldwani",
           "Nainital",
           "Rishikesh",
-          "Kashipur",
           "Rudrapur",
+          "Kashipur",
           "Pithoragarh",
-          "Almora",
+          "Tehri",
         ],
       },
       {
@@ -652,26 +652,29 @@ export const countries = [
         cities: [
           "Kolkata",
           "Howrah",
-          "Siliguri",
           "Durgapur",
           "Asansol",
+          "Siliguri",
+          "Bardhaman",
           "Kharagpur",
-          "Jalpaiguri",
-          "Berhampore",
-          "Malda",
-          "Haldia",
+          "Nadia",
+          "Medinipur",
+          "Darjeeling",
         ],
       },
-    ],
-    unionTerritories: [
       {
         name: "Andaman and Nicobar Islands",
         cities: [
           "Port Blair",
           "Diglipur",
-          "Mayabunder",
           "Rangat",
-          "Car Nicobar",
+          "Mayabunder",
+          "Bamboo Flat",
+          "Bombooflat",
+          "Garacharma",
+          "Campbell Bay",
+          "Kadamtala",
+          "Neil Island",
         ],
       },
       {
@@ -680,19 +683,40 @@ export const countries = [
       },
       {
         name: "Dadra and Nagar Haveli and Daman and Diu",
-        cities: ["Daman", "Silvassa", "Diu", "Amli", "Ghansoli"],
+        cities: [
+          "Daman",
+          "Diu",
+          "Silvassa",
+          "Amli",
+          "Naroli",
+          "Khadoli",
+          "Sailvasa",
+          "Amboli",
+          "Randha",
+          "Dudhani",
+        ],
       },
       {
         name: "Lakshadweep",
-        cities: ["Kavaratti", "Agatti", "Amini", "Andrott", "Kalpeni"],
+        cities: [
+          "Kavaratti",
+          "Agatti",
+          "Amini",
+          "Andrott",
+          "Bitra",
+          "Chetlat",
+          "Kadmat",
+          "Kalpeni",
+          "Minicoy",
+        ],
       },
       {
         name: "Delhi",
-        cities: ["New Delhi", "Delhi"],
+        cities: ["New Delhi", "Dwarka", "Rohini", "Janakpuri", "Vasant Kunj"],
       },
       {
         name: "Puducherry",
-        cities: ["Puducherry", "Karaikal", "Yanam", "Mahe", "Oulgaret"],
+        cities: ["Puducherry", "Karaikal", "Mahe", "Yanam"],
       },
       {
         name: "Ladakh",
@@ -705,17 +729,16 @@ export const countries = [
           "Jammu",
           "Anantnag",
           "Baramulla",
-          "Udhampur",
           "Kathua",
           "Sopore",
+          "Udhampur",
+          "Punch",
           "Rajouri",
-          "Poonch",
-          "Handwara",
+          "Bandipore",
         ],
       },
     ],
   },
-
   {
     title: "Japan",
     slug: "japan",
@@ -1312,7 +1335,7 @@ export const skills = [
   "Agile Methodology",
 ];
 
-export   const jobsData = [
+export const jobsData = [
   {
     title: "Frontend Developer",
     company: "Tech Corp",

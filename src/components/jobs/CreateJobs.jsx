@@ -51,7 +51,6 @@ const CreateJobs = () => {
       <h1 className="md:text-3xl text-2xl text-center font-bold">
         Create your job here
       </h1>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-4">
           <div>
@@ -216,7 +215,6 @@ const CreateJobs = () => {
             />
           </div>
         </div>
-
         <div className="space-y-4">
           <div>
             <Label
