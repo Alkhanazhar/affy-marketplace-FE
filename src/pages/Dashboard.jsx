@@ -193,10 +193,10 @@ export function BarChart() {
 
 export function Card(props) {
   return (
-    <CardContent className="bg-white dark:bg-slate-900">
+    <CardContent className="bg-white dark:bg-slate-900 shadow-lg relative overflow-hidden">
       <section className="flex justify-between gap-2 ">
         <p className="text-base">{props?.label}</p>
-        <props.icon className="h-5 w-5 text-gray-500" />
+        <props.icon className="h-40 w-40 absolute right-2 top-2 opacity-20  text-gray-500 " />
       </section>
       <section className="flex flex-col gap-1">
         <h2 className="text-2xl font-semibold">{props.amount}</h2>

@@ -19,7 +19,7 @@ import {
 import { jobsData } from "../../../constants/constatns";
 
 // Custom hook for filtering jobs
-const useJobFilter = (jobs, searchTitle, searchLocation) => {
+export const useJobFilter = (jobs, searchTitle, searchLocation) => {
   const [filteredJobs, setFilteredJobs] = useState([]);
 
   useEffect(() => {
@@ -35,14 +35,14 @@ const useJobFilter = (jobs, searchTitle, searchLocation) => {
 };
 
 // SearchBar Component
-const SearchBar = ({
+export const SearchBar = ({
   searchTitle,
   setSearchTitle,
   searchLocation,
   setSearchLocation,
 }) => (
-  <div className="py-4 flex items-center justify-center md:max-w-7xl mx-auto w-[90%]">
-    <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 lg:w-5/12 w-10/12 border-t">
+  <div className="pt-2 pb-4 flex items-center justify-center  mx-auto w-full">
+    <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 w-full mx-4 border-t">
       <div className="rounded-l-full md:px-4 flex items-center px-2 bg-transparent relative">
         <User className="text-gray-500" />
         <Input
@@ -68,11 +68,11 @@ const SearchBar = ({
 );
 
 // CollapsibleFilters Component
-const CollapsibleFilters = () => {
+export const CollapsibleFilters = () => {
   // eslint-disable-next-line no-unused-vars
   const [filters, setFilters] = useState(["frontend", "backend", "search"]);
   const renderCollapsibleSection = (title, placeholder) => (
-    <Collapsible className="w-full dark:text-zinc-100 ">
+    <Collapsible className="w-full ">
       <div className="flex justify-between w-full items-center">
         <p className="text-base">{title}</p>
         <CollapsibleTrigger>
@@ -116,14 +116,14 @@ const CollapsibleFilters = () => {
   );
 
   return (
-    <div className="col-span-3 border rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 bg-white dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
+    <div className="col-span-3  rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200  dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
       <div className="flex items-center gap-2 flex-wrap">
         Selected filters:
         {filters.map((item, index) => {
           return (
             <div
               key={index}
-              className="text-xs border px-3 py-1 rounded-full flex items-center gap-2"
+              className="text-xs border px-3 py-1 rounded-full bg-emerald-50 flex items-center gap-2"
             >
               {item} <X className="w-3 h-3 cursor-pointer" />
             </div>
@@ -146,7 +146,7 @@ const Jobs = () => {
   const filteredJobs = useJobFilter(jobsData, searchTitle, searchLocation);
 
   return (
-    <div className="pt-16 ">
+    <div className="pt-16 mb-4">
       <SearchBar
         searchTitle={searchTitle}
         setSearchTitle={setSearchTitle}

@@ -4,7 +4,6 @@ import LoginPage from "./pages/LoginPage";
 import CommunityPage from "./pages/CommunityPage";
 import CommunitySlug from "./components/community/communitySlug/CommunitySlug";
 import axios from "axios";
-import Jobs from "./components/jobs/Jobs";
 import Posts from "./pages/Posts";
 import CreateJobs from "./components/jobs/CreateJobs";
 import "./App.css";
@@ -21,9 +20,11 @@ import { useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { v4 as uuidv4 } from "uuid";
+import EmployeePage from "./pages/EmployeePage";
+import EmployeeDahboard from "./pages/EmployeeDahboard";
 const App = () => {
   // base url / backend url
-  axios.defaults.baseURL = "http://localhost:8714";
+  axios.defaults.baseURL = "http://localhost:8714/";
   const [intro, setIntro] = useState(false);
   const router = createBrowserRouter([
     {
@@ -38,10 +39,7 @@ const App = () => {
           path: "/community",
           element: <CommunityPage />,
         },
-        {
-          path: "/jobs",
-          element: <Jobs />,
-        },
+      
         {
           path: "/community/:communityName",
           element: <CommunitySlug />,
@@ -50,7 +48,6 @@ const App = () => {
           path: "/community/:communityName/posts",
           element: <Posts />,
         },
-
         {
           path: "/profile",
           element: <ProfilePage />,
@@ -97,6 +94,20 @@ const App = () => {
         },
       ],
     },
+    {
+      path: "/employee-page",
+      element: <EmployeePage />,
+      children: [
+        {
+          path: "/employee-page",
+          element: <EmployeeDahboard />,
+        },
+        {
+          path: "/employee-page/create-jobs",
+          element: <CreateJobs />,
+        },
+      ],
+    },
   ]);
   // text
   const introText = "Welcome to " + brand;
@@ -106,7 +117,7 @@ const App = () => {
       setIntro(true);
     },
   });
-  
+
   useGSAP(() => {
     tl.to(".show", {
       height: "100%",

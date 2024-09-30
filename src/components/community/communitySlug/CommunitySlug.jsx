@@ -31,6 +31,7 @@ const CommunitySlug = () => {
       }
     );
     setData(() => data?.meta);
+    console.log(data?.meta);
   }
   useEffect(() => {
     getCommunitySlug();

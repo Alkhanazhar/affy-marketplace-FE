@@ -12,15 +12,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [isPasswordShow, setIsPasswordShow] = useState(true);
+
+  
   const dispatch = useDispatch();
   const onHandleIsLogin = () => {
     dispatch(toggleIsLogIn(false));
   };
   const { toast } = useToast();
+   const handleIsPasswordShow = () => {
+     setIsPasswordShow(!isPasswordShow);
+   };
 
   const {
     register,
@@ -91,36 +98,43 @@ const Login = () => {
             </div>
 
             {/* Password Field */}
-            <div className="mb-6">
+            <div className="relative flex items-center">
               <Input
-                id="password"
-                type="password"
                 {...register("password", {
-                  required: "Password is required",
+                  required: "password is required",
                   minLength: {
                     value: 6,
                     message: "Password must be at least 6 characters",
                   },
                   pattern: {
-                    value: /^(?=.*[A-Z])(?=.*[@$!%*?&])/,
+                    value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
                     message:
                       "Password must contain at least one uppercase letter and one special character",
                   },
                 })}
-                placeholder="Password"
-                className={`${errors.password && "border-red-500"}`}
+                type={isPasswordShow ? "password" : "text"}
+                placeholder="*Password"
+                className={` ${errors.password && "border-red-500"}`}
               />
-              {errors.password && (
-                <span className="text-red-500 text-sm">
-                  *{errors.password.message}
-                </span>
-              )}
+              <div className="absolute right-4 flex items-center cursor-pointer">
+                {isPasswordShow ? (
+                  <Eye
+                    onClick={handleIsPasswordShow}
+                    className="w-4 h-4 font-[300]  text-gray-400 "
+                  />
+                ) : (
+                  <EyeOff
+                    onClick={handleIsPasswordShow}
+                    className="w-4 h-4 font-[300]  text-gray-400 "
+                  />
+                )}
+              </div>
             </div>
 
             {/* Submit Button */}
             <Button
               disabled={isLoading}
-              className="relative overflow-hidden rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full duration-300 md:text-[18px] text-[16px] bg-green-500/50 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
+              className="relative overflow-hidden mt-4 rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full duration-300 md:text-[18px] text-[16px] bg-green-500/50 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
             >
               {/* Button Text */}
               <span className="relative z-50">
@@ -129,8 +143,6 @@ const Login = () => {
             </Button>
           </form>
 
-          <Separator text="or" />
-          <OAuthButtons />
           <Separator text="Don't have an account?" />
           <div className="flex justify-center mt-4 mx-3">
             <Button
@@ -177,23 +189,23 @@ export const LabelInput = ({
   </div>
 );
 
-const OAuthButtons = () => (
-  <div className="px-3">
-    <button className="bg-[#4384f4] rounded-lg flex px-4 py-2 relative w-full justify-center items-center text-white ">
-      <div className="p-[1px] rounded-lg bg-white m-1 absolute left-0">
-        <img src="google.svg" alt="Google" className="w-7 h-7" />
-      </div>
-      <span>Continue with Google</span>
-    </button>
-    <div className="mt-4">
-      <button className="bg-slate-100 border-black border text-black rounded-lg flex gap-2 px-4 py-2 relative w-full justify-center items-center">
-        <div className="rounded-lg">
-          <img src="apple.svg" alt="Apple" className="w-4 h-4" />
-        </div>
-        <span>Continue with Apple</span>
-      </button>
-    </div>
-  </div>
-);
+// const OAuthButtons = () => (
+//   <div className="px-3">
+//     <button className="bg-[#4384f4] rounded-lg flex px-4 py-2 relative w-full justify-center items-center text-white ">
+//       <div className="p-[1px] rounded-lg bg-white m-1 absolute left-0">
+//         <img src="google.svg" alt="Google" className="w-7 h-7" />
+//       </div>
+//       <span>Continue with Google</span>
+//     </button>
+//     <div className="mt-4">
+//       <button className="bg-slate-100 border-black border text-black rounded-lg flex gap-2 px-4 py-2 relative w-full justify-center items-center">
+//         <div className="rounded-lg">
+//           <img src="apple.svg" alt="Apple" className="w-4 h-4" />
+//         </div>
+//         <span>Continue with Apple</span>
+//       </button>
+//     </div>
+//   </div>
+// );
 
 export default Login;

@@ -39,7 +39,7 @@ const Post = ({ textMessage, communityName }) => {
         </CardTitle>
       </div>
       <CardContent>
-        <CardDescription className="cursive--font dark:text-zinc-300 font-thin">
+        <CardDescription className="cursive--font dark:text-zinc-300 font-normal">
           {textMessage}
         </CardDescription>
       </CardContent>

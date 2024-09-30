@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { skills } from "../../constants/constatns";
 import { MapPin, UserPen, Trash, Upload, Plus, Pen } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   AlertDialog,
@@ -17,6 +18,10 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { toast } from "@/components/ui/use-toast";
+import { useForm } from "react-hook-form";
 
 const ProfilePage = () => {
   return (
@@ -136,7 +141,6 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-
         <div className="mt-4 border rounded-3xl flex-col gap-4 ">
           <div className="flex justify-between items-center md:p-6 p-4">
             <div>
@@ -246,36 +250,98 @@ const UserActions = () => (
 );
 
 const SkillsSection = ({ skills }) => {
+  const userInfo = jwtDecode(localStorage.getItem("token"));
+  console.log(userInfo, "userInfo");
   const [showAllSkills, setShowAllSkills] = useState(false);
   const visibleSkills = showAllSkills ? skills : skills.slice(0, 10);
-
+  const [createSkill, setCreateSkills] = useState("");
+  const addSkills = async () => {
+    try {
+      const res = await axios.post(
+        "/api/web/user/" + userInfo.id + "/skill",
+        {
+          skills: createSkill,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(res);
+      setCreateSkills("");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  useEffect(() => {
+    try {
+      console.log(createSkill);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [createSkill]);
   return (
-    <ProfileSection title="Skills">
-      <div className="flex flex-wrap items-center gap-3 ">
-        {visibleSkills.map((skill) => (
-          <Button
-            key={skill}
-            variant="outline"
-            size="sm"
-            className="flex justify-between items-center border text-xs md:text-sm text-neutral-600  dark:text-neutral-200 "
-          >
-            <span>{skill}</span>
-          </Button>
-        ))}
-        {skills.length > 10 && (
-          <div className="text-center flex justify-center w-full">
-            <Button
-              onClick={() => setShowAllSkills(!showAllSkills)}
-              variant="outline"
-              size="sm"
-              className="text-primary"
-            >
-              {showAllSkills ? "Show Less" : "Show More"}
-            </Button>
+    <>
+      <div className="mt-4 border rounded-3xl">
+        <AlertDialog>
+          <div className="flex justify-between items-center md:p-4 p-4">
+            <div className="md:text-2xl text-xl">Skills</div>
+            <AlertDialogTrigger asChild>
+              <Button variant="" className="rounded-full w-10 h-10 p-2">
+                <Plus className="w-6 h-6" />
+              </Button>
+            </AlertDialogTrigger>
           </div>
-        )}
+          <hr />
+          <div className="md:p-6 p-4">
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle className="md:text-3xl text-center text-2xl  dark:text-neutral-200">
+                  Add your Skills
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  <div className="my-4 flex flex-col gap-4 ">
+                    <Label className="font-[400] text-sm">Skills</Label>
+                    <Input onChange={(e) => setCreateSkills(e.target.value)} />
+                  </div>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction asChild>
+                  <Button onClick={addSkills}>Add your Skills</Button>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+            <div className="flex flex-wrap items-center gap-3 ">
+              {visibleSkills.map((skill) => (
+                <Button
+                  key={skill}
+                  variant="outline"
+                  size="sm"
+                  className="flex justify-between items-center border text-xs md:text-sm text-neutral-600  dark:text-neutral-200 "
+                >
+                  <span>{skill}</span>
+                </Button>
+              ))}
+              {skills.length > 10 && (
+                <div className="text-center flex justify-center w-full">
+                  <Button
+                    onClick={() => setShowAllSkills(!showAllSkills)}
+                    variant="outline"
+                    size="sm"
+                    className="text-primary"
+                  >
+                    {showAllSkills ? "Show Less" : "Show More"}
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        </AlertDialog>
       </div>
-    </ProfileSection>
+    </>
   );
 };
 
@@ -342,50 +408,160 @@ const Certification = () => (
   </div>
 );
 
-const Experiences = () => (
-  <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
-      <span>Frontend Developer at Affy Cloud</span>
-      <ActionIcon Icon={UserPen}></ActionIcon>
-    </div>
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
-      <span>Photography Assistant at Local Studio</span>
-      <ActionIcon Icon={UserPen}></ActionIcon>
-    </div>
-    <AlertDialog>
-      <div className="flex justify-center">
-        <AlertDialogTrigger asChild>
-          <Button variant="outline" className="mt-4 mx-auto">
-            Add your Job History
-          </Button>
-        </AlertDialogTrigger>
+const Experiences = () => {
+  const [employment, setEmployment] = useState({
+    company: "",
+    city: "",
+    country: "",
+    title: "",
+    from_month: "",
+    from_year: "",
+    to_month: "",
+    to_year: "",
+    currently_working: false,
+    description: "",
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: employment,
+  });
+
+  const onSubmit = async(data) => {
+       try {
+      setLoading(true);
+      // Replace this URL with your actual API endpoint
+      const response = await axios.post(
+        "/api/web/user/" + user.id + "/employment-history",
+        data
+      );
+      console.log(response.data);
+      // Handle success - Call the passed-in handler if needed
+      toast.success("Employment history added successfully!");
+    } catch (error) {
+      // Error handling - Display a toast or an error message
+      if (error.response) {
+        toast.error(`Error: ${error.response.data.message}`);
+      } else {
+        toast.error("Something went wrong. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+  const [loading, setLoading] = useState(false);
+  const user = jwtDecode(localStorage.getItem("token"));
+  console.log(user);
+ 
+
+  return (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
+        <span>Frontend Developer at Affy Cloud</span>
+        <ActionIcon Icon={UserPen}></ActionIcon>
       </div>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="md:text-3xl text-center text-2xl">
-            Add your Certicates
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            <div className="my-4 flex flex-col gap-4 ">
-              <Label className="font-[400] text-sm">Subject</Label>
-              <Input />
-            </div>
-            <div className="my-4 flex flex-col gap-4">
-              <Label className="font-[400] text-sm">Desc</Label>
-              <Textarea />
-            </div>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction asChild>
-            <Button>Add your Category</Button>
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  </div>
-);
+      <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
+        <span>Photography Assistant at Local Studio</span>
+        <ActionIcon Icon={UserPen}></ActionIcon>
+      </div>
+    
+      <AlertDialog>
+        <div className="flex justify-center">
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="mt-4 mx-auto">
+              Add your Job History
+            </Button>
+          </AlertDialogTrigger>
+        </div>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="md:text-3xl text-center text-2xl">
+              Add your Certicates
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+
+  
+    <form onSubmit={handleSubmit(onSubmit)} className="employment-form grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">Company</Label>
+        <Input {...register("company", { required: true })} />
+        {errors.company && <span className="text-red-500">Company is required</span>}
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">City</Label>
+        <Input {...register("city", { required: true })} />
+        {errors.city && <span className="text-red-500">City is required</span>}
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">Country</Label>
+        <Input {...register("country", { required: true })} />
+        {errors.country && <span className="text-red-500">Country is required</span>}
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">Title</Label>
+        <Input {...register("title", { required: true })} />
+        {errors.title && <span className="text-red-500">Title is required</span>}
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">From Month</Label>
+        <Input type="number" {...register("from_month", { required: true })} />
+        {errors.from_month && <span className="text-red-500">From Month is required</span>}
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">From Year</Label>
+        <Input type="number" {...register("from_year", { required: true })} />
+        {errors.from_year && <span className="text-red-500">From Year is required</span>}
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">To Month</Label>
+        <Input type="number" {...register("to_month")} />
+      </div>
+
+      <div className="flex flex-col">
+        <Label className="font-[400] text-sm">To Year</Label>
+        <Input type="number" {...register("to_year")} />
+      </div>
+
+      <div className="flex gap-4 items-center justify-between">
+        <Label className="font-[400] text-sm">Currently Working</Label>
+        <input type="checkbox" {...register("currently_working")} />
+      </div>
+
+      <div className="flex flex-col md:col-span-2">
+        <Label className="font-[400] text-sm">Description</Label>
+        <Textarea {...register("description")} />
+      </div>
+
+      <div className="md:col-span-2">
+        <button type="submit" className="btn-primary">
+          Add Employment History
+        </button>
+      </div>
+    </form>
+
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            {/* <AlertDialogAction asChild> */}
+              <Button onClick={handleSubmit} disabled={loading}>
+                Add Employment History
+              </Button>
+            {/* </AlertDialogAction> */}
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
+  );
+};
 
 const AddExperience = () => (
   <div className="space-y-4">
@@ -407,11 +583,11 @@ const AddExperience = () => (
             Add your Certicates
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <div className="my-4 flex flex-col gap-4 ">
+            <div className=" flex flex-col gap-4 ">
               <Label className="font-[400] text-sm">Subject</Label>
               <Input />
             </div>
-            <div className="my-4 flex flex-col gap-4">
+            <div className=" flex flex-col gap-4">
               <Label className="font-[400] text-sm">Desc</Label>
               <Textarea />
             </div>

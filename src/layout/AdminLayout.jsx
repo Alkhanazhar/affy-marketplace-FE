@@ -16,7 +16,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
+export const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
   const location = useLocation();
   return (
     <NavLink
@@ -31,7 +31,7 @@ const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
   );
 };
 
-const LogoutSidebarBtn = ({ to, expanded }) => {
+export const LogoutSidebarBtn = ({ to, expanded }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const handleLogout = () => {
@@ -62,7 +62,7 @@ const LogoutSidebarBtn = ({ to, expanded }) => {
   );
 };
 
-const Sidebar = ({ expanded, onExpand }) => (
+export const Sidebar = ({ expanded, onExpand }) => (
   <aside
     className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width items-center  ${
       expanded ? "shadow-2xl shadow-black/30 backdrop-blur-md" : ""
@@ -104,7 +104,7 @@ const Sidebar = ({ expanded, onExpand }) => (
   </aside>
 );
 
-const MobileNavItem = ({ to, icon: Icon, label }) => {
+export const MobileNavItem = ({ to, icon: Icon, label }) => {
   return (
     <NavLink
       to={to}
@@ -119,7 +119,7 @@ const MobileNavItem = ({ to, icon: Icon, label }) => {
   );
 };
 
-const MobileNavbar = () => (
+export const MobileNavbar = () => (
   <nav className="fixed px-4 left-0 top-0 z-10 flex w-full justify-between border-r bg-background sm:hidden items-center">
     <div className="flex items-center gap-4 px-2 py-2">
       <Link

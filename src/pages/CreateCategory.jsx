@@ -32,7 +32,7 @@ const CreateCategory = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8714/api/admin/category/create",
+        "/admin/category/create",
         formData,
         {
           headers: {
