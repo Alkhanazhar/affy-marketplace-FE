@@ -164,7 +164,6 @@ const Jobs = () => {
             </p>
           )}
         </div>
-        <div className="col-span-2 hidden md:flex"></div>
       </div>
     </div>
   );

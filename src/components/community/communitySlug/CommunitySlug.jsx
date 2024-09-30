@@ -2,54 +2,99 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Link, Tag, User, User2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode"; // removed the curly braces, as jwtDecode is not a named export
 
 const CommunitySlug = () => {
   const { communityName } = useParams();
-  const [data, setData] = useState([]);
-  const { toast } = useToast();
+  const [community, setCommunity] = useState([]);
+  const [isMember, setIsMember] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  // const user = { isMember: true };
-  function handleJoin() {
-    token
-      ? toast({
-          title: "Community joined",
-          description: "you r now member of" + communityName,
-        })
-      : navigate("/auth");
+  const userInfo = token && jwtDecode(token);
+  // console.log(userInfo);
+
+  async function handleJoin() {
+    if (token) {
+      try {
+        const res = await axios.post("/api/web/community/user", {
+          community_id: community?.id,
+          user_id: userInfo?.id,
+        },{          
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(res);
+        if (res.status === 200) {
+          setIsMember(true);
+        }
+
+      } catch (error) {
+        console.error("Error joining community:", error);
+
+      }
+    } else {
+      navigate("/auth");
+    }
   }
 
   async function getCommunitySlug() {
-    const { data } = await axios.get(
-      "api/admin/community/display/" + communityName,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-    setData(() => data?.meta);
-    console.log(data?.meta);
+    try {
+      const { data } = await axios.get(
+        "/api/admin/community/display/" + communityName,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCommunity(data?.meta);
+    } catch (error) {
+      console.error("Error fetching community data:", error);
+    }
   }
+
+  async function checkIsUserExist() {
+    if (token && community.id) {
+      try {
+        const response = await axios.post(
+          "/api/web/community/is-user-exist",
+          {
+            community_id: community.id,
+            user_id: userInfo.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response, "is user exist");
+        setIsMember(response.data.exists); // Assuming `exists` is returned from the API indicating membership
+      } catch (error) {
+        console.log("Error checking user existence:", error);
+      }
+    }
+  }
+
   useEffect(() => {
     getCommunitySlug();
-    // setData(
-    //   photographyCommunities.filter((community) => {
-    //     return community.slug == communityName;
-    //   })
-    // );
   }, [communityName]);
 
-  const user = { isMember: true };
+  useEffect(() => {
+    if (community.id) {
+      checkIsUserExist();
+    }
+  }, [community.id]);
+
   return (
     <>
       <div className="pt-16 pb-16  min-h-screen mx-4 md:mx-0 cursive--font ">
         <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse py-8 md:mx-4 ">
           <div className=" w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white dark:bg-slate-950">
             <h1 className="leading-none text-black/70  dark:text-zinc-100 md:text-3xl text-2xl font-[700]">
-              {data?.name}
+              {community?.name}
             </h1>
             <div className="my-4 rounded-xl overflow-hidden">
               <img
@@ -76,7 +121,7 @@ const CommunitySlug = () => {
               </div>
             </div>
             <div className="text-base text-gray-600 dark:text-gray-400  leading-7">
-              <p>{data?.description}</p>
+              <p>{community?.description}</p>
             </div>
           </div>
           <div className="col-span-4 w-full rounded-xl flex-[.8] shadow-container border overflow-hidden h-fit bg-white dark:dark:bg-slate-950">
@@ -95,10 +140,10 @@ const CommunitySlug = () => {
                 href="#"
                 className="hover:underline font-[500] md:text-[20px]  text-[16px] "
               >
-                {data?.name}
+                {community?.name}
               </a>
               <p className="md:text-[15px] font-[400] text-[12px] text-gray-500">
-                Welcome to {data?.name}!
+                Welcome to {community?.name}!
               </p>
               <div className="flex flex-col space-y-0">
                 <a
@@ -152,7 +197,7 @@ const CommunitySlug = () => {
             </div>
             {/* join button */}
             <div className="w-full p-4">
-              {user.isMember ? (
+              {isMember ? (
                 <Button className="w-full">
                   <NavLink
                     to={"/community/" + communityName + "/posts"}
@@ -164,7 +209,6 @@ const CommunitySlug = () => {
               ) : (
                 <Button
                   onClick={handleJoin}
-                  // to={"/community/" + communityName + "/posts"}
                   className="w-full  py-4 rounded-md font-bold text-[16px]  flex justify-center  bg-primary text-white shadow-md shadow-black/30  leading-none"
                 >
                   Join

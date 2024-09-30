@@ -91,7 +91,7 @@ const MyForm = () => {
   }, [states, state]);
 
   const onSubmit = async (data) => {
-    const submitSelectType = selectType == "Client" ? "Employer" : "Employee";
+    const submitSelectType = selectType == "Client" ? "Employee" : "Employer";
     console.log(submitSelectType);
     if (!profilePicture) return;
     setIsLoading(true);
