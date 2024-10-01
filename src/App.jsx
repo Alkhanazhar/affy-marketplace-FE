@@ -39,13 +39,13 @@ const App = () => {
           path: "/community",
           element: <CommunityPage />,
         },
-      
+
         {
-          path: "/community/:communityName",
+          path: "/community/:communityId",
           element: <CommunitySlug />,
         },
         {
-          path: "/community/:communityName/posts",
+          path: "/community/:communityId/posts",
           element: <Posts />,
         },
         {
@@ -104,6 +104,10 @@ const App = () => {
         },
         {
           path: "/employee-page/create-jobs",
+          element: <CreateJobs />,
+        },
+        {
+          path: "/employee-page/edit/:jobId",
           element: <CreateJobs />,
         },
       ],

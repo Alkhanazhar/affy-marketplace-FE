@@ -429,19 +429,21 @@ const Experiences = () => {
     defaultValues: employment,
   });
 
-  const onSubmit = async(data) => {
-       try {
+  const onSubmit = async (data) => {
+    try {
       setLoading(true);
-      // Replace this URL with your actual API endpoint
       const response = await axios.post(
-        "/api/web/user/" + user.id + "/employment-history",
-        data
+        `/api/web/user/${user.id}/employment_history`,
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
       );
       console.log(response.data);
-      // Handle success - Call the passed-in handler if needed
       toast.success("Employment history added successfully!");
     } catch (error) {
-      // Error handling - Display a toast or an error message
       if (error.response) {
         toast.error(`Error: ${error.response.data.message}`);
       } else {
@@ -451,10 +453,10 @@ const Experiences = () => {
       setLoading(false);
     }
   };
+
   const [loading, setLoading] = useState(false);
   const user = jwtDecode(localStorage.getItem("token"));
   console.log(user);
- 
 
   return (
     <div className="space-y-4">
@@ -466,7 +468,7 @@ const Experiences = () => {
         <span>Photography Assistant at Local Studio</span>
         <ActionIcon Icon={UserPen}></ActionIcon>
       </div>
-    
+
       <AlertDialog>
         <div className="flex justify-center">
           <AlertDialogTrigger asChild>
@@ -478,131 +480,193 @@ const Experiences = () => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle className="md:text-3xl text-center text-2xl">
-              Add your Certicates
+              Add your Employment History
             </AlertDialogTitle>
             <AlertDialogDescription>
-
-  
-    <form onSubmit={handleSubmit(onSubmit)} className="employment-form grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">Company</Label>
-        <Input {...register("company", { required: true })} />
-        {errors.company && <span className="text-red-500">Company is required</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">City</Label>
-        <Input {...register("city", { required: true })} />
-        {errors.city && <span className="text-red-500">City is required</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">Country</Label>
-        <Input {...register("country", { required: true })} />
-        {errors.country && <span className="text-red-500">Country is required</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">Title</Label>
-        <Input {...register("title", { required: true })} />
-        {errors.title && <span className="text-red-500">Title is required</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">From Month</Label>
-        <Input type="number" {...register("from_month", { required: true })} />
-        {errors.from_month && <span className="text-red-500">From Month is required</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">From Year</Label>
-        <Input type="number" {...register("from_year", { required: true })} />
-        {errors.from_year && <span className="text-red-500">From Year is required</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">To Month</Label>
-        <Input type="number" {...register("to_month")} />
-      </div>
-
-      <div className="flex flex-col">
-        <Label className="font-[400] text-sm">To Year</Label>
-        <Input type="number" {...register("to_year")} />
-      </div>
-
-      <div className="flex gap-4 items-center justify-between">
-        <Label className="font-[400] text-sm">Currently Working</Label>
-        <input type="checkbox" {...register("currently_working")} />
-      </div>
-
-      <div className="flex flex-col md:col-span-2">
-        <Label className="font-[400] text-sm">Description</Label>
-        <Textarea {...register("description")} />
-      </div>
-
-      <div className="md:col-span-2">
-        <button type="submit" className="btn-primary">
-          Add Employment History
-        </button>
-      </div>
-    </form>
-
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="employment-form grid grid-cols-1 md:grid-cols-2 gap-4"
+              >
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">Company</Label>
+                  <Input {...register("company", { required: true })} />
+                  {errors.company && (
+                    <span className="text-red-500">Company is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">City</Label>
+                  <Input {...register("city", { required: true })} />
+                  {errors.city && (
+                    <span className="text-red-500">City is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">Country</Label>
+                  <Input {...register("country", { required: true })} />
+                  {errors.country && (
+                    <span className="text-red-500">Country is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">Title</Label>
+                  <Input {...register("title", { required: true })} />
+                  {errors.title && (
+                    <span className="text-red-500">Title is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">From Month</Label>
+                  <Input
+                    type="number"
+                    {...register("from_month", { required: true })}
+                  />
+                  {errors.from_month && (
+                    <span className="text-red-500">From Month is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">From Year</Label>
+                  <Input
+                    type="number"
+                    {...register("from_year", { required: true })}
+                  />
+                  {errors.from_year && (
+                    <span className="text-red-500">From Year is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">To Month</Label>
+                  <Input type="number" {...register("to_month")} />
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">To Year</Label>
+                  <Input type="number" {...register("to_year")} />
+                </div>
+                <div className="flex gap-4 items-center justify-between">
+                  <Label className="font-[400] text-sm">
+                    Currently Working
+                  </Label>
+                  <input type="checkbox" {...register("currently_working")} />
+                </div>
+                <div className="flex flex-col md:col-span-2">
+                  <Label className="font-[400] text-sm">Description</Label>
+                  <Textarea {...register("description")} />
+                </div>
+                <div className="md:col-span-2">
+                  <button type="submit" className="btn-primary">
+                    Add Employment History
+                  </button>
+                </div>
+              </form>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            {/* <AlertDialogAction asChild> */}
-              <Button onClick={handleSubmit} disabled={loading}>
-                Add Employment History
-              </Button>
-            {/* </AlertDialogAction> */}
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </div>
   );
 };
+const AddExperience = () => {
+  const [experience, setExperience] = useState({
+    subject: "",
+    description: "",
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: experience,
+  });
 
-const AddExperience = () => (
-  <div className="space-y-4">
-    <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
-      <span>Freelance Photographer</span>
-      <ActionIcon Icon={UserPen}></ActionIcon>
-    </div>
-    <AlertDialog>
-      <div className="flex justify-center">
-        <AlertDialogTrigger asChild>
-          <Button variant="outline" className="mt-4 mx-auto">
-            Add Experience
-          </Button>
-        </AlertDialogTrigger>
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `/api/web/user/${user.id}/experience`,
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(response.data);
+      toast.success("Experience added successfully!");
+    } catch (error) {
+      if (error.response) {
+        toast.error(`Error: ${error.response.data.message}`);
+      } else {
+        toast.error("Something went wrong. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const [loading, setLoading] = useState(false);
+  const user = jwtDecode(localStorage.getItem("token"));
+  console.log(user);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center text-xs md:text-base text-neutral-600  dark:text-neutral-200">
+        <span>Freelance Photographer</span>
+        <ActionIcon Icon={UserPen}></ActionIcon>
       </div>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="md:text-3xl text-center text-2xl">
-            Add your Certicates
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            <div className=" flex flex-col gap-4 ">
-              <Label className="font-[400] text-sm">Subject</Label>
-              <Input />
-            </div>
-            <div className=" flex flex-col gap-4">
-              <Label className="font-[400] text-sm">Desc</Label>
-              <Textarea />
-            </div>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction asChild>
-            <Button>Add your Category</Button>
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  </div>
-);
+      <AlertDialog>
+        <div className="flex justify-center">
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="mt-4 mx-auto">
+              Add Experience
+            </Button>
+          </AlertDialogTrigger>
+        </div>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="md:text-3xl text-center text-2xl">
+              Add your Certicates
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="experience-form grid grid-cols-1 gap-4"
+              >
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">Subject</Label>
+                  <Input {...register("subject", { required: true })} />
+                  {errors.subject && (
+                    <span className="text-red-500">Subject is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <Label className="font-[400] text-sm">Description</Label>
+                  <Textarea {...register("description", { required: true })} />
+                  {errors.description && (
+                    <span className="text-red-500">
+                      Description is required
+                    </span>
+                  )}
+                </div>
+                <div className="md:col-span-2">
+                  <button type="submit" className="btn-primary">
+                    Add Experience
+                  </button>
+                </div>
+              </form>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
+  );
+};
 
 const Portfolios = () => (
   <div className="space-y-4">
