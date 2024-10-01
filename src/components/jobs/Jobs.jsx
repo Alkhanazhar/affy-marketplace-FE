@@ -1,103 +1,171 @@
-import Header from "../Header";
-import JobCard from "./JobCard"; // Import the JobPost component
+import { useState, useEffect } from "react";
+import JobCard from "./JobCard";
 import { Input } from "../ui/input";
+import { User, LocateIcon, ChevronsUpDown, X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { jobsData } from "../../../constants/constatns";
 
-const Jobs = () => {
-  // Sample job data
-  const jobs = [
-    {
-      title: "Frontend Developer",
-      company: "Tech Corp",
-      location: "New York, NY",
-      type: "Full-time",
-      description:
-        "We are looking for a skilled Frontend Developer with experience in React and Tailwind CSS to join our team. The ideal candidate will have a deep understanding of modern web development practices and be able to work closely with our design team to bring innovative solutions to life.",
-    },
-    {
-      title: "Backend Developer",
-      company: "Innovatech",
-      location: "San Francisco, CA",
-      type: "Part-time",
-      description:
-        "Seeking a Backend Developer with expertise in Node.js and MongoDB to work on our cloud-based applications. This role requires a strong understanding of server-side development and database management, as well as the ability to collaborate effectively with front-end developers.",
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Web Solutions",
-      location: "Austin, TX",
-      type: "Remote",
-      description:
-        "We are searching for a Full Stack Developer who is proficient in both front-end and back-end technologies. The successful candidate will have experience with JavaScript frameworks such as React and Node.js, as well as a solid understanding of RESTful APIs and database design.",
-    },
-    {
-      title: "UI/UX Designer",
-      company: "Creative Minds",
-      location: "Los Angeles, CA",
-      type: "Contract",
-      description:
-        "Creative Minds is looking for a UI/UX Designer to help us create user-friendly interfaces and enhance the user experience for our digital products. The ideal candidate should have a keen eye for detail and be able to design with both aesthetics and functionality in mind.",
-    },
-    {
-      title: "DevOps Engineer",
-      company: "Cloud Innovators",
-      location: "Seattle, WA",
-      type: "Full-time",
-      description:
-        "Join our team as a DevOps Engineer and play a crucial role in managing our cloud infrastructure. You will work with cutting-edge technologies to automate deployment processes and ensure the reliability and scalability of our systems.",
-    },
-    {
-      title: "Data Scientist",
-      company: "Data Insights",
-      location: "Boston, MA",
-      type: "Full-time",
-      description:
-        "We are hiring a Data Scientist to analyze complex datasets and provide actionable insights to drive business decisions. The role requires strong analytical skills and experience with data visualization tools, as well as proficiency in Python and SQL.",
-    },
-    {
-      title: "Mobile App Developer",
-      company: "Appify",
-      location: "Chicago, IL",
-      type: "Full-time",
-      description:
-        "Appify is looking for a Mobile App Developer with experience in developing iOS and Android applications. The successful candidate will have strong programming skills in Swift and Kotlin, and be able to work in a fast-paced environment to deliver high-quality mobile solutions.",
-    },
-  ];
+// Custom hook for filtering jobs
+export const useJobFilter = (jobs, searchTitle, searchLocation) => {
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
+  useEffect(() => {
+    const filtered = jobs.filter(
+      (job) =>
+        job.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+        job.location.toLowerCase().includes(searchLocation.toLowerCase())
+    );
+    setFilteredJobs(filtered);
+  }, [searchLocation, searchTitle, jobs]);
+
+  return filteredJobs;
+};
+
+// SearchBar Component
+export const SearchBar = ({
+  searchTitle,
+  setSearchTitle,
+  searchLocation,
+  setSearchLocation,
+}) => (
+  <div className="pt-2 pb-4 flex items-center justify-center  mx-auto w-full">
+    <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 w-full mx-4 border-t">
+      <div className="rounded-l-full md:px-4 flex items-center px-2 bg-transparent relative">
+        <User className="text-gray-500" />
+        <Input
+          type="text"
+          className="border-none outline-none focus:outline-none focus:border-none bg-transparent w-full"
+          placeholder="Find your Perfect job"
+          value={searchTitle}
+          onChange={(e) => setSearchTitle(e.target.value)}
+        />
+      </div>
+      <div className="rounded-r-full hidden md:px-4 px-2 sm:flex items-center bg-transparent relative">
+        <LocateIcon className="text-gray-500" />
+        <Input
+          type="text"
+          placeholder="Location"
+          className="border-none outline-none focus:outline-none focus:border-none bg-transparent"
+          value={searchLocation}
+          onChange={(e) => setSearchLocation(e.target.value)}
+        />
+      </div>
+    </div>
+  </div>
+);
+
+// CollapsibleFilters Component
+export const CollapsibleFilters = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [filters, setFilters] = useState(["frontend", "backend", "search"]);
+  const renderCollapsibleSection = (title, placeholder) => (
+    <Collapsible className="w-full ">
+      <div className="flex justify-between w-full items-center">
+        <p className="text-base">{title}</p>
+        <CollapsibleTrigger>
+          <ChevronsUpDown className="w-4 h-4" />
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent className="mt-4">
+        <Select>
+          <SelectTrigger className="w-full dark:text-zinc-100">
+            <SelectValue placeholder={placeholder} />
+          </SelectTrigger>
+          <SelectContent className="text-zinc-50">
+            <SelectGroup>
+              <SelectLabel className="font-[500]">{placeholder}</SelectLabel>
+              <SelectItem value="apple" className="w-full dark:text-zinc-100">
+                Apple
+              </SelectItem>
+              <SelectItem value="banana" className="w-full dark:text-zinc-100">
+                Banana
+              </SelectItem>
+              <SelectItem
+                value="blueberry"
+                className="w-full dark:text-zinc-100"
+              >
+                Blueberry
+              </SelectItem>
+              <SelectItem value="grapes" className="w-full dark:text-zinc-100">
+                Grapes
+              </SelectItem>
+              <SelectItem
+                value="pineapple"
+                className="w-full dark:text-zinc-100"
+              >
+                Pineapple
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </CollapsibleContent>
+    </Collapsible>
+  );
 
   return (
-    <>
-      <Header />
-      <div className="pt-16  ">
-        <div className="py-4  flex items-center justify-center md:max-w-7xl mx-auto w-[90%] ">
-          <div className="flex gap-2 bg-zinc-100/90 rounded-full border shadow shadow-black/20 ">
-            <div className="rounded-l-full md:px-4 flex items-center px-2 bg-zinc-100/90 relative">
-              {/* <Search cl  assName="text-gray-500 w-5 h-5 absolute left-1 md:left-2 " /> */}
-              <Input
-                type="text"
-                className="border-none outline-none focus:outline-none focus:border-none bg-zinc-100/90"
-                placeholder="Find your Perfect job"
-              />
+    <div className="col-span-3  rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200  dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
+      <div className="flex items-center gap-2 flex-wrap">
+        Selected filters:
+        {filters.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className="text-xs border px-3 py-1 rounded-full bg-emerald-50 flex items-center gap-2"
+            >
+              {item} <X className="w-3 h-3 cursor-pointer" />
             </div>
-            <div className="rounded-r-full md:px-4 px-2  flex items-center bg-zinc-100/90 relative">
-              <Input
-                type="text"
-                placeholder="Location"
-                className="border-none outline-none focus:outline-none focus:border-none bg-zinc-100/90"
-              />
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className="grid grid-cols-9 md:max-w-7xl w-[90%] mx-auto gap-2 py-2">
-          <div className="col-span-2 border rounded-lg hidden md:flex bg-white"></div>
-          <div className="md:col-span-5 col-span-9 space-y-2 w-full md:w-auto ">
-            {jobs?.map((job, index) => (
-              <JobCard job={job} key={index} />
-            ))}
-          </div>
-          <div className="col-span-2 hidden md:flex"></div>
+          );
+        })}
+      </div>
+      {renderCollapsibleSection("Category", "Job Category")}
+      {renderCollapsibleSection("Job Type", "Job Type")}
+      {renderCollapsibleSection("Experience", "Experience")}
+      {renderCollapsibleSection("Job Duration", "Job Duration")}
+    </div>
+  );
+};
+
+// Main Jobs Component
+const Jobs = () => {
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchLocation, setSearchLocation] = useState("");
+
+  const filteredJobs = useJobFilter(jobsData, searchTitle, searchLocation);
+
+  return (
+    <div className="pt-16 mb-4">
+      <SearchBar
+        searchTitle={searchTitle}
+        setSearchTitle={setSearchTitle}
+        searchLocation={searchLocation}
+        setSearchLocation={setSearchLocation}
+      />
+      <div className="grid grid-cols-12 md:max-w-6xl w-[90%] mx-auto gap-2 py-2">
+        <CollapsibleFilters />
+        <div className="md:col-span-9 col-span-12 space-y-2 w-full md:w-auto ">
+          {filteredJobs.length > 0 ? (
+            filteredJobs.map((job, index) => <JobCard job={job} key={index} />)
+          ) : (
+            <p className="text-2xl font-bold text-center mt-20">
+              No jobs found matching your criteria.
+            </p>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

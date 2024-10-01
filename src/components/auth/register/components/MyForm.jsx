@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   countries,
   genderOptions,
-  occupations,
+  // occupations,
 } from "../../../../../constants/constatns";
 import { useEffect, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
@@ -18,6 +18,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
+import { Textarea } from "@/components/ui/textarea";
 
 const MyForm = () => {
   const { toast } = useToast();
@@ -90,51 +91,57 @@ const MyForm = () => {
   }, [states, state]);
 
   const onSubmit = async (data) => {
+    const submitSelectType = selectType == "Client" ? "Employee" : "Employer";
+    console.log(submitSelectType);
     if (!profilePicture) return;
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("firstName", data.firstName);
-    formData.append("lastName", data.lastName);
+
+    formData.append("name", `${data.firstName} ${data.lastName}`);
     formData.append("email", data.email);
     formData.append("password", data.password);
     formData.append("confirmPwd", data.confirmPwd);
     formData.append("gender", data.gender);
+    formData.append("address", data.address);
     formData.append("city", data.city);
     formData.append("state", data.state);
     formData.append("country", data.country);
-    formData.append("occupation", data.occupation);
+    // formData.append("occupation", data.occupation);
+    formData.append("phone_number", data.phone);
     formData.append("profilePicture", profilePicture);
+    formData.append("role", submitSelectType);
     try {
       const res = await axios.post("/api/web/user/register", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res, "res");
       toast({
         variant: "default",
         title: "Success",
         description: "Sign up successfully",
       }); // Show success toast
-      console.log(res.data);
+      console.log(res?.data);
       dispatch(toggleIsLogIn(true));
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       toast({
         variant: "destructive",
         title: "Registration failed. Please try again.",
-        description: error.response.data.message,
+        description:
+          error?.response?.data?.message ||
+          "Something went wrong. Please try again",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       console.error("Error during registration:", error);
     } finally {
-      setIsLoading(false); // Ensure loading state is reset in both success and error cases
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="md:w-[60%] h-full  rounded-lg w-[90%] md:py-6 py-0  bg-white p-4 shadow shadow-black/30">
-      <h2 className="text-center md:text-[36px] text-[32px] font-[500] text-gray-800  mb-4">
+    <div className="md:w-[60%] h-full  rounded-lg w-[90%] md:p-4 p-2 -mt-4 bg-white  dark:bg-slate-950 shadow-xl shadow-black/30 dark:shadow-white/10">
+      <h2 className="text-center md:text-[36px] text-[28px] font-[500] text-gray-800 mb-2 dark:text-gray-100">
         {selectType === "Freelancer" && "Sign up to find work you love"}
         {selectType === "Client" && "Sign up to hire talent"}
       </h2>
@@ -150,7 +157,7 @@ const MyForm = () => {
                 <Input
                   {...field}
                   className={`${errors.firstName && "border-red-500"}`}
-                  placeholder="*First Name"
+                  placeholder="First Name*"
                 />
               )}
             />
@@ -229,16 +236,16 @@ const MyForm = () => {
                     placeholder="*Password"
                     className={` ${errors.password && "border-red-500"}`}
                   />
-                  <div className="absolute right-4">
+                  <div className="absolute right-4 flex items-center">
                     {isPasswordShow ? (
                       <Eye
                         onClick={handleIsPasswordShow}
-                        className="mt-1 font-[300]  text-gray-400 w-5 h-5"
+                        className="w-4 h-4 font-[300]  text-gray-400 "
                       />
                     ) : (
                       <EyeOff
                         onClick={handleIsPasswordShow}
-                        className="mt-1 font-[300] text-gray-400 w-5 h-5"
+                        className="w-4 h-4 font-[300]  text-gray-400 "
                       />
                     )}
                   </div>
@@ -267,16 +274,16 @@ const MyForm = () => {
                     type={isConfirmPasswordShow ? "password" : "text"}
                     placeholder="*Confirm Password"
                   />
-                  <div className="absolute right-4">
+                  <div className="absolute right-4  flex items-center">
                     {isConfirmPasswordShow ? (
                       <Eye
                         onClick={handleIsConfirmPasswordShow}
-                        className="mt-2 font-[300] text-gray-400 w-5 h-5"
+                        className=" font-[300] text-gray-400 w-5 h-5"
                       />
                     ) : (
                       <EyeOff
                         onClick={handleIsConfirmPasswordShow}
-                        className="mt-2 font-[300] text-gray-400 w-5 h-5"
+                        className="font-[300] text-gray-400 w-5 h-5"
                       />
                     )}
                   </div>
@@ -290,7 +297,42 @@ const MyForm = () => {
             )}
           </div>
         </div>
-
+        <div>
+          <Controller
+            name="address"
+            control={control}
+            rules={{
+              required: "Address field is required",
+            }}
+            render={({ field }) => (
+              <Textarea
+                {...field}
+                className={` w-full mt-2  focus:border-gray-600 p-2 border-[1px] outline-none font-[400]  rounded-lg ${
+                  errors.address && "border-red-500"
+                }`}
+                placeholder="Add Address"
+              ></Textarea>
+            )}
+          />
+        </div>
+        <div>
+          <Controller
+            name="phone"
+            control={control}
+            rules={{
+              required: "Phone field is required",
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                className={` w-full mt-2  focus:border-gray-600 p-2 border-[1px] outline-none font-[400]  rounded-lg ${
+                  errors.address && "border-red-500"
+                }`}
+                placeholder="Add your Phone"
+              ></Input>
+            )}
+          />
+        </div>
         {/* Country */}
         <div className="flex gap-2 md:gap-2 sm:flex-row flex-col">
           <div className="flex flex-col w-full">
@@ -303,7 +345,7 @@ const MyForm = () => {
               render={({ field }) => (
                 <select
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]   font-[400]  rounded-lg dark:bg-transparent ${
                     errors.country && "border-red-500"
                   }`}
                 >
@@ -334,7 +376,7 @@ const MyForm = () => {
                 <select
                   disabled={!country}
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 dark:bg-transparent p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.state && "border-red-500"
                   }`}
                 >
@@ -364,7 +406,7 @@ const MyForm = () => {
                 <select
                   disabled={!state}
                   {...field}
-                  className={`outline-none w-full mt-2  focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+                  className={`outline-none w-full mt-2  focus:border-gray-600 dark:bg-transparent p-2 border-[1px]  font-[400]  rounded-lg ${
                     errors.city && "border-red-500"
                   }`}
                 >
@@ -395,7 +437,7 @@ const MyForm = () => {
           render={({ field }) => (
             <select
               {...field}
-              className={`outline-none w-full mt-2 focus:border-gray-600 p-2 border-[1px]  font-[400]  rounded-lg ${
+              className={`outline-none w-full mt-2 focus:border-gray-600 dark:bg-transparent p-2 border-[1px]  font-[400]  rounded-lg ${
                 errors.gender && "border-red-500"
               }`}
             >
@@ -413,7 +455,7 @@ const MyForm = () => {
         )}
 
         {/* Occupation */}
-        <Controller
+        {/* <Controller
           name="occupation"
           control={control}
           rules={{
@@ -438,7 +480,7 @@ const MyForm = () => {
         />
         {errors.occupation && (
           <p className="text-red-500 text-sm">*{errors.occupation.message}</p>
-        )}
+        )} */}
 
         {/* Profile Picture */}
 
@@ -462,7 +504,7 @@ const MyForm = () => {
 
         <Button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading } // Disable if loading or form is invalid
           className="relative overflow-hidden duration-150 rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full mt-2 md:text-[18px] text-[16px] bg-green-500/50 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
         >
           {/* Button Text */}

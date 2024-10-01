@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap");
+
+/* intro font */
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -88,10 +92,29 @@
 body {
   font-family: "Neue Montreal", "Outfit", sans-serif;
 }
+
+.intro-font {
+  font-family: "Cedarville Cursive", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cursive--font {
+  font-family: "Recursive", sans-serif;
+}
 .shadow-container {
   @apply shadow-lg shadow-[#00000025];
 }
 
+
+
+input{
+   font-family: "Recursive", sans-serif ;
+}
+
+select{
+   font-family: "Recursive", sans-serif ;
+}
 .mobile-nav {
   position: absolute;
   top: 0;
@@ -133,9 +156,7 @@ input[type="date"] {
 
 select {
   @apply text-[#64748b] font-[400] text-sm;
-  
 }
-select::placeholder{
-    @apply text-[#64748b] font-[400] text-sm;
+select::placeholder {
+  @apply text-[#64748b] font-[400] text-sm;
 }
-
