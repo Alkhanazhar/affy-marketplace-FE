@@ -6,7 +6,6 @@ const useCategories = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate()
 
     const fetchCategories = async () => {
         try {
@@ -15,13 +14,15 @@ const useCategories = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
-            console.log(response)
+            console.log(response,"response")
             setCategories(response?.data?.meta);
             setLoading(false);
         } catch (err) {
+            console.error(err);
             if (!err?.response?.data?.ok) {
+
                 localStorage.removeItem("token");
-                navigate("/auth")
+                // navigate("/auth")
             }
             setError(err.message);
             setLoading(false);

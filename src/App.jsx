@@ -115,7 +115,7 @@ const App = () => {
   ]);
   // text
   const introText = "Welcome to " + brand;
-  const outroText = "Find and hire skilled photographers";
+  // const outroText = "Find and hire skilled photographers";
   const tl = gsap.timeline({
     onComplete: () => {
       setIntro(true);
@@ -145,23 +145,23 @@ const App = () => {
         x: -5,
         opacity: 0,
       })
-      .to(".heading-2", {
-        opacity: 1,
-        y: -30,
-        duration: 1,
-      })
-      .to("heading-2", {
-        x: 10,
-        ease: "circ.inOut",
-        stagger: 0.2, // Staggering duration
-        duration: 0.6, // Duration of opacity animation
-      })
-      .to(".heading-2 span", {
-        stagger: 0.1, // Staggering duration
-        duration: 0.2, // Duration of opacity animation
-        x: -5,
-        opacity: 0,
-      })
+      // .to(".heading-2", {
+      //   opacity: 1,
+      //   y: -30,
+      //   duration: 1,
+      // })
+      // .to("heading-2", {
+      //   x: 10,
+      //   ease: "circ.inOut",
+      //   stagger: 0.2, // Staggering duration
+      //   duration: 0.6, // Duration of opacity animation
+      // })
+      // .to(".heading-2 span", {
+      //   stagger: 0.1, // Staggering duration
+      //   duration: 0.2, // Duration of opacity animation
+      //   x: -5,
+      //   opacity: 0,
+      // })
       .to(".show", {
         ease: "elastic.inOut",
         y: 1000,
@@ -189,15 +189,7 @@ const App = () => {
                     );
                   })}
                 </h1>
-                <h1 className="flex gap-2 heading-2 opacity-0 block-head  sm:text-[3vw] font-medium  absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white dark:text-[#060C1B]">
-                  {outroText.split("").map((item) => {
-                    return (
-                      <span key={uuidv4()} className="-mx-[1px]">
-                        {item}
-                      </span>
-                    );
-                  })}
-                </h1>
+              
               </div>
             </div>
           </>

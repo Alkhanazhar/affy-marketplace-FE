@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const useCommunities = () => {
     const [community, setCommunity] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const fetchCommunities = async () => {
         try {
@@ -15,14 +15,14 @@ const useCommunities = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
-            console.log(response)
+            console.log(response,"fetch")
             setCommunity(response?.data?.meta);
             setLoading(false);
         } catch (err) {
-            if (!err?.response?.data?.ok) {
-                localStorage.removeItem("token");
-                navigate("/auth")
-            }
+            // if (!err?.response?.data?.ok) {
+            //     localStorage.removeItem("token");
+            //     navigate("/auth")
+            // }
             setError(err.message);
             setLoading(false);
         }

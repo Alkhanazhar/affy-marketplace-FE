@@ -50,17 +50,17 @@ const EmployeeDashboard = () => {
       const response = await axios.get(`/api/job/display/${userInfo.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setJobs(response.data.meta);
-      setJobsCreated(response.data.meta.length); // Update the number of jobs created
+      setJobs(()=>response.data.meta);
+      setJobsCreated(()=>response.data.meta.length); // Update the number of jobs created
     } catch (error) {
       console.error("Failed to fetch jobs:", error);
       setError("Failed to fetch jobs. Please try again later.");
     } finally {
-      setIsLoading(false);
+      setIsLoading(()=>false);
     }
   };
   const deleteJob = async (jobId, createdBy) => {
-    setIsLoading(true);
+    setIsLoading(()=>true);
     try {
       const res = await axios.delete(`/api/job/delete/${createdBy}/${jobId}`, {
         headers: { Authorization: `Bearer ${token}` },
