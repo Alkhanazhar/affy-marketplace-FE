@@ -56,6 +56,7 @@ const CommunitySlug = () => {
 
   async function checkIsUserExist() {
     console.log("Checking if user exists");
+    console.log(localStorage.getItem("token"));
     try {
       const response = await axios.post(
         "/api/web/community/is-user-exist",
@@ -65,7 +66,7 @@ const CommunitySlug = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );

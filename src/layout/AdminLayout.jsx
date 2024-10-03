@@ -2,7 +2,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { brand } from "../../constants/constatns";
 import {
   ChartBarBig,
-  Home,
   LogOutIcon,
   UserCircleIcon,
   UserRoundCheck,
@@ -23,7 +22,7 @@ export const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
       to={to}
       className={`flex items-center w-full gap-20 py-2 text-muted-foreground   ${
         location.pathname == to ? " border-primary bg-primary/10" : ""
-      } ${expanded ? "justify-between w-72 px-6" : "justify-center px-4"}`}
+      } ${expanded ? "justify-start gap-4 w-80 px-6" : "justify-center px-4"}`}
     >
       <Icon className="h-5 w-5 md:h-8 md:w-8" />
       {expanded && <span className="cursive--font">{label}</span>}
@@ -53,7 +52,7 @@ export const LogoutSidebarBtn = ({ to, expanded }) => {
       to={to}
       onClick={handleLogout}
       className={`flex items-center  w-full gap-2 text-muted-foreground cursor-pointer  ${
-        expanded ? "justify-between w-72 px-6" : "justify-center px-4"
+        expanded ? "justify-start gap-4 w-72 px-6" : "justify-center px-4"
       }`}
     >
       <LogOutIcon className="h-5 w-5 md:h-8 md:w-8" />
@@ -99,7 +98,6 @@ export const Sidebar = ({ expanded, onExpand }) => (
     </nav>
     <nav className="mt-auto flex flex-col items-center gap-4 py-2 border-t w-full ">
       <LogoutSidebarBtn expanded={expanded} />
-      <SidebarItem to="/" icon={Home} label="Home" expanded={expanded} />
     </nav>
   </aside>
 );

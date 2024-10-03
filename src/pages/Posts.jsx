@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import { jobsData, postsArray } from "../../constants/constatns";
+import { jobsData } from "../../constants/constatns";
 import Post from "@/components/community/Post";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,11 +8,15 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   AlertDialog,
+  AlertDialogCancel,
   AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
@@ -24,31 +28,54 @@ import {
   useJobFilter,
 } from "@/components/jobs/Jobs";
 import JobCard from "@/components/jobs/JobCard";
+import { toast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const Posts = () => {
   const id = useParams();
+
   console.log(id, "id");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPostModal, setIsPostModal] = useState(false);
+  const [singlePost, setSinglePost] = useState(null);
   const [textMessage, setTextMessage] = useState("");
+  const [getPostArray, setPostArray] = useState([]);
+  // const [comments, setComments] = useState(null);
+  const [comment, setComment] = useState(null);
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
   };
-  const user = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const [selectedTab, setSelectedTab] = useState("posts");
   const [searchTitle, setSearchTitle] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
 
   const filteredJobs = useJobFilter(jobsData, searchTitle, searchLocation);
 
-  const userData = jwtDecode(user);
+  const userData = jwtDecode(token);
+  console.log(userData);
+  const getPosts = async () => {
+    try {
+      const res = await axios.get("/api/web/post/display/" + id.communityId, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      console.log(res.data.meta);
+      setPostArray(res.data.meta);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   async function handleSubmit(e) {
+    console.log(userData.id);
     e.preventDefault();
     try {
       const response = await axios.post(
         "/api/web/post/create",
         {
-          community_id: parseInt(id.communityName),
-          user_id: parseInt(userData.id),
+          community_id: id?.communityId,
+          userId: userData?.id,
           textMessage: textMessage,
         },
         {
@@ -57,12 +84,78 @@ const Posts = () => {
           },
         }
       );
-      console.log(response);
-      console.log(response.data);
+      if (response.status == 201) {
+        toast({
+          variant: "default",
+          title: "Success",
+          description: "Post created successfully",
+        });
+        console.log(response);
+        console.log(response.data);
+        getPosts();
+        setIsModalOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast({
+        variant: "destructive",
+        title: "Registration failed. Please try again.",
+        description:
+          error?.response?.data?.message ||
+          "Something went wrong. Please try again",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+    }
+  }
+
+  async function fetchComments(item) {
+    try {
+      const res = await axios.get("/api/web/post/comment/" + item.id, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      console.log(res.response.data.message);
+      // setComments(res.data.meta);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data.message);
+    }
+  }
+  const handleShowPost = async (item) => {
+    try {
+      setSinglePost(() => item);
+      console.log(item);
+      setIsPostModal(() => true);
+      fetchComments(item);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response.data.message);
+    }
+  };
+
+  const handleCreateComment = async () => {
+    try {
+      const res = await axios.post(
+        "/api/web/post/comment/" + singlePost.id,
+        {
+          text: comment,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(res);
+      // fetchComments();
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <>
@@ -157,18 +250,13 @@ const Posts = () => {
                     </div>
                   </div>
                   <div>
-                    {postsArray.map((item) => (
-                      <div
-                        key={item.textMessage}
-                        className="mx-2 mb-2 cursor-pointer"
-                        onClick={() => {
-                          // setData(() => item);
-                          setIsModalOpen(true);
-                        }}
-                      >
+                    {getPostArray.map((item, index) => (
+                      <div key={index} onClick={() => handleShowPost(item)} className="m-3">
                         <Post
+                          key={index}
                           communityName={item.communityId}
                           textMessage={item.textMessage}
+                          // handleShowPost={handleShowPost(item)}
                         />
                       </div>
                     ))}
@@ -200,6 +288,33 @@ const Posts = () => {
                 </>
               )}
             </div>
+
+            <AlertDialog open={isPostModal}>
+              <AlertDialogTrigger asChild>
+                {/* <Button variant="outline">Show Dialog</Button> */}
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Post</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <div className="my-4">
+                      <h2 className="text-xl">{singlePost?.textMessage}</h2>
+                    </div>
+                    <div className="my-4">
+                      <Textarea onChange={(e) => setComment(e.target.value)} />
+                      <Button onClick={handleCreateComment} className="mt-4">
+                        comment
+                      </Button>
+                    </div>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel onClick={() => setIsPostModal(false)}>
+                    Cancel
+                  </AlertDialogCancel>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </main>
         </div>
       </div>

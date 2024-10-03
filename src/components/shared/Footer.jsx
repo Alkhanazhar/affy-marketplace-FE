@@ -61,6 +61,7 @@ const Footer = () => {
       ],
     },
   ];
+  
 
   return (
     <footer className="pt-10  border-b border-t  cursive--font bg-white dark:bg-slate-900  ">

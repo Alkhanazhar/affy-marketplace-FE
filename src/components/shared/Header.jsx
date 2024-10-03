@@ -166,7 +166,7 @@ const UserMenu = ({ userInfo, handleLogout, handleNavigation }) => (
         <SheetDescription>
           <div className="flex flex-col gap-1 mt-16">
             <User className="w-32 h-32 mx-auto text-black dark:text-white" />
-            <div className="cursive--font p-6 rounded-lg shadow-md">
+            <div className="cursive--font p-6">
               <p>
                 Name: <span className="font-semibold">{userInfo?.name}</span>
               </p>

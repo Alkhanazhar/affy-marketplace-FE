@@ -1,7 +1,17 @@
 import { ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const handleGetStarted = () => {
+    if (token) {
+      navigate("/community");
+    } else {
+      navigate("/auth");
+    }
+  };
   // useGsapAnimation(".cta");
   return (
     <section className="bg-white/60  dark:bg-slate-900/70 backdrop-blur-md  pb-4 md:pb-0 max-w-7xl md:mx-auto border-[.5px] dark:border-white/10  rounded-lg">
@@ -10,14 +20,14 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
           reverse ? "md:flex-row-reverse" : "md:flex-row"
         }`}
       >
-        <div className="p-4 md:h-96 h-auto cta  md:w-1/2 w-full overflow-hidden rounded-lg">
+        <div className=" md:h-96 h-auto cta  md:w-1/2 w-full overflow-hidden ">
           <img
-            className="object-cover opacity-90 heroimg w-full md:h-full h-[40vh] rounded-lg"
+            className="object-cover opacity-90 heroimg w-full md:h-full h-[40vh] "
             src={imgSrc}
             alt="cta"
           />
         </div>
-        <div className="mt-4 md:mt-0 cta md:w-1/2 w-full px-8 flex flex-col space-y-4 cta-content cursive--font">
+        <div className="mt-4 md:mt-0 cta md:w-1/2 w-full px-10 flex flex-col space-y-4 cta-content cursive--font">
           <h2 className="lg:text-3xl font-[400]  md:text-2xl text-xl text-gray-700 dark:text-zinc-100 ">
             {heading}
           </h2>
@@ -38,9 +48,8 @@ const Cta = ({ reverse, imgSrc, heading, subHeading, items }) => {
           <div className="flex">
             <Button
               href="#"
-              size="lg"
-              variant="outline"
-              className="w-fit md:text-xl text-primary dark:bg-secondary  dark:hover:bg-secondary/70 dark:text-zinc-900 px-4"
+              className=" md:text-xl dark:bg-secondary mt-4 dark:hover:bg-secondary/70 dark:text-zinc-900 "
+              onClick={handleGetStarted}
             >
               Get started
               <ChevronRight className="ml-1  w-5 h-5" />

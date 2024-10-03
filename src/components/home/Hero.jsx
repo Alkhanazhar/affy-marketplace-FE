@@ -7,6 +7,7 @@ import { Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { imageSrc } from "../../../constants/constatns";
 import Marquee from "../shared/Marquee";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   useGsapAnimation(
@@ -23,6 +24,15 @@ const Hero = () => {
       ease: "power1.inOut",
     });
   }, []);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const handleGetStarted = () => {
+    if (token) {
+      navigate("/community");
+    } else {
+      navigate("/auth");
+    }
+  };
 
   const gradients = [
     "from-primary to-secondary drop-shadow-md blur md:w-40 md:h-40 w-32 h-32 absolute md:left-[20%] left-[50%] top-[50%] opacity-10",
@@ -33,7 +43,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="overflow-hidden lg:min-h-[800px]">
+    <section className=" lg:min-h-[800px]">
       {gradients.map((classes, index) => (
         <div
           key={index}
@@ -58,6 +68,7 @@ const Hero = () => {
 
             <div className="getStarted mt-4 flex justify-center md:justify-start">
               <Button
+                onClick={handleGetStarted}
                 size="lg"
                 className="text-lg text-neutral-100 dark:bg-secondary shadow dark:text-neutral-900"
               >

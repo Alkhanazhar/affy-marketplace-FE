@@ -43,7 +43,7 @@ const FeedBack = () => {
   ];
 
   return (
-    <section className="py-4 sm:py-12 lg:py-4 my-4 feedback md:mx-0 overflow-hidden ">
+    <section className="py-4 sm:py-12 lg:py-4 my-4 feedback md:mx-0 ">
       <div className="  md:mx-auto max-w-7xl  lg:px-0 mx-4">
         <div className="flex flex-col items-center">
           <div className="text-center">
@@ -56,7 +56,7 @@ const FeedBack = () => {
           </div>
           <div className="relative mt-10 md:mt-8 md:order-2 cursive--font ">
             <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t feedback dark:from-red-400/60 dark:to-red-500/40 from-primary/60 to-primary/40 -mt-8"></div>
+              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-3xl filter bg-gradient-to-t feedback dark:from-red-400/60 dark:to-red-500/40 from-primary/60 to-primary/40 -"></div>
             </div>
             <div className="relative grid grid-cols-1 gap-4 mx-auto md:max-w-none lg:gap-4 md:grid-cols-3 max-w-[90%]">
               {reviews.map((review, index) => (

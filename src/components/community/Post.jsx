@@ -38,16 +38,16 @@ const Post = ({ textMessage, communityName }) => {
           {communityName}
         </CardTitle>
       </div>
-      <CardContent>
+      <CardContent className="cursor-pointer">
         <CardDescription className="cursive--font dark:text-zinc-300 font-normal">
           {textMessage}
         </CardDescription>
       </CardContent>
       <CardFooter className="flex justify-between items-center mt-2">
-        <PostIcons onClick={handleLike}>
+        {/* <PostIcons onClick={handleLike}>
           <Heart className="w-4 h-4  hover:fill-primary/60 dark:text-zinc-200" />{" "}
           Like
-        </PostIcons>
+        </PostIcons> */}
         <PostIcons onClick={handleComment}>
           <MessageCircle className="w-4 h-4 hover:fill-primary/60 dark:text-zinc-200" />
           Comment

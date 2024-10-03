@@ -71,7 +71,7 @@ const Home = () => {
           btnName="Find Photographers"
         />
       </div>
-      <div className="cta-freelancer relative max-w-7xl sm:mx-auto overflow-hidden h-fit mx-4 mb-8">
+      <div className="cta-freelancer relative max-w-7xl sm:mx-auto h-fit mx-4 mb-8">
         <div className="-z-10 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] dark:bg-gradient-to-r from-blue-400/80 dark:to-blue-600/80 blur-3xl opacity-40 w-full h-full cta-freelancer mx-4"></div>
         <Cta
           reverse={true}
