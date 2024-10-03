@@ -178,7 +178,7 @@ const CommunitySlug = () => {
               <Button className="w-full" asChild>
                 <NavLink
                   to={`/community/${communityId}/posts`}
-                  className="w-full"
+                  className="w-full inline-block h-full"
                 >
                   Show
                 </NavLink>
