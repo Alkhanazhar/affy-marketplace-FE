@@ -44,11 +44,19 @@ const Posts = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/web/post/create", {
-        community_id: parseInt(id.communityName),
-        user_id: parseInt(userData.id),
-        textMessage: textMessage,
-      });
+      const response = await axios.post(
+        "/api/web/post/create",
+        {
+          community_id: parseInt(id.communityName),
+          user_id: parseInt(userData.id),
+          textMessage: textMessage,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       console.log(response);
       console.log(response.data);
     } catch (error) {

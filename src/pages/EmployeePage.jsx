@@ -10,7 +10,7 @@ const EmployeePage = () => {
   return (
     <div className="flex">
       <aside
-        className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width items-center  ${
+        className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width items-center ${
           headerExpanded ? "shadow-2xl shadow-black/30 backdrop-blur-md" : ""
         } sm:flex`}
         onMouseEnter={toggleHeaderExpansion}

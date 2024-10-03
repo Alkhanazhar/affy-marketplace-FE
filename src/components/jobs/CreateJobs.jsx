@@ -105,6 +105,8 @@ const CreateJobs = () => {
     }
   };
 
+  
+
   useEffect(() => {
     if (jobId) {
       fetchJobData();
@@ -115,7 +117,7 @@ const CreateJobs = () => {
     <div className="flex items-center justify-center min-h-[90vh]">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 w-full max-w-2xl rounded-2xl cursive--font p-8 mx-4 bg-white shadow-lg border"
+        className="space-y-6 w-full max-w-2xl rounded-2xl cursive--font p-8 mx-4 bg-white dark:bg-slate-950 shadow-lg border"
       >
         <h1 className="md:text-3xl text-2xl text-center font-bold">
           {jobId ? "Update your job here" : "Create your job here"}
