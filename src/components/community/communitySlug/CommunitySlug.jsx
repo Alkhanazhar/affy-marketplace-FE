@@ -70,7 +70,7 @@ const CommunitySlug = () => {
         }
       );
       console.log(response);
-      setIsMember(response.data.exists); // Assuming `exists` is returned from the API indicating membership
+      setIsMember(response.data.meta.exists); // Assuming exists is returned
     } catch (error) {
       console.error("Error checking user existence:", error);
     }
@@ -175,7 +175,7 @@ const CommunitySlug = () => {
           {/* Join button */}
           <div className="w-full p-4">
             {isMember ? (
-              <Button className="w-full">
+              <Button className="w-full" asChild>
                 <NavLink
                   to={`/community/${communityId}/posts`}
                   className="w-full"
