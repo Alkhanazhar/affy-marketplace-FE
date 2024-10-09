@@ -138,7 +138,7 @@ export const MobileNavbar = () => (
 const AdminLayout = () => {
   const [headerExpanded, setHeaderExpanded] = useState(false);
   const toggleHeaderExpansion = () => setHeaderExpanded((prev) => !prev);
-
+  
   return (
     <div className="flex">
       <Sidebar expanded={headerExpanded} onExpand={toggleHeaderExpansion} />

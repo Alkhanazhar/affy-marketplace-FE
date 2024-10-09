@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { brand } from "../../../constants/constatns";
-import { useEffect, useState, useMemo } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleIsLogIn } from "@/app/features/auth/authSlice";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useToast } from "../ui/use-toast";
 import ThemeSwitcher from "@/pages/themeSwitcher";
-import { jwtDecode } from "jwt-decode";
 import {
   Sheet,
   SheetContent,
@@ -21,7 +20,8 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "../ui/sheet";
-import { User } from "lucide-react";
+import { Loader, User } from "lucide-react";
+import { AuthContext } from "@/context/AuthContext";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -36,8 +36,9 @@ const Header = () => {
   const { toast } = useToast();
 
   // Decode the JWT token only once on mount
-  const userInfo = useMemo(() => (token ? jwtDecode(token) : null), [token]);
+  // const userInfo = useMemo(() => (token ? jwtDecode(token) : null), [token]);
 
+  const { userInfo, isLoading } = useContext(AuthContext);
   // GSAP animation
   useEffect(() => {
     gsap.from(".header a", {
@@ -88,7 +89,6 @@ const Header = () => {
           <span className="text-primary">&nbsp;.</span>
         </Link>
 
-        {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:flex gap-2">
           {navItems.map(({ title, href }) => {
             if (title === "Create-jobs" && !token) return null;
@@ -112,19 +112,20 @@ const Header = () => {
           })}
         </NavigationMenu>
 
-        {/* Mobile Navigation Toggle */}
         <div className="flex md:hidden text-primary">
           <UserMenu
             userInfo={userInfo}
             handleLogout={handleLogout}
             handleNavigation={handleNavigation}
+            isLoading={isLoading}
           />
         </div>
 
-        {/* Auth and Profile Buttons */}
         <div className="md:flex gap-4 items-center hidden">
           <ThemeSwitcher />
-          {!token ? (
+          {isLoading ? (
+            <Loader className="animate-spin" />
+          ) : !token ? (
             <>
               <LinkButton
                 text="Login"
@@ -141,6 +142,7 @@ const Header = () => {
                 userInfo={userInfo}
                 handleLogout={handleLogout}
                 handleNavigation={handleNavigation}
+                isLoading={isLoading}
               />
             </div>
           )}

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { Heart, MessageCircle, ScreenShare } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -14,6 +15,7 @@ const Post = ({ textMessage, communityName }) => {
   const params = useParams();
   console.log(params);
 
+  // eslint-disable-next-line no-unused-vars
   function handleLike(e) {
     e.stopPropagation();
     console.log("/like");

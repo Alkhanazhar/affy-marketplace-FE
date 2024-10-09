@@ -1,42 +1,20 @@
-import { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { NavLink,  useParams } from "react-router-dom";
 import { Link, Tag, User, User2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Corrected import
+import { AuthContext } from "@/context/AuthContext";
 
 const CommunitySlug = () => {
   const { communityId } = useParams();
   const [community, setCommunity] = useState({});
   const [isMember, setIsMember] = useState(false);
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const userInfo = token ? jwtDecode(token) : null;
 
-  async function handleJoin() {
-    if (token) {
-      try {
-        const res = await axios.post(
-          "/api/web/community/user",
-          {
-            community_id: community?.id,
-            user_id: userInfo?.id,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(res);
-        checkIsUserExist();
-      } catch (error) {
-        console.error("Error joining community:", error);
-      }
-    } else {
-      navigate("/auth");
-    }
-  }
+  // Decode the JWT token only once on mount
+  // const userInfo = useMemo(() => (token ? jwtDecode(token) : null), [token]);
+
+  const { userInfo, isLoading } = useContext(AuthContext);
 
   async function getCommunityData() {
     try {
@@ -55,8 +33,7 @@ const CommunitySlug = () => {
   }
 
   async function checkIsUserExist() {
-    console.log("Checking if user exists");
-    console.log(localStorage.getItem("token"));
+    if (!userInfo) return;
     try {
       const response = await axios.post(
         "/api/web/community/is-user-exist",
@@ -66,22 +43,31 @@ const CommunitySlug = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log(response);
-      setIsMember(response.data.meta.exists); // Assuming exists is returned
+      setIsMember(response.data.meta.exists);
     } catch (error) {
       console.error("Error checking user existence:", error);
     }
   }
 
   useEffect(() => {
-    getCommunityData();
-    checkIsUserExist();
-  }, [communityId]);
+    if (!isLoading && userInfo) {
+      getCommunityData();
+      checkIsUserExist();
+    }
+  }, [communityId, isLoading, userInfo]);
 
+  const handleJoin = async () => {
+    // Implement your join logic here
+    console.log("Join button clicked");
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>; // You can replace this with a proper loading component
+  }
   return (
     <div className="pt-16 pb-16 min-h-screen mx-4 md:mx-0 cursive--font">
       <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse py-8 md:mx-4">

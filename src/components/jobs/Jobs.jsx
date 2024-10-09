@@ -116,14 +116,14 @@ export const CollapsibleFilters = () => {
   );
 
   return (
-    <div className="col-span-3  rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200  dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
+    <div className="col-span-3  rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
       <div className="flex items-center gap-2 flex-wrap">
         Selected filters:
         {filters.map((item, index) => {
           return (
             <div
               key={index}
-              className="text-xs border px-3 py-1 rounded-full bg-emerald-50 flex items-center gap-2"
+              className="text-xs border px-3 py-1 rounded-full dark:bg-primary dark:text-white text-black bg-secondary flex items-center gap-2"
             >
               {item} <X className="w-3 h-3 cursor-pointer" />
             </div>

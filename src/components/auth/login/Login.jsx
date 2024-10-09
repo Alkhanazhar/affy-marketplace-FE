@@ -116,6 +116,12 @@ const Login = () => {
                 placeholder="*Password"
                 className={` ${errors.password && "border-red-500"}`}
               />
+              {errors.password && (
+                <span className="text-red-500 text-sm">
+                  *{errors.password.message}
+                </span>
+              )}
+
               <div className="absolute right-4 flex items-center cursor-pointer">
                 {isPasswordShow ? (
                   <Eye

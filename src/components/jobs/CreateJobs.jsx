@@ -61,6 +61,10 @@ const CreateJobs = () => {
       navigate("/employee-page");
     } catch (error) {
       console.log(error);
+      if (error.response.data.message == "Token is not valid!") {
+        localStorage.clear();
+        navigate("/auth");
+      }
       if (error.response) {
         toast({
           title: "Error",
@@ -104,8 +108,6 @@ const CreateJobs = () => {
       });
     }
   };
-
-  
 
   useEffect(() => {
     if (jobId) {

@@ -22,6 +22,9 @@ import { gsap } from "gsap";
 import { v4 as uuidv4 } from "uuid";
 import EmployeePage from "./pages/EmployeePage";
 import EmployeeDahboard from "./pages/EmployeeDahboard";
+import EmployeeCreatedJobs from "./pages/EmployeeCreatedJobs";
+import AuthContextProvider from "./context/AuthContext";
+import Applicants from "./pages/Applicants";
 const App = () => {
   // base url / backend url
   axios.defaults.baseURL = "http://localhost:8714/";
@@ -29,7 +32,11 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: (
+        <AuthContextProvider>
+          <MainLayout />
+        </AuthContextProvider>
+      ),
       children: [
         {
           path: "/",
@@ -68,7 +75,11 @@ const App = () => {
     },
     {
       path: "/auth",
-      element: <AuthLayout />,
+      element: (
+        <AuthContextProvider>
+          <AuthLayout />
+        </AuthContextProvider>
+      ),
       children: [
         {
           path: "/auth",
@@ -78,7 +89,11 @@ const App = () => {
     },
     {
       path: "/admin",
-      element: <AdminLayout />,
+      element: (
+        <AuthContextProvider>
+          <AdminLayout />
+        </AuthContextProvider>
+      ),
       children: [
         {
           path: "/admin",
@@ -96,11 +111,20 @@ const App = () => {
     },
     {
       path: "/employee-page",
-      element: <EmployeePage />,
+      element: (
+        <AuthContextProvider>
+          <EmployeePage />
+        </AuthContextProvider>
+      ),
       children: [
         {
           path: "/employee-page",
-          element: <EmployeeDahboard />,
+          element: (
+            <AuthContextProvider>
+              {" "}
+              <EmployeeDahboard />
+            </AuthContextProvider>
+          ),
         },
         {
           path: "/employee-page/create-jobs",
@@ -109,6 +133,14 @@ const App = () => {
         {
           path: "/employee-page/edit/:jobId",
           element: <CreateJobs />,
+        },
+        {
+          path: "/employee-page/jobs",
+          element: <EmployeeCreatedJobs />,
+        },
+        {
+          path: "/employee-page/jobs/:jobId/applicants",
+          element: <Applicants />,
         },
       ],
     },
@@ -189,7 +221,6 @@ const App = () => {
                     );
                   })}
                 </h1>
-              
               </div>
             </div>
           </>
