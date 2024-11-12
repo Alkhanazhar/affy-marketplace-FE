@@ -1,11 +1,15 @@
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { MoveLeft } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const Applicants = () => {
   const { jobId } = useParams();
   console.log(jobId);
-  const navigate = useNavigate();
+
+  const location = useLocation();
 
   // Static applicants data
   const applicants = [
@@ -16,25 +20,26 @@ const Applicants = () => {
 
   return (
     <div>
-      {/* Small back button */}
-      <Button
-        onClick={() => navigate(-1)}
-        size="sm"
-        className="mb-4 flex items-center"
-      >
-        <MoveLeft className="mr-2 w-4" /> Back
-      </Button>
+      <Breadcrumb>
+        {location.pathname.split("/").map((item, index) => {
+          return (
+            <BreadcrumbItem key={index}>
+              <Link className="" to={"/" + item}>{item}</Link> /
+            </BreadcrumbItem>
+          );
+        })}
+      </Breadcrumb>
 
       {/* Applicants List */}
-      <div>
+      <div className="grid md:grid-cols-3 grid-cols-1  gap-4">
         {applicants.map((applicant) => (
           <div
             key={applicant.id}
-            className="flex justify-between items-center p-4 hover:bg-slate-200 duration-150 mb-2 dark:bg-gray-100 bg-slate-100 rounded-lg"
+            className="flex justify-between items-center p-4 hover:bg-slate-200 duration-150 mb-2 dark:bg-gray-900 bg-slate-100  rounded-lg"
           >
             <p>{applicant.name}</p>
             <Button variant="outline" size="sm" asChild>
-              <a href={`/applicant-profile/${applicant.id}`}>View Profile</a>
+              <Link to={`applicant-profile/${applicant.id}`}>View Profile</Link>
             </Button>
           </div>
         ))}

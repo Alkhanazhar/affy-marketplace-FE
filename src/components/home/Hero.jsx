@@ -4,10 +4,12 @@ import useGsapAnimation from "@/hooks/useGsapAnimation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Star } from "lucide-react";
-import { Button } from "../ui/button";
 import { imageSrc } from "../../../constants/constatns";
 import Marquee from "../shared/Marquee";
 import { useNavigate } from "react-router-dom";
+import SparklesText from "../ui/sparkles-text";
+import ShimmerButton from "../ui/shimmer-button";
+import { Button } from "../ui/button";
 
 const Hero = () => {
   useGsapAnimation(
@@ -43,21 +45,21 @@ const Hero = () => {
   ];
 
   return (
-    <section className=" lg:min-h-[800px]">
+    <section className=" lg:min-h-[800px] mt-32">
       {gradients.map((classes, index) => (
         <div
           key={index}
           className={`bg-gradient-to-tl ${classes} -z-10 trusted`}
         ></div>
       ))}
-      <div className="relative px-6 lg:px-8">
-        <div className="max-w-6xl pt-12 sm:pt-28 md:pt-32 lg:pt-40 mx-auto flex flex-col-reverse md:flex-row justify-between items-center">
-          <div className="md:w-1/2 flex flex-col md:space-y-4 space-y-4">
+      <div className="relative px-6 lg:px-8 ">
+        <div className="max-w-6xl py-12 mx-auto flex flex-col-reverse md:flex-row justify-between items-center">
+          <div className="md:w-1/2 flex flex-col md:space-y-4 space-y-4 ">
             <h1 className="text-4xl font-medium    dark:text-white/80  sm:text-5xl lg:text-6xl xl:text-7xl heading text-center md:text-start ">
               Connecting <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r dark:from-white  from-[#0a3c72] dark:to-[#1394d0] to-[#1394d0] ">
-                Photographers
-              </span>{" "}
+              {/* <span className=""> */}
+              <SparklesText text="Photographers" />
+              {/* </span>{" "} */}
               with Clients
             </h1>
             <p className=" dark:text-gray-400 text-gray-500 font-[400] cursive--font text-center md:text-start md:text-[16px] text-[14px] w-72 md:w-96 mx-auto md:mx-0 subheading leading-5 my-8">
@@ -67,12 +69,17 @@ const Hero = () => {
             </p>
 
             <div className="getStarted mt-4 flex justify-center md:justify-start">
+              {/* <ShimmerButton className="shadow-2xl" onClick={handleGetStarted}>
+                <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                  Get started
+                </span>
+              </ShimmerButton> */}
               <Button
-                onClick={handleGetStarted}
                 size="lg"
-                className="text-lg text-neutral-100 dark:bg-secondary shadow dark:text-neutral-900"
+                onClick={handleGetStarted}
+                className="text-sm md:text-xl"
               >
-                Get Started
+                Get started
               </Button>
             </div>
           </div>

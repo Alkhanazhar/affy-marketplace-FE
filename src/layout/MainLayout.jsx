@@ -3,15 +3,15 @@ import Header from "@/components/shared/Header";
 import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
-
-    return (
-      <>
-        <Header />
+  return (
+    <>
+      <Header />
+      <div className="mt-16">
         <Outlet />
-        <Footer />
-      </>
-    );
-  }
-
+      </div>
+      <Footer />
+    </>
+  );
+};
 
 export default MainLayout;

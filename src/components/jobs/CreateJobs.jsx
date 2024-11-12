@@ -116,7 +116,7 @@ const CreateJobs = () => {
   }, [jobId]); // Ensure useEffect runs when jobId changes
 
   return (
-    <div className="flex items-center justify-center min-h-[90vh]">
+    <div className="flex items-center justify-center min-h-[40vh]">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-6 w-full max-w-2xl rounded-2xl cursive--font p-8 mx-4 bg-white dark:bg-slate-950 shadow-lg border"

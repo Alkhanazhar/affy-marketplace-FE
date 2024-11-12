@@ -152,7 +152,7 @@ const Community = () => {
     );
 
   return (
-    <div className="pt-16 pb-16 min-h-screen">
+    <div className="pb-16 min-h-screen">
       <div className="p-8 flex justify-center items-center flex-col space-y-6 leading-none relative">
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-center bg-clip-text text-transparent leading-none bg-gradient-to-tr from-green-300 to-primary pb-2">

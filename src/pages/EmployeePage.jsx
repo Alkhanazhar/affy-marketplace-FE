@@ -7,12 +7,13 @@ import {
   UserCircleIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const EmployeePage = () => {
   const [headerExpanded, setHeaderExpanded] = useState(false);
   const toggleHeaderExpansion = () => setHeaderExpanded((prev) => !prev);
+  const navigate = useNavigate();
   return (
     <div className="flex">
       <div className="h-64 border top-0 left-0 w-[100-vw] absolute"></div>
@@ -23,7 +24,11 @@ const EmployeePage = () => {
         onMouseEnter={toggleHeaderExpansion}
         onMouseLeave={toggleHeaderExpansion}
       >
-        <nav className="flex flex-col items-center gap-4 mt-4">
+        <nav
+          className={`flex flex-col items-center gap-4 mt-4 ${
+            headerExpanded && "w-72"
+          }`}
+        >
           <Link
             to={"/"}
             className="cursive--font inline-block md:text-3xl text-xl font-bold text-black/60 dark:text-slate-100 cursor-pointer border-b w-full h-12 text-center"
@@ -54,16 +59,21 @@ const EmployeePage = () => {
         </nav>
       </aside>
       <div className="flex-1 ">
-        <div className="w-100  h-16 md:ps-24 px-4 flex items-center justify-between bg-white border-b">
+        <div className="h-16 md:ps-24 px-4 flex items-center justify-between bg-white dark:bg-slate-950 border-b fixed top-0 w-full pr-8  ">
           {" "}
-          <span className="text-2xl font-bold text-primary cursor-pointer">
+          <span
+            className="text-2xl font-bold text-primary cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             {brand}
           </span>
           <Button size="sm">
-            Logout <LogOut className="ml-2 w-4 h-4"/>
+            Logout <LogOut className="ml-2 w-4 h-4" />
           </Button>
         </div>
-        <div className="px-4 sm:px-10 md:py-8 sm:ml-14 sm:mt-12 md:mt-0">
+        <div className="px-4 sm:px-10 md:py-20 sm:ml-14 sm:mt-12 md:mt-0 ">
           <Outlet />
         </div>
       </div>

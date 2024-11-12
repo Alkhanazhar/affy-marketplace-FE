@@ -10,8 +10,7 @@ const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Decode the JWT token only once on mount
-  // const userInfo = useMemo(() => (token ? jwtDecode(token) : null), [token]);
+
 
   const fetchUserInfo = async () => {
     if (!token) {

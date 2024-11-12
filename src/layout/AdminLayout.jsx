@@ -63,16 +63,18 @@ export const LogoutSidebarBtn = ({ to, expanded }) => {
 
 export const Sidebar = ({ expanded, onExpand }) => (
   <aside
-    className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width items-center  ${
-      expanded ? "shadow-2xl shadow-black/30 backdrop-blur-md" : ""
+    className={`fixed inset-y-0 left-0 z-10 hidden flex-col border-r bg-background transition-width items-center ${
+      expanded ? "shadow-2xl shadow-black/30 backdrop-blur-md " : ""
     } sm:flex`}
     onMouseEnter={onExpand}
     onMouseLeave={onExpand}
   >
-    <nav className="flex flex-col items-center gap-4 mt-4 ">
+    <nav
+      className={`flex flex-col items-center gap-4 mt-4 ${expanded && "w-72"}`}
+    >
       <Link
         to={"/"}
-        className="cursive--font inline-block md:text-3xl text-xl font-bold text-black/60 dark:text-slate-100 cursor-pointer border-b w-full p-2 text-center"
+        className="cursive--font inline-block md:text-3xl text-xl font-bold text-black/60 dark:text-slate-100 cursor-pointer border-b w-full h-12 text-center"
       >
         {!expanded ? brand[0] : brand}
       </Link>
@@ -138,7 +140,7 @@ export const MobileNavbar = () => (
 const AdminLayout = () => {
   const [headerExpanded, setHeaderExpanded] = useState(false);
   const toggleHeaderExpansion = () => setHeaderExpanded((prev) => !prev);
-  
+
   return (
     <div className="flex">
       <Sidebar expanded={headerExpanded} onExpand={toggleHeaderExpansion} />

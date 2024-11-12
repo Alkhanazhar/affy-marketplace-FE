@@ -1,7 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { skills } from "../../constants/constatns";
-import { MapPin, UserPen, Trash, Upload, Plus, Pen } from "lucide-react";
+import {
+  MapPin,
+  UserPen,
+  Trash,
+  Upload,
+  Plus,
+  Pen,
+  MoveLeft,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 import {
@@ -22,10 +30,22 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProfilePage = () => {
+  const { applicantId } = useParams();
+  const navigate = useNavigate();
   return (
-    <div className="py-20 pt-32 px-4 md:px-0 cursive--font">
+    <div className={`px-4 md:px-0 cursive--font ${applicantId && "pt-32"}`}>
+      {applicantId && (
+        <Button
+          onClick={() => navigate(-1)}
+          size="sm"
+          className="mb-4 flex items-center"
+        >
+          <MoveLeft className="mr-2 w-4" /> Back
+        </Button>
+      )}
       <div className="max-w-7xl mx-auto rounded-2xl w-full h-full border overflow-hidden md:p-6 p-4 md:pb-12 pb-4 bg-white dark:bg-slate-950 shadow-md">
         <div className="hidden md:flex md:flex-row flex-col gap-4">
           <ProfileImageWrapper />
@@ -162,22 +182,26 @@ const ProfilePage = () => {
             <ActionIcon Icon={UserPen}></ActionIcon>
           </div>
         </div>
-        <SkillsSection skills={skills} />
-        <ProfileSection title="Certification">
-          <Certification />
-        </ProfileSection>
-        <ProfileSection title="Employment History">
-          <Experiences />
-        </ProfileSection>
-        <ProfileSection title="Experience">
-          <AddExperience />
-        </ProfileSection>
-        <ProfileSection title="Portfolio">
-          <Portfolios />
-        </ProfileSection>
-        <ProfileSection title="Projects">
-          <Projects />
-        </ProfileSection>
+        {!applicantId && (
+          <>
+            <SkillsSection skills={skills} />
+            <ProfileSection title="Certification">
+              <Certification />
+            </ProfileSection>
+            <ProfileSection title="Employment History">
+              <Experiences />
+            </ProfileSection>
+            <ProfileSection title="Experience">
+              <AddExperience />
+            </ProfileSection>
+            <ProfileSection title="Portfolio">
+              <Portfolios />
+            </ProfileSection>
+            <ProfileSection title="Projects">
+              <Projects />
+            </ProfileSection>
+          </>
+        )}
       </div>
     </div>
   );

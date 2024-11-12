@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 import { Heart, MessageCircle, ScreenShare } from "lucide-react";
-import { useParams } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
@@ -10,54 +9,56 @@ import {
   CardFooter,
   CardTitle,
 } from "../ui/card";
+import { timeAgo } from "../../../constants/constatns";
 
-const Post = ({ textMessage, communityName }) => {
-  const params = useParams();
-  console.log(params);
-
-  // eslint-disable-next-line no-unused-vars
-  function handleLike(e) {
-    e.stopPropagation();
-    console.log("/like");
-  }
-  function handleComment(e) {
-    e.stopPropagation();
-    console.log("/comment");
-  }
+const Post = ({ communityName, item, showMessage }) => {
+ 
+  
   function handleShare(e) {
     e.stopPropagation();
     console.log("/Share");
   }
   return (
     <Card>
-      <div className="flex items-center gap-2 px-6 py-4 cursive--font overflow-hidden">
+      <div className="flex items-center gap-2 px-6 py-3 cursive--font overflow-hidden">
         <Avatar w={"10"} h={"10"}>
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>AK</AvatarFallback>
+          <AvatarImage
+            src={item.userId.avatar || "https://github.com/shadcn.png"}
+          />
+          <AvatarFallback className="uppercase">
+            {item?.userId?.name?.split("")[0]}
+          </AvatarFallback>
         </Avatar>
-        <CardTitle className="text-black/80 dark:text-zinc-200 md:text-xl text-base font-medium">
-          {" "}
-          {communityName}
+        <CardTitle className="text-black/80 dark:text-zinc-200 text-base font-medium">
+          {item.userId.name}
+          <div className="text-sm text-gray-500 font-normal">
+            {timeAgo(new Date(item?.updatedAt))}
+          </div>
         </CardTitle>
       </div>
-      <CardContent className="cursor-pointer">
-        <CardDescription className="cursive--font dark:text-zinc-300 font-normal">
-          {textMessage}
+      <CardContent className="cursor-pointer mb-2">
+        <CardDescription
+          className="cursive--font dark:text-zinc-300 font-normal text-base "
+          onClick={showMessage}
+        >
+          {item?.textMessage}
         </CardDescription>
       </CardContent>
-      <CardFooter className="flex justify-between items-center mt-2">
+      <CardFooter className="flex flex-col justify-start gap-2 items-start ">
         {/* <PostIcons onClick={handleLike}>
           <Heart className="w-4 h-4  hover:fill-primary/60 dark:text-zinc-200" />{" "}
           Like
         </PostIcons> */}
-        <PostIcons onClick={handleComment}>
-          <MessageCircle className="w-4 h-4 hover:fill-primary/60 dark:text-zinc-200" />
-          Comment
-        </PostIcons>
-        <PostIcons onClick={handleShare}>
-          <ScreenShare className="w-4 h-4  hover:fill-primary/60 dark:text-zinc-200" />
-          share
-        </PostIcons>
+        <div className="flex justify-start gap-6">
+          <PostIcons onClick={showMessage}>
+            <MessageCircle className="w-4 h-4  dark:text-zinc-200" />
+            Comment
+          </PostIcons>
+          <PostIcons onClick={handleShare}>
+            <ScreenShare className="w-4 h-4   dark:text-zinc-200" />
+            share
+          </PostIcons>
+        </div>
       </CardFooter>
     </Card>
   );

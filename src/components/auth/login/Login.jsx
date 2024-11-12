@@ -12,22 +12,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader } from "lucide-react";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [isPasswordShow, setIsPasswordShow] = useState(true);
 
-  
   const dispatch = useDispatch();
   const onHandleIsLogin = () => {
     dispatch(toggleIsLogIn(false));
   };
   const { toast } = useToast();
-   const handleIsPasswordShow = () => {
-     setIsPasswordShow(!isPasswordShow);
-   };
+  // toggele password
+  const handleIsPasswordShow = () => {
+    setIsPasswordShow(!isPasswordShow);
+  };
 
   const {
     register,
@@ -35,6 +35,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  // on submit function
   const onSubmit = async (dataForm) => {
     setIsLoading(true);
     try {
@@ -116,11 +117,6 @@ const Login = () => {
                 placeholder="*Password"
                 className={` ${errors.password && "border-red-500"}`}
               />
-              {errors.password && (
-                <span className="text-red-500 text-sm">
-                  *{errors.password.message}
-                </span>
-              )}
 
               <div className="absolute right-4 flex items-center cursor-pointer">
                 {isPasswordShow ? (
@@ -136,6 +132,11 @@ const Login = () => {
                 )}
               </div>
             </div>
+              {errors.password && (
+                <span className="text-red-500 text-sm">
+                  *{errors.password.message}
+                </span>
+              )}
 
             {/* Submit Button */}
             <Button
@@ -144,7 +145,13 @@ const Login = () => {
             >
               {/* Button Text */}
               <span className="relative z-50">
-                {isLoading ? "Logging in..." : "Login"}
+                {isLoading ? (
+                  <div className="flex justify-center items-center gap-4">
+                    <Loader className="animate-spin" /> Logging in...
+                  </div>
+                ) : (
+                  "Login"
+                )}
               </span>
             </Button>
           </form>
@@ -194,24 +201,5 @@ export const LabelInput = ({
     </label>
   </div>
 );
-
-// const OAuthButtons = () => (
-//   <div className="px-3">
-//     <button className="bg-[#4384f4] rounded-lg flex px-4 py-2 relative w-full justify-center items-center text-white ">
-//       <div className="p-[1px] rounded-lg bg-white m-1 absolute left-0">
-//         <img src="google.svg" alt="Google" className="w-7 h-7" />
-//       </div>
-//       <span>Continue with Google</span>
-//     </button>
-//     <div className="mt-4">
-//       <button className="bg-slate-100 border-black border text-black rounded-lg flex gap-2 px-4 py-2 relative w-full justify-center items-center">
-//         <div className="rounded-lg">
-//           <img src="apple.svg" alt="Apple" className="w-4 h-4" />
-//         </div>
-//         <span>Continue with Apple</span>
-//       </button>
-//     </div>
-//   </div>
-// );
 
 export default Login;

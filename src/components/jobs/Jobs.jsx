@@ -25,7 +25,7 @@ export const useJobFilter = (jobs, searchTitle, searchLocation) => {
   useEffect(() => {
     const filtered = jobs.filter(
       (job) =>
-        job.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+        job.fullName.toLowerCase().includes(searchTitle.toLowerCase()) &&
         job.location.toLowerCase().includes(searchLocation.toLowerCase())
     );
     setFilteredJobs(filtered);
@@ -41,7 +41,7 @@ export const SearchBar = ({
   searchLocation,
   setSearchLocation,
 }) => (
-  <div className="pt-2 pb-4 flex items-center justify-center  mx-auto w-full">
+  <div className="pt-2 pb-4 flex items-center justify-center  mx-auto w-full ">
     <div className="flex gap-3 items-center bg-white dark:bg-slate-950 px-6 py-2 rounded-lg shadow-md shadow-[#00000047] dark:shadow-white/10 w-full mx-4 border-t">
       <div className="rounded-l-full md:px-4 flex items-center px-2 bg-transparent relative">
         <User className="text-gray-500" />
@@ -116,7 +116,7 @@ export const CollapsibleFilters = () => {
   );
 
   return (
-    <div className="col-span-3  rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font">
+    <div className="col-span-3  rounded-lg hidden md:flex flex-col gap-5 h-fit text-neutral-700 dark:text-zinc-200 dark:bg-slate-950 sticky top-20 mb-10 p-4 cursive--font ">
       <div className="flex items-center gap-2 flex-wrap">
         Selected filters:
         {filters.map((item, index) => {

@@ -25,6 +25,9 @@ import EmployeeDahboard from "./pages/EmployeeDahboard";
 import EmployeeCreatedJobs from "./pages/EmployeeCreatedJobs";
 import AuthContextProvider from "./context/AuthContext";
 import Applicants from "./pages/Applicants";
+import JobApplied from "./pages/JobApplied";
+import Blogs from "./pages/Blogs";
+import NotFound from "./pages/NotFound";
 const App = () => {
   // base url / backend url
   axios.defaults.baseURL = "http://localhost:8714/";
@@ -70,6 +73,18 @@ const App = () => {
         {
           path: "/how-we-work/freelancer",
           element: <CommunitySlug />,
+        },
+        {
+          path: "/job-applied",
+          element: <JobApplied />,
+        },
+        {
+          path: "/blog",
+          element: <Blogs />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },
@@ -142,6 +157,10 @@ const App = () => {
           path: "/employee-page/jobs/:jobId/applicants",
           element: <Applicants />,
         },
+        {
+          path: "/employee-page/jobs/:jobId/applicants/applicant-profile/:applicantId",
+          element: <ProfilePage />,
+        },
       ],
     },
   ]);
@@ -211,7 +230,7 @@ const App = () => {
         {!intro ? (
           <>
             <div className="h-screen bg-white dark:bg-[#060C1B] flex justify-center items-center overflow-hidden w-screen  relative ">
-              <div className="line w-full show  bg-primary/90  flex justify-center items-center ">
+              <div className="line w-full show bg-primary/90 flex justify-center items-center ">
                 <h1 className="flex gap-2 sm:text-[3vw] font-medium heading opacity-0 block-head text-2xl  absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] text-white dark:text-[#060C1B]">
                   {introText.split("").map((item) => {
                     return (

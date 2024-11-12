@@ -6,7 +6,7 @@ import {
   // occupations,
 } from "../../../../../constants/constatns";
 import { useEffect, useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectedRegisterType,
@@ -106,7 +106,6 @@ const MyForm = () => {
     formData.append("city", data.city);
     formData.append("state", data.state);
     formData.append("country", data.country);
-    // formData.append("occupation", data.occupation);
     formData.append("phone_number", data.phone);
     formData.append("profilePicture", profilePicture);
     formData.append("role", submitSelectType);
@@ -454,36 +453,6 @@ const MyForm = () => {
           <p className="text-red-500 text-sm">*{errors.gender.message}</p>
         )}
 
-        {/* Occupation */}
-        {/* <Controller
-          name="occupation"
-          control={control}
-          rules={{
-            required: "occupation field is required",
-          }}
-          render={({ field }) => (
-            <select
-              {...field}
-              className={`outline-none  w-full mt-2 focus:border-gray-600 p-2 border-[1px] font-[400]  rounded-lg ${
-                errors.occupation && "border-red-500"
-              }`}
-            >
-              <option value="">Select your occupation</option>
-
-              {occupations.map((option) => (
-                <option key={option.slug} value={option.slug}>
-                  {option.title}
-                </option>
-              ))}
-            </select>
-          )}
-        />
-        {errors.occupation && (
-          <p className="text-red-500 text-sm">*{errors.occupation.message}</p>
-        )} */}
-
-        {/* Profile Picture */}
-
         <Input
           type="file"
           className="mt-2"
@@ -504,12 +473,18 @@ const MyForm = () => {
 
         <Button
           type="submit"
-          disabled={isLoading } // Disable if loading or form is invalid
+          disabled={isLoading} // Disable if loading or form is invalid
           className="relative overflow-hidden duration-150 rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full mt-2 md:text-[18px] text-[16px] bg-green-500/50 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
         >
           {/* Button Text */}
           <span className="relative z-10">
-            {isLoading ? "Signing up..." : "Sign up"}
+            {isLoading ? (
+              <div className="flex justify-center items-center gap-4">
+                <Loader className="animate-spin" /> Signing up...
+              </div>
+            ) : (
+              "Sign up"
+            )}
           </span>
         </Button>
       </form>

@@ -82,7 +82,7 @@ const EmployeeCreatedJobs = () => {
   }, []);
 
   return (
-    <CardContent className="bg-white dark:bg-slate-900 border cursive--font no-scroll overflow-scroll mt-8 rounded-xl shadow-lg p-2 h-[60vh]">
+    <CardContent className="bg-white dark:bg-slate-900 border cursive--font no-scroll overflow-scroll rounded-xl shadow-lg p-2 h-[60vh]">
       {isLoading ? (
         <p>Loading jobs...</p>
       ) : error ? (
@@ -151,7 +151,7 @@ const EmployeeCreatedJobs = () => {
                       navigate(job.id + "/applicants");
                     }}
                   >
-                    {job?.applicants || 0}
+                    {job?.applicants || 3}
                   </TableCell>
                   {/* Display the number of applicants */}
                 </TableRow>

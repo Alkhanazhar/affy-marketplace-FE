@@ -270,9 +270,10 @@ export function DataTable({ columns, data }) {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+  console.log(data);
 
   return (
-    <div className="rounded-md border bg-white dark:bg-slate-900">
+    <div className="rounded-md border text-black bg-white dark:bg-slate-900">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

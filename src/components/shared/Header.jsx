@@ -26,6 +26,7 @@ import { AuthContext } from "@/context/AuthContext";
 const navItems = [
   { title: "Home", href: "/" },
   { title: "Community", href: "/community" },
+  { title: "Blog", href: "/blog" },
 ];
 
 const Header = () => {
@@ -76,11 +77,12 @@ const Header = () => {
 
   return (
     <header
-      className={`py-2 duration-150 top-0 fixed cursive--font z-[5] left-0 w-full ${
+      className={`py-2 duration-150 top-0 fixed cursive--font bg-white z-[5] left-0 w-full ${
         bgColor ? "backdrop-blur-sm bg-white/40 dark:bg-white/10 shadow-md" : ""
       }`}
     >
       <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center z-50">
+      
         <Link
           to="/"
           className="logo inline-block md:text-[28px] text-[20px] text-gray-700 dark:text-zinc-100 font-bold z-10"
@@ -88,7 +90,6 @@ const Header = () => {
           {brand}
           <span className="text-primary">&nbsp;.</span>
         </Link>
-
         <NavigationMenu className="hidden md:flex gap-2">
           {navItems.map(({ title, href }) => {
             if (title === "Create-jobs" && !token) return null;
@@ -111,7 +112,6 @@ const Header = () => {
             );
           })}
         </NavigationMenu>
-
         <div className="flex md:hidden text-primary">
           <UserMenu
             userInfo={userInfo}
@@ -120,7 +120,6 @@ const Header = () => {
             isLoading={isLoading}
           />
         </div>
-
         <div className="md:flex gap-4 items-center hidden">
           <ThemeSwitcher />
           {isLoading ? (
@@ -151,76 +150,117 @@ const Header = () => {
     </header>
   );
 };
-
 // Reusable User Menu Component
-const UserMenu = ({ userInfo, handleLogout, handleNavigation }) => (
-  <Sheet>
-    <SheetTrigger>
-      <Avatar className="-z-10">
-        <AvatarImage src={userInfo?.avatar} />
-        <AvatarFallback className="uppercase">
-          {userInfo?.name[0]}
-        </AvatarFallback>
-      </Avatar>
-    </SheetTrigger>
-    <SheetContent>
-      <SheetHeader>
-        <SheetDescription>
-          <div className="flex flex-col gap-1 mt-16">
-            <User className="w-32 h-32 mx-auto text-black dark:text-white" />
-            <div className="cursive--font p-6">
-              <p>
-                Name: <span className="font-semibold">{userInfo?.name}</span>
-              </p>
-              <p>
-                City: <span className="font-semibold">{userInfo?.city}</span>
-              </p>
-              <p>
-                Country:{" "}
-                <span className="font-semibold">{userInfo?.country}</span>
-              </p>
-              <p>
-                Email: <span className="font-semibold">{userInfo?.email}</span>
-              </p>
-              <p>
-                Created At:{" "}
-                <span className="font-semibold">
-                  {userInfo?.createdAt &&
-                    new Date(userInfo.createdAt).toLocaleString()}
-                </span>
-              </p>
+const UserMenu = ({ userInfo, handleLogout, handleNavigation }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger>
+        <Avatar className="-z-10" onClick={() => setIsOpen(true)}>
+          <AvatarImage src={userInfo?.avatar || "/default-avatar.png"} />
+          <AvatarFallback className="uppercase">
+            {userInfo?.name?.[0] || "U"}
+          </AvatarFallback>
+        </Avatar>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetDescription>
+            <div className="flex flex-col gap-1 mt-16">
+              <User className="w-32 h-32 mx-auto text-black dark:text-white" />
+              <div className="cursive--font p-6">
+                <p>
+                  Name:{" "}
+                  <span className="font-semibold">
+                    {userInfo?.name || "N/A"}
+                  </span>
+                </p>
+                <p>
+                  City:{" "}
+                  <span className="font-semibold">
+                    {userInfo?.city || "N/A"}
+                  </span>
+                </p>
+                <p>
+                  Country:{" "}
+                  <span className="font-semibold">
+                    {userInfo?.country || "N/A"}
+                  </span>
+                </p>
+                <p>
+                  Email:{" "}
+                  <span className="font-semibold">
+                    {userInfo?.email || "N/A"}
+                  </span>
+                </p>
+                <p>
+                  Created At:{" "}
+                  <span className="font-semibold">
+                    {userInfo?.createdAt
+                      ? new Date(userInfo.createdAt).toLocaleString()
+                      : "N/A"}
+                  </span>
+                </p>
+              </div>
+
+              {userInfo?.role && (
+                <>
+                  {userInfo.role === "Employee" && (
+                    <Button
+                      onClick={() => {
+                        handleNavigation("/employee-page");
+                        setIsOpen(false);
+                      }}
+                      variant="outline"
+                    >
+                      Dashboard
+                    </Button>
+                  )}
+                  {(userInfo?.role === "Employee" ||
+                    userInfo?.role === "Employer") && (
+                    <Button
+                      onClick={() => {
+                        handleNavigation("/job-applied");
+                        setIsOpen(false);
+                      }}
+                      variant="outline"
+                    >
+                      Job Applied
+                    </Button>
+                  )}
+                  {userInfo.role === "Admin" && (
+                    <Button
+                      onClick={() => {
+                        handleNavigation("/admin");
+                        setIsOpen(false);
+                      }}
+                      variant="outline"
+                    >
+                      Admin
+                    </Button>
+                  )}
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      handleNavigation("/profile");
+                      setIsOpen(false);
+                    }}
+                  >
+                    Profile
+                  </Button>
+                </>
+              )}
+
+              <Button onClick={handleLogout} variant="destructive" size="sm">
+                Log out
+              </Button>
             </div>
-            {userInfo?.role === "Employee" && (
-              <Button
-                onClick={() => handleNavigation("/employee-page")}
-                variant="outline"
-              >
-                Dashboard
-              </Button>
-            )}
-            <Button
-              variant="outline"
-              onClick={() => handleNavigation("/profile")}
-            >
-              Profile
-            </Button>
-            {userInfo?.role === "Admin" && (
-              <Button
-                variant="outline"
-                onClick={() => handleNavigation("/admin")}
-              >
-                Admin
-              </Button>
-            )}
-            <Button onClick={handleLogout} variant="destructive" size="sm">
-              Log out
-            </Button>
-          </div>
-        </SheetDescription>
-      </SheetHeader>
-    </SheetContent>
-  </Sheet>
-);
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  );
+};
 
 const LinkButton = ({ text, onClick }) => (
   <Button
