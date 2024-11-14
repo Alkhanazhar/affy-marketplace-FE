@@ -19,6 +19,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 const MyForm = () => {
   const { toast } = useToast();
@@ -91,8 +92,8 @@ const MyForm = () => {
   }, [states, state]);
 
   const onSubmit = async (data) => {
-    const submitSelectType = selectType == "Client" ? "Employee" : "Employer";
-    console.log(submitSelectType);
+    const submitSelectType = selectType == "Client" ? "Employee" : "User";
+    console.log(submitSelectType, " role");
     if (!profilePicture) return;
     setIsLoading(true);
     const formData = new FormData();
@@ -107,7 +108,7 @@ const MyForm = () => {
     formData.append("state", data.state);
     formData.append("country", data.country);
     formData.append("phone_number", data.phone);
-    formData.append("profilePicture", profilePicture);
+    formData.append("file", profilePicture);
     formData.append("role", submitSelectType);
     try {
       const res = await axios.post("/api/web/user/register", formData, {
@@ -327,7 +328,13 @@ const MyForm = () => {
                 className={` w-full mt-2  focus:border-gray-600 p-2 border-[1px] outline-none font-[400]  rounded-lg ${
                   errors.address && "border-red-500"
                 }`}
+                type="tel"
+                maxLength={10}
                 placeholder="Add your Phone"
+                onInput={(e) => {
+                  // Only allow numeric input
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                }}
               ></Input>
             )}
           />
@@ -452,16 +459,20 @@ const MyForm = () => {
         {errors.gender && (
           <p className="text-red-500 text-sm">*{errors.gender.message}</p>
         )}
-
-        <Input
-          type="file"
-          className="mt-2"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            setProfilePicture(file);
-          }}
-        />
+        <div className="mt-2 flex gap-4 items-center border  px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none f focus-visible:ring-ring focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 rounded-md">
+          <div className="cursive--font text-sm whitespace-nowrap">
+            Profile Image
+          </div>
+          <Input
+            type="file"
+            accept="image/*"
+            className="cursor-pointer"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              setProfilePicture(file);
+            }}
+          />
+        </div>
 
         {!profilePicture && (
           <p className="text-red-500 text-sm">
@@ -474,7 +485,7 @@ const MyForm = () => {
         <Button
           type="submit"
           disabled={isLoading} // Disable if loading or form is invalid
-          className="relative overflow-hidden duration-150 rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full mt-2 md:text-[18px] text-[16px] bg-green-500/50 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
+          className="relative overflow-hidden duration-150 rounded-lg backdrop-blur-sm px-4 py-2 text-white w-full mt-2 md:text-[18px] text-[16px] bg-primary/70 hover:bg-opacity-90 hover:backdrop-contrast-50 hover:backdrop-brightness-90"
         >
           {/* Button Text */}
           <span className="relative z-10">

@@ -10,21 +10,23 @@ import {
   CardTitle,
 } from "../ui/card";
 import { timeAgo } from "../../../constants/constatns";
+import { baseUrl } from "@/App";
 
-const Post = ({ communityName, item, showMessage }) => {
- 
-  
+
+const Post = ({ item, showMessage }) => {
   function handleShare(e) {
     e.stopPropagation();
     console.log("/Share");
   }
+  
+
+  const image = baseUrl + "uploads/"+item.userId.avatar
+  console.log(item,"item");
   return (
     <Card>
       <div className="flex items-center gap-2 px-6 py-3 cursive--font overflow-hidden">
         <Avatar w={"10"} h={"10"}>
-          <AvatarImage
-            src={item.userId.avatar || "https://github.com/shadcn.png"}
-          />
+          <AvatarImage src={image || "https://github.com/shadcn.png"} />
           <AvatarFallback className="uppercase">
             {item?.userId?.name?.split("")[0]}
           </AvatarFallback>

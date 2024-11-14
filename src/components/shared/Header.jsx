@@ -22,6 +22,8 @@ import {
 } from "../ui/sheet";
 import { Loader, User } from "lucide-react";
 import { AuthContext } from "@/context/AuthContext";
+import { jwtDecode } from "jwt-decode";
+import { baseUrl } from "@/App";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -75,14 +77,15 @@ const Header = () => {
     handleAuthNavigation(true);
   };
 
+  console.log(userInfo)
+
   return (
     <header
-      className={`py-2 duration-150 top-0 fixed cursive--font bg-white z-[5] left-0 w-full ${
+      className={`py-2 duration-150 top-0 fixed cursive--font  z-[5] left-0 w-full ${
         bgColor ? "backdrop-blur-sm bg-white/40 dark:bg-white/10 shadow-md" : ""
       }`}
     >
       <section className="md:max-w-6xl w-[90%] header mx-auto flex justify-between items-center z-50">
-      
         <Link
           to="/"
           className="logo inline-block md:text-[28px] text-[20px] text-gray-700 dark:text-zinc-100 font-bold z-10"
@@ -153,21 +156,35 @@ const Header = () => {
 // Reusable User Menu Component
 const UserMenu = ({ userInfo, handleLogout, handleNavigation }) => {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(userInfo);
+  const image = baseUrl + "uploads/" + userInfo?.avatar;
+  console.log(image);
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger>
-        <Avatar className="-z-10" onClick={() => setIsOpen(true)}>
-          <AvatarImage src={userInfo?.avatar || "/default-avatar.png"} />
-          <AvatarFallback className="uppercase">
-            {userInfo?.name?.[0] || "U"}
-          </AvatarFallback>
-        </Avatar>
+        {image && (
+          <Avatar className="-z-10" onClick={() => setIsOpen(true)}>
+            <AvatarImage src={image} />
+            <AvatarFallback className="uppercase">
+              {userInfo?.name?.[0] || "U"}
+            </AvatarFallback>
+          </Avatar>
+        )}
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
           <SheetDescription>
             <div className="flex flex-col gap-1 mt-16">
-              <User className="w-32 h-32 mx-auto text-black dark:text-white" />
+              {image ? (
+                <>
+                  <img
+                    src={image}
+                    className="w-64 h-64 object-cover rounded-full mx-auto"
+                  />
+                </>
+              ) : (
+                <User className="w-32 h-32 mx-auto text-black dark:text-white" />
+              )}
               <div className="cursive--font p-6">
                 <p>
                   Name:{" "}
@@ -194,7 +211,7 @@ const UserMenu = ({ userInfo, handleLogout, handleNavigation }) => {
                   </span>
                 </p>
                 <p>
-                  Created At:{" "}
+                  Joined At:{" "}
                   <span className="font-semibold">
                     {userInfo?.createdAt
                       ? new Date(userInfo.createdAt).toLocaleString()

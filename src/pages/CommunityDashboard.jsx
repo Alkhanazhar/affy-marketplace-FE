@@ -224,7 +224,7 @@ const CommunityDashboard = () => {
           </button>
         </AlertDialogTrigger>
         <AlertDialogContent>
-          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center rounded-full  dark:text-slate-100">
+          <AlertDialogTitle className="md:text-2xl text-xl text-black/70 text-center rounded-full  dark:text-slate-100">
             {isEdit ? "Update your Community" : "Create Your Community"}
           </AlertDialogTitle>
           <form
@@ -263,7 +263,7 @@ const CommunityDashboard = () => {
                 name="category_id"
                 value={formData.category_id}
                 onChange={handleInputChange}
-                className="p-2 border-[1px] rounded-md dark:bg-transparent mt-2"
+                className="p-2 border-[1px] rounded-md dark:bg-transparent "
               >
                 <option value="">Select a Category</option>
                 {categories?.map((category, index) => (
@@ -273,7 +273,7 @@ const CommunityDashboard = () => {
                 ))}
               </select>
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-end items-center">
               <Button type="submit">
                 {isEdit ? "Update Community" : "Create Community"}
               </Button>

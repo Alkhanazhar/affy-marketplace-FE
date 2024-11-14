@@ -10,8 +10,6 @@ const AuthContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-
-
   const fetchUserInfo = async () => {
     if (!token) {
       setIsLoading(false);

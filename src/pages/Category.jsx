@@ -211,7 +211,7 @@ const Category = () => {
           </button>
         </AlertDialogTrigger>
         <AlertDialogContent>
-          <AlertDialogTitle className="md:text-4xl text-2xl text-black/70 text-center dark:text-slate-100">
+          <AlertDialogTitle className="md:text-2xl text-2xl text-black/70 text-center dark:text-slate-100">
             {isEdit ? "Update your Category" : "Create Your Category"}
           </AlertDialogTitle>
           <form
@@ -245,7 +245,7 @@ const Category = () => {
                 className="my-2"
               />
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-end items-center">
               <Button type="submit">
                 {isEdit ? "Update Category" : "Create Category"}
               </Button>

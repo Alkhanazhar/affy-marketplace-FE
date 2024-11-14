@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
+import { Send } from "lucide-react";
 
 const PostForm = ({ userData, communityId, onPostCreated }) => {
   const [textMessage, setTextMessage] = useState("");
@@ -46,7 +47,7 @@ const PostForm = ({ userData, communityId, onPostCreated }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 p-2 border rounded-xl w-full bg-white my-4"
+      className="space-y-4 p-2 border rounded-xl mx-3  bg-white "
     >
       <div>
         <Label htmlFor="name" className="m-3">
@@ -62,7 +63,8 @@ const PostForm = ({ userData, communityId, onPostCreated }) => {
         />
       </div>
       <div className="flex justify-end items-center gap-4">
-        <Button type="submit" size="sm">
+        <Button type="submit" size="sm" className="flex gap-2 items-center">
+          <Send size={18} />
           Create Post
         </Button>
       </div>

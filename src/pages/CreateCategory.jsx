@@ -31,15 +31,11 @@ const CreateCategory = () => {
     }
 
     try {
-      const response = await axios.post(
-        "/admin/category/create",
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await axios.post("/admin/category/create", formData, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
 
       toast({
         variant: "default",

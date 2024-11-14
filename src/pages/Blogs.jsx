@@ -1,7 +1,7 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState();
+  // const [blogs, setBlogs] = useState([]);
 
   //   const fetchBlogs = async () => {
 

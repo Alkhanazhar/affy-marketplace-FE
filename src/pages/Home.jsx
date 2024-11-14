@@ -34,6 +34,7 @@ const Home = () => {
     },
   ];
 
+
   // Data for Freelancers section
   const freelancerItems = [
     {

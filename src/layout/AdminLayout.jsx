@@ -24,8 +24,8 @@ export const SidebarItem = ({ to, icon: Icon, label, expanded }) => {
         location.pathname == to ? " border-primary bg-primary/10" : ""
       } ${expanded ? "justify-start gap-4 w-80 px-6" : "justify-center px-4"}`}
     >
-      <Icon className="h-5 w-5 md:h-8 md:w-8" />
-      {expanded && <span className="cursive--font">{label}</span>}
+      <Icon size={22} />
+      {expanded && <span className="cursive--font ">{label}</span>}
     </NavLink>
   );
 };
@@ -55,7 +55,7 @@ export const LogoutSidebarBtn = ({ to, expanded }) => {
         expanded ? "justify-start gap-4 w-72 px-6" : "justify-center px-4"
       }`}
     >
-      <LogOutIcon className="h-5 w-5 md:h-8 md:w-8" />
+      <LogOutIcon size={20} />
       {expanded && <span className="cursive--font">Logout</span>}
     </div>
   );

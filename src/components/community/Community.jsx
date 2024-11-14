@@ -171,7 +171,7 @@ const Community = () => {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle className="text-3xl text-center text-black/70 dark:text-zinc-100">
+                  <AlertDialogTitle className="text-2xl text-center text-black/70 dark:text-zinc-100">
                     Create your Community
                   </AlertDialogTitle>
                   <AlertDialogDescription>
@@ -215,7 +215,7 @@ const Community = () => {
                           </option>
                         ))}
                       </select>
-                      <div className="flex justify-center items-center">
+                      <div className="flex justify-end w-full  items-center">
                         <Button type="submit">{"Create Community"}</Button>
                       </div>
                     </form>

@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import CommunityPage from "./pages/CommunityPage";
@@ -28,10 +33,29 @@ import Applicants from "./pages/Applicants";
 import JobApplied from "./pages/JobApplied";
 import Blogs from "./pages/Blogs";
 import NotFound from "./pages/NotFound";
+import HPractice from "./pages/HPractice";
+import Notifications from "./pages/Notifications";
+import { jwtDecode } from "jwt-decode";
+
+export const baseUrl = "http://localhost:8714/";
+
 const App = () => {
   // base url / backend url
   axios.defaults.baseURL = "http://localhost:8714/";
+
   const [intro, setIntro] = useState(false);
+  function ProtectedRoute({ children, allowedRoles }) {
+    const location = useLocation();
+    const userInfo = localStorage.getItem("token");
+    const decode = userInfo && jwtDecode(userInfo);
+    const role = decode.role;
+    console.log(role);
+    // const role = localStorage.getItem("role");
+    if (!role || !allowedRoles.includes(role)) {
+      return <Navigate to="/not-found" state={{ from: location }} />;
+    }
+    return children;
+  }
   const router = createBrowserRouter([
     {
       path: "/",
@@ -46,13 +70,20 @@ const App = () => {
           element: <Home />,
         },
         {
+          path: "/practice",
+          element: <HPractice />,
+        },
+        {
           path: "/community",
           element: <CommunityPage />,
         },
-
         {
           path: "/community/:communityId",
           element: <CommunitySlug />,
+        },
+        {
+          path: "/community/:communityId/create-jobs",
+          element: <CreateJobs />,
         },
         {
           path: "/community/:communityId/posts",
@@ -82,10 +113,6 @@ const App = () => {
           path: "/blog",
           element: <Blogs />,
         },
-        {
-          path: "*",
-          element: <NotFound />,
-        },
       ],
     },
     {
@@ -106,7 +133,9 @@ const App = () => {
       path: "/admin",
       element: (
         <AuthContextProvider>
-          <AdminLayout />
+          <ProtectedRoute allowedRoles={"Superadmin"}>
+            <AdminLayout />
+          </ProtectedRoute>
         </AuthContextProvider>
       ),
       children: [
@@ -136,7 +165,6 @@ const App = () => {
           path: "/employee-page",
           element: (
             <AuthContextProvider>
-              {" "}
               <EmployeeDahboard />
             </AuthContextProvider>
           ),
@@ -144,6 +172,10 @@ const App = () => {
         {
           path: "/employee-page/create-jobs",
           element: <CreateJobs />,
+        },
+        {
+          path: "/employee-page/notifications",
+          element: <Notifications />,
         },
         {
           path: "/employee-page/edit/:jobId",
@@ -162,6 +194,10 @@ const App = () => {
           element: <ProfilePage />,
         },
       ],
+    },
+    {
+      path: "/not-found",
+      element: <NotFound />,
     },
   ]);
   // text

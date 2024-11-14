@@ -17,6 +17,7 @@ const Dashboard = () => {
       amount: "+2350",
       discription: "+180.1% from last month",
       icon: Users,
+      
     },
     {
       label: "Sales",
@@ -161,7 +162,7 @@ const data = [
 ];
 
 export function BarChart() {
-  const {theme} = useTheme();
+  const { theme } = useTheme();
   return (
     <ResponsiveContainer width={"100%"} height={350}>
       <BarGraph data={data}>
@@ -193,9 +194,10 @@ export function BarChart() {
 
 export function Card(props) {
   return (
-    <CardContent className="bg-white dark:bg-slate-900 shadow-lg relative overflow-hidden">
-      <section className="flex justify-between gap-2 ">
-        <p className="text-base">{props?.label}</p>
+    <CardContent className="bg-white h-full dark:bg-slate-900 shadow-md relative overflow-hidden">
+      <section className="flex justify-between gap-2 flex-col">
+        <p className="text-xl font-bold">{props?.label}</p>
+        <p className="text-sm font-normal">{props?.description}</p>
         <props.icon className="h-40 w-40 absolute right-2 top-2 opacity-20  text-gray-500 " />
       </section>
       <section className="flex flex-col gap-1">
@@ -246,7 +248,7 @@ export function PageTitle({ title, classname }) {
   return (
     <h1
       className={cn(
-        "lg:text-4xl md:text-2xl text-2xl font-semibold text-primary",
+        "lg:text-4xl md:text-2xl text-xl font-semibold text-primary",
         classname
       )}
     >

@@ -241,13 +241,14 @@ const ProfileImage = () => (
   </div>
 );
 
-const UserInfo = () => (
+export const UserInfo = ({ userInfo }) => (
   <div className="flex flex-col justify-between">
-    <h1 className="md:text-4xl sm:text-2xl text-xl text-gray-700  dark:text-neutral-200 font-medium">
-      Azhar K.
+    <h1 className="md:text-4xl sm:text-2xl text-2xl text-gray-700  dark:text-neutral-200 font-medium">
+      {userInfo ? userInfo?.name : "Azhar K."}
     </h1>
-    <div className="text-gray-400 text-sm md:text-base flex items-center gap-1">
-      <MapPin /> Bhopal, India - 3:08 PM local time
+    <div className="text-gray-500 text-sm md:text-base flex items-center gap-1 ">
+      <MapPin size={18} />
+      {userInfo ? userInfo?.city + "," + userInfo.country : "Azhar K."}
     </div>
   </div>
 );
