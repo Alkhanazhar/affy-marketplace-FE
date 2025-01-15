@@ -22,7 +22,6 @@ import {
 } from "../ui/sheet";
 import { Loader, User } from "lucide-react";
 import { AuthContext } from "@/context/AuthContext";
-import { jwtDecode } from "jwt-decode";
 import { baseUrl } from "@/App";
 
 const navItems = [
@@ -77,7 +76,7 @@ const Header = () => {
     handleAuthNavigation(true);
   };
 
-  console.log(userInfo)
+  console.log(userInfo);
 
   return (
     <header
@@ -174,6 +173,7 @@ const UserMenu = ({ userInfo, handleLogout, handleNavigation }) => {
       <SheetContent>
         <SheetHeader>
           <SheetDescription>
+            <ThemeSwitcher />
             <div className="flex flex-col gap-1 mt-16">
               {image ? (
                 <>

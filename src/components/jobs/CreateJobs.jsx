@@ -11,6 +11,8 @@ import { useEffect } from "react";
 
 const CreateJobs = () => {
   const { jobId } = useParams();
+  const { communityId } = useParams();
+  console.log(communityId);
   const {
     register,
     handleSubmit,
@@ -36,7 +38,13 @@ const CreateJobs = () => {
       return;
     }
 
-    const submitData = { ...data, createdBy: userInfo.id };
+    const submitData = {
+      ...data,
+      // createdBy: userInfo.id,
+      community_id: communityId,
+    };
+
+    console.log(submitData, "submitData");
     const url = jobId ? `/api/job/update/${jobId}` : "/api/job/create";
     const method = jobId ? "put" : "post";
 
@@ -58,7 +66,7 @@ const CreateJobs = () => {
           : "Job created successfully!",
         status: "success",
       });
-      navigate("/employee-page");
+      // navigate("");
     } catch (error) {
       console.log(error);
       if (error.response.data.message == "Token is not valid!") {
@@ -68,7 +76,7 @@ const CreateJobs = () => {
       if (error.response) {
         toast({
           title: "Error",
-          description: `Server responded with an error: ${error.response.data}`,
+          description: `Server responded with an error: ${error.response}`,
           status: "error",
         });
       } else if (error.request) {
@@ -116,13 +124,13 @@ const CreateJobs = () => {
   }, [jobId]); // Ensure useEffect runs when jobId changes
 
   return (
-    <div className="flex items-center justify-center min-h-[30vh]">
+    <div className="min-h-[30vh]">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 w-full max-w-2xl rounded-2xl cursive--font p-8 mx-4 bg-white dark:bg-slate-950 shadow-lg border"
+        className="space-y-6 w-full p-3 rounded-2xl cursive--font  bg-white dark:bg-slate-950 "
       >
-        <h1 className="md:text-3xl text-2xl text-center font-bold">
-          {jobId ? "Update your job here" : "Create your job here"}
+        <h1 className="md:text-3xl text-2xl font-bold truncate">
+          {jobId ? "Update your job here" : "Post your job here"}
         </h1>
 
         <div className="space-y-4">
@@ -131,18 +139,19 @@ const CreateJobs = () => {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
-              Full Name:
+              Job Title:
             </Label>
             <Input
               type="text"
               id="name"
+              placeholder="Product Designer"
               {...register("name", {
                 required: "Full Name is required",
                 validate: (value) =>
                   value.trim().length > 4 ||
                   "Full Name must be more than 4 letters",
               })}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm text-sm"
+              className="mt-1 block w-full border  border-gray-300 rounded-xl shadow-sm text-sm"
             />
             {errors.name && (
               <span className="text-red-600 text-sm">
@@ -150,23 +159,23 @@ const CreateJobs = () => {
               </span>
             )}
           </div>
-
           <div>
             <Label
               htmlFor="description"
               className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
-              Description:
+              Job Description:
             </Label>
             <Textarea
               id="description"
+              placeholder="What is the role? What are the responsibilities? Who will they work with?"
               {...register("description", {
                 required: "Description is required",
                 validate: (value) =>
                   value.trim().length > 15 ||
                   "Description must be more than 15 letters",
               })}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm sm:text-sm"
+              className="mt-1 block w-full border border-gray-300  rounded-xl resize-none shadow-sm sm:text-sm"
             />
             {errors.description && (
               <span className="text-red-600 text-sm">
@@ -180,7 +189,7 @@ const CreateJobs = () => {
               htmlFor="price"
               className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
-              Price:
+              Job Price:
             </Label>
             <Input
               type="number"
@@ -191,7 +200,7 @@ const CreateJobs = () => {
                 validate: (value) =>
                   value > 100 || "Price must be more than 100",
               })}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm sm:text-sm"
+              className="mt-1 block w-full border border-gray-300  rounded-xl resize-none shadow-sm sm:text-sm"
             />
             {errors.price && (
               <span className="text-red-600 text-sm">
@@ -205,17 +214,18 @@ const CreateJobs = () => {
               htmlFor="location"
               className="block text-sm font-medium text-gray-700 dark:text-zinc-200"
             >
-              Location:
+              Job Location:
             </Label>
             <Textarea
               id="location"
+              placeholder="Delhi, India"
               {...register("location", {
                 required: "Location is required",
                 validate: (value) =>
                   value.trim().length > 5 ||
                   "Location must be more than 5 letters",
               })}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm sm:text-sm"
+              className="mt-1 block w-full border border-gray-300  rounded-xl resize-none shadow-sm sm:text-sm"
             />
             {errors.location && (
               <span className="text-red-600 text-sm">
@@ -229,7 +239,7 @@ const CreateJobs = () => {
             className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/70 focus:outline-none focus:ring-2 focus:ring-offset-2"
             disabled={!isValid}
           >
-            {jobId ? "Update Job" : "Create Job"}
+            {jobId ? "Update Job" : "Post Job"}
           </Button>
         </div>
       </form>

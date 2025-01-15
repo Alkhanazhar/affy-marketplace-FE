@@ -1,11 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -15,50 +7,55 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import {  DollarSign } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 const JobCard = ({ job }) => {
-  console.log(job);
+  console.log(job, "jobs");
+  const images = [
+    "https://cdn.usegalileo.ai/sdxl10/38993a56-0fa3-420e-b171-1807c194e110.png",
+    "https://cdn.usegalileo.ai/sdxl10/4e0a5972-3470-4f54-9982-debf3bce1f77.png",
+    "https://cdn.usegalileo.ai/stability/938b517e-dc32-442d-92aa-ac87f4509de0.png",
+  ];
+  const randomNumber = Math.floor(Math.random() * images.length);
+  console.log(randomNumber);
   return (
     <Dialog>
-      <Card className="cursive--font">
-        <CardHeader className="cursive--font">
-          <CardTitle className="text-black/80 dark:text-zinc-200 cursive--font">
-            {job?.fullName}
-          </CardTitle>
-          <p>{job?.location}</p>
-          <CardDescription>{job.company}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <CardDescription>{job?.description}</CardDescription>
-          <div className="mt-4 flex text-black/70 dark:text-zinc-300">
-            <p className="text-[#64748b] flex items-center">
-              <DollarSign className="w-4 h-4 mr-2" /> Price: &nbsp;
-            </p>{" "}
-            {job?.price}
+      <div className="p-3 border rounded-md cursive--font">
+        <div className="flex items-stretch justify-between gap-4 rounded-xl">
+          <div className="flex flex-[2_2_0px] flex-col gap-4">
+            <div className="flex flex-col gap-1">
+              <p className="text-[#4c719a] text-sm font-normal leading-normal">
+                {job.location}
+              </p>
+              <p className="text-[#0d141b] text-xl font-bold leading-tight">
+                {job.name}
+              </p>
+              <p className="text-[#4c719a] text-sm font-normal leading-tight">
+                {job.description}
+              </p>
+
+              <p className="text-[#4c719a] text-sm font-normal leading-normal">
+                ${job.price}
+              </p>
+              <p className="text-[#4c719a] text-sm font-normal leading-normal">
+                {job.Community.name}
+              </p>
+            </div>
+
+            <DialogTrigger asChild className="mt-auto">
+              <Button size="sm" className="w-fit">
+                Apply Now
+              </Button>
+            </DialogTrigger>
           </div>
-          {/* <ul className="flex gap-2 items-center mt-4 flex-wrap">
-            <p className="text-[#64748b]">Skills:</p>
-            {job?.skills?.map((skill, index) => (
-              <li
-                key={index}
-                className="py-[4px] text-xs md:text-sm px-4 rounded-full bg-neutral-100 dark:bg-zinc-300 border cursor-pointer text-neutral-600"
-              >
-                {skill}
-              </li>
-            ))}
-          </ul> */}
-        </CardContent>
-        <CardFooter>
-          <DialogTrigger asChild>
-            <Button size="sm" className="mt-4">
-              Apply Now
-            </Button>
-          </DialogTrigger>
-        </CardFooter>
-      </Card>
+          <img
+            src={images[randomNumber]}
+            className="w-40 bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1 object-cover"
+          ></img>
+        </div>
+      </div>
+
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl">

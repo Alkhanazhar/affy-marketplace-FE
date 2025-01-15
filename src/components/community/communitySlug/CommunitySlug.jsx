@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink,  useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { Link, Tag, User, User2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { AuthContext } from "@/context/AuthContext";
+import BackButton from "@/components/shared/BackButton";
 
 const CommunitySlug = () => {
   const { communityId } = useParams();
@@ -66,12 +67,15 @@ const CommunitySlug = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
   return (
     <div className="pb-16 min-h-screen mx-4 md:mx-0 cursive--font">
-      <div className="max-w-5xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse  md:mx-4">
+      <div className="max-w-7xl lg:mx-auto flex md:gap-4 gap-4 md:flex-row flex-col-reverse  md:mx-4">
         <div className="w-full rounded-xl md:flex-[1.6] border shadow-container p-6 bg-white dark:bg-slate-950">
+          <div className="mb-4">
+            <BackButton />
+          </div>
           <h1 className="leading-none text-black/70 dark:text-zinc-100 md:text-3xl text-2xl font-bold">
             {community?.name}
           </h1>

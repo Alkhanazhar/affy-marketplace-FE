@@ -4,13 +4,13 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <>
+    <div>
       <Header />
-      <div className="mt-16">
+      <div className="mt-[58px]">
         <Outlet />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
